@@ -20,11 +20,8 @@ import { cn } from "@/lib/utils";
 import { mockUser } from "@/lib/data";
 
 const Logo = () => (
-  <Link href="/" className="flex items-center gap-2" aria-label="Prime Home Club">
-    <Image src="/logo.png" alt="Prime Home Club Logo" width={40} height={40} />
-    <span className="text-xl font-bold font-headline tracking-tighter text-primary">
-      Prime Home Club
-    </span>
+  <Link href="/" aria-label="Prime Home Club">
+    <Image src="/logo.png" alt="Prime Home Club Logo" width={160} height={40} />
   </Link>
 );
 
@@ -108,7 +105,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between">
         <div className="flex items-center gap-6">
           <Logo />
           <NavLinks className="hidden md:flex" />

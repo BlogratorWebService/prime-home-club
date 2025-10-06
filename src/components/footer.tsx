@@ -38,10 +38,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-1 pr-8">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image src="/logo.png" alt="Prime Home Club Logo" width={40} height={40} />
-              <span className="text-xl font-bold font-headline text-primary">
-                Prime Home Club
-              </span>
+              <Image src="/logo.png" alt="Prime Home Club Logo" width={160} height={40} />
             </Link>
             <p className="text-muted-foreground text-sm max-w-sm">
               Mumbai's trusted appliance repair service center, offering expert repairs for TV, AC, Refrigerator, and Geyser with at-home service and warranty.
