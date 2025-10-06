@@ -13,6 +13,12 @@
       "imageHint": "male technician"
     },
     {
+      "id": "hero-3",
+      "description": "A friendly male technician in a uniform, holding tools.",
+      "imageUrl": "https://images.unsplash.com/photo-1744302448222-b7ab4db49291?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx0ZWNobmljaWFuJTIwdG9vbHN8ZW58MHx8fHwxNzU5NzQzNzUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technician tools"
+    },
+    {
       "id": "category-tv",
       "description": "A modern flat screen TV mounted on a wall.",
       "imageUrl": "https://images.unsplash.com/photo-1593784944554-24c9d99de473?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydCUyMHR2fGVufDB8fHx8MTc1OTY3ODM3OXww&ixlib=rb-4.1.0&q=80&w=1080",
@@ -59,6 +65,12 @@
       "description": "A happy family relaxing in their pristine home.",
       "imageUrl": "https://images.unsplash.com/photo-1592711491694-e85f60a7773a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoYXBweSUyMGZhbWlseXxlbnwwfHx8fDE3NTk3Mzk3MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "happy family"
+    },
+    {
+      "id": "tv-repair-hero",
+      "description": "A technician is focused on repairing the internal components of a flat-screen TV.",
+      "imageUrl": "https://images.unsplash.com/photo-1639148604358-ad11dce888af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZWNobmljaWFuJTIwdHZ8ZW58MHx8fHwxNzU5NzQzNzUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technician tv"
     }
   ]
 }
