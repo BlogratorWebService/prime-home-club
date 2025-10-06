@@ -37,11 +37,11 @@ export default function Home() {
     }
   ];
 
-  const features = [
-    { title: "Expert Technicians", icon: <Wrench/> },
-    { title: "Home Service", icon: <ShieldCheck/> },
-    { title: "Warranty on Repairs", icon: <CheckCircle/> },
-  ]
+  const heroFeatures = [
+    { title: "Expert Technicians", icon: <Wrench className="h-5 w-5" /> },
+    { title: "Home Service", icon: <ShieldCheck className="h-5 w-5" /> },
+    { title: "Warranty on Repairs", icon: <CheckCircle className="h-5 w-5" /> },
+  ];
 
 
   return (
@@ -59,15 +59,21 @@ export default function Home() {
                   Facing 🛠️ appliance issues? Try Prime Home Club, India's Most Trusted Repairs With Warranty.
                 </p>
                 
-                <div className="mt-8 p-6 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
-                  <h3 className="font-bold font-headline text-lg mb-4">Book TV / AC / Refrigerator / Geyser Repair</h3>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <Input placeholder="Your Name" className="bg-white/20 placeholder:text-primary-foreground/70 border-white/30"/>
-                      <Input placeholder="Phone Number" className="bg-white/20 placeholder:text-primary-foreground/70 border-white/30" />
-                       <Button size="lg" className="sm:col-span-2 w-full bg-background text-primary hover:bg-background/90">
-                           Request Service
-                       </Button>
-                    </div>
+                <div className="mt-8 flex flex-wrap gap-4">
+                    <Button asChild size="lg" className="bg-background text-primary hover:bg-background/90">
+                       <Link href="/#services">Book a Service <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                    </Button>
+                     <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10 hover:text-white">
+                       <Link href="/#services">View Services</Link>
+                    </Button>
+                </div>
+                <div className="mt-8 flex items-center gap-6 text-sm">
+                    {heroFeatures.map(feature => (
+                        <div key={feature.title} className="flex items-center gap-2">
+                            {feature.icon}
+                            <span>{feature.title}</span>
+                        </div>
+                    ))}
                 </div>
               </div>
                <div className="relative hidden md:block">
@@ -223,3 +229,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
