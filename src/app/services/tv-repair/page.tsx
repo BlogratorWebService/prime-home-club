@@ -2,13 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle, Phone, Calendar, Star, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import CallToAction from "@/components/call-to-action";
 
 export default function TVRepairPage() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "tv-repair-hero");
   const serviceName = "TV Repair";
   const whatsappMessage = `https://wa.me/918858585559?text=Hello, I'm interested in the ${encodeURIComponent(serviceName)} service.`;
 
@@ -69,16 +67,13 @@ export default function TVRepairPage() {
               </div>
             </div>
             <div className="mt-8 md:mt-0 animate-fade-in-up animation-delay-300">
-              {heroImage && (
-                <Image
-                  src={heroImage.imageUrl}
-                  alt={heroImage.description}
-                  width={600}
-                  height={450}
-                  className="rounded-lg shadow-xl"
-                  data-ai-hint={heroImage.imageHint}
-                />
-              )}
+              <Image
+                src="/tv.jpeg"
+                alt="TV Repair Service"
+                width={600}
+                height={450}
+                className="rounded-lg shadow-xl"
+              />
             </div>
           </div>
         </div>

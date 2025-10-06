@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { Check, ArrowRight, Star } from "lucide-react";
 
 import { serviceCategories, services as allServices } from "@/lib/data";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import CallToAction from "@/components/call-to-action";
@@ -36,8 +35,6 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   if (!category || !service) {
     notFound();
   }
-  
-  const serviceImage = PlaceHolderImages.find(img => img.id === 'service-detail-1');
 
   return (
     <div className="bg-background">
@@ -46,16 +43,13 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           {/* Left Column: Image Gallery */}
           <div>
             <div className="aspect-video w-full overflow-hidden rounded-lg border">
-              {serviceImage && (
-                <Image
-                  src={serviceImage.imageUrl}
-                  alt={service.name}
-                  width={800}
-                  height={600}
-                  className="w-full h-full object-cover"
-                  data-ai-hint={serviceImage.imageHint}
-                />
-              )}
+              <Image
+                src={`/${service.slug}.jpg`}
+                alt={service.name}
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+              />
             </div>
             {/* Add thumbnails here if needed */}
           </div>

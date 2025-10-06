@@ -2,13 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import CallToAction from "@/components/call-to-action";
 
 export default function GeyserRepairPage() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "geyser-repair-hero");
   const serviceName = "Geyser Repair";
   const whatsappMessage = `https://wa.me/918858585559?text=Hello, I'm interested in the ${encodeURIComponent(serviceName)} service.`;
 
@@ -70,16 +68,13 @@ export default function GeyserRepairPage() {
               </div>
             </div>
             <div className="mt-8 md:mt-0 animate-fade-in-up animation-delay-300">
-              {heroImage && (
-                <Image
-                  src={heroImage.imageUrl}
-                  alt={heroImage.description}
-                  width={600}
-                  height={450}
-                  className="rounded-lg shadow-xl"
-                  data-ai-hint={heroImage.imageHint}
-                />
-              )}
+              <Image
+                src="/geyser.jpg"
+                alt="Geyser Repair Service"
+                width={600}
+                height={450}
+                className="rounded-lg shadow-xl"
+              />
             </div>
           </div>
         </div>
