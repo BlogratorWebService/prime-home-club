@@ -3,36 +3,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Search, Star, Wrench, Settings, Hammer } from "lucide-react";
+import { ArrowRight, Search, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { serviceCategories } from "@/lib/data";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
-const FloatingTools = () => (
-  <div className="absolute inset-0 overflow-hidden -z-10">
-    <style jsx>{`
-      @keyframes float {
-        0% { transform: translateY(0px); opacity: 0.6; }
-        50% { transform: translateY(-20px); opacity: 0.8; }
-        100% { transform: translateY(0px); opacity: 0.6; }
-      }
-      .floating-icon {
-        animation: float 6s ease-in-out infinite;
-      }
-      .icon-1 { animation-delay: 0s; }
-      .icon-2 { animation-delay: -2s; }
-      .icon-3 { animation-delay: -4s; }
-    `}</style>
-    <Wrench className="absolute top-[10%] left-[5%] h-16 w-16 text-muted/30 floating-icon icon-1" />
-    <Settings className="absolute top-[20%] right-[10%] h-12 w-12 text-muted/30 floating-icon icon-2" />
-    <Hammer className="absolute bottom-[25%] left-[15%] h-14 w-14 text-muted/30 floating-icon icon-3" />
-    <Wrench className="absolute bottom-[10%] right-[5%] h-16 w-16 text-muted/30 floating-icon icon-1" style={{ animationDelay: '-1s' }} />
-  </div>
-);
-
 
 export default function Home() {
   const testimonials = [
@@ -71,8 +48,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative bg-card">
-          <FloatingTools />
+        <section className="bg-card">
           <div className="container mx-auto px-4 pt-12 md:pt-16">
             <div className="grid md:grid-cols-2 gap-12 items-end">
               <div className="pb-20 md:pb-24">
