@@ -55,7 +55,7 @@
       "imageHint": "tv repair"
     },
     {
-      "id": "service-detail-2",
+      "id": "ac-repair-hero",
       "description": "A technician working on an AC unit.",
       "imageUrl": "https://images.unsplash.com/photo-1533037213829-57701447b56d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYyUyMHJlcGFpcnxlbnwwfHx8fDE3NTk3Mzc1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ac repair"

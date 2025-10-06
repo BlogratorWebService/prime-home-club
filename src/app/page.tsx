@@ -136,7 +136,7 @@ export default function Home() {
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {serviceCategories.map((category) => {
                 const CategoryIcon = category.icon;
-                const href = category.slug === 'tv-repair' ? '/services/tv-repair' : `/services/${category.slug}`;
+                const href = category.slug === 'tv-repair' ? '/services/tv-repair' : category.slug === 'ac-repair' ? '/services/ac-repair' : `/services/${category.slug}`;
                 return (
                   <Link href={href} key={category.id} className="group">
                     <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-card p-6">
