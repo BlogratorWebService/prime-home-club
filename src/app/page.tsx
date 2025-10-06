@@ -128,7 +128,7 @@ export default function Home() {
                           </div>
                       </CardContent>
                   </Card>
-                   <Card className="absolute -top-8 right-8 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-500">
+                   <Card className="absolute top-8 right-8 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-500">
                       <CardContent className="p-4">
                           <p className="font-semibold">Doorstep Service</p>
                            <div className="flex items-center gap-0.5 mt-1">
