@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -70,9 +71,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card pt-12 md:pt-16 relative">
+        <section className="relative bg-card">
           <FloatingTools />
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 pt-12 md:pt-16">
             <div className="grid md:grid-cols-2 gap-12 items-end">
               <div className="pb-20 md:pb-24">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
