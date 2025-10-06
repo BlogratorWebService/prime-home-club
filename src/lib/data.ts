@@ -60,7 +60,7 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "cat-3",
-    name: "Washing Machine Repair",
+    name: "Washing Machine",
     slug: "washing-machine-repair",
     description: "Reliable repairs for all washing machine types and brands.",
     icon: WashingMachine,

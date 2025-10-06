@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { User, LogOut, LayoutDashboard, Menu } from "lucide-react";
+import { User, LogOut, LayoutDashboard, Menu, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
+import React from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { mockUser } from "@/lib/data";
@@ -35,6 +36,8 @@ const navLinks = [
 export default function Header() {
   const pathname = usePathname();
   const user = mockUser; // Using mock user for demonstration
+  const [isSheetOpen, setSheetOpen] = React.useState(false);
+
 
   const NavLinks = ({ className }: { className?: string }) => (
     <nav className={cn("hidden md:flex items-center gap-6 text-sm font-medium", className)}>
@@ -68,7 +71,7 @@ export default function Header() {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-9 w-9 rounded-full">
             <Avatar className="h-9 w-9">
-              <AvatarImage src={`https://avatar.vercel.sh/${user.email}.png`} alt={user.name} />
+              <AvatarImage src={`https://avatar.vercel.sh/${user.email}.png`} alt={user.name || ""} />
               <AvatarFallback>{user.name?.charAt(0)}</AvatarFallback>
             </Avatar>
           </Button>
@@ -108,45 +111,44 @@ export default function Header() {
       <div className="container flex h-20 items-center justify-between">
         <div className="flex items-center gap-6">
           <Logo />
-          <NavLinks className="hidden md:flex" />
+          <NavLinks className="hidden lg:flex" />
         </div>
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
              <Button asChild className="bg-destructive hover:bg-destructive/90">
-                <a href="tel:8858585559">Call Now</a>
+                <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Now</a>
             </Button>
              <UserMenu />
           </div>
-          <Sheet>
+          <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
+              <Button variant="outline" size="icon" className="lg:hidden">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
+            <SheetContent side="left" className="p-0">
               <div className="flex flex-col h-full">
                 <div className="p-4 border-b">
                   <Logo />
                 </div>
                 <nav className="grid gap-4 p-4 text-lg font-medium">
                   {navLinks.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="text-muted-foreground hover:text-foreground"
-                    >
-                      {link.label}
-                    </Link>
+                     <SheetClose key={link.label} asChild>
+                        <Link
+                        href={link.href}
+                        className="text-muted-foreground hover:text-foreground"
+                        >
+                        {link.label}
+                        </Link>
+                     </SheetClose>
                   ))}
                 </nav>
-                 <div className="p-4 border-t">
+                 <div className="p-4 mt-auto border-t flex justify-between items-center">
                   <UserMenu />
-                </div>
-                <div className="mt-auto p-4 border-t">
-                  <Button asChild className="w-full bg-destructive hover:bg-destructive/90">
-                    <a href="tel:8858585559">Call Now: 88585 85559</a>
+                   <Button asChild className="bg-destructive hover:bg-destructive/90">
+                    <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Now</a>
                   </Button>
                 </div>
               </div>

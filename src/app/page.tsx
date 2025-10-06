@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, ShieldCheck, Wrench, Search, Star, Tv, AirVent, WashingMachine, Refrigerator, Heater } from "lucide-react";
+import { ArrowRight, Search, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { serviceCategories } from "@/lib/data";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
@@ -112,28 +111,34 @@ export default function Home() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-16 md:py-24 bg-background">
+        <section id="testimonials" className="py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
                  <div className="text-center max-w-3xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 10,000+ Customers</h2>
                      <p className="mt-2 text-muted-foreground">Verified ✓</p>
                 </div>
-                <div className="mt-12 grid gap-8 md:grid-cols-3">
+                <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
                          <Card key={index} className="bg-card">
-                            <CardHeader>
-                                <div className="flex items-center gap-3">
+                            <CardContent className="p-6">
+                                <div className="flex items-center gap-4 mb-4">
                                     <Avatar>
                                         <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name}`} />
                                         <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <CardTitle className="text-base">{testimonial.name}</CardTitle>
+                                        <p className="font-semibold">{testimonial.name}</p>
                                         <p className="text-sm text-muted-foreground">{testimonial.role}{testimonial.role && ' • '}{testimonial.date}</p>
                                     </div>
                                 </div>
-                            </CardHeader>
-                            <CardContent>
+                                <div className="flex items-center gap-0.5 mb-4">
+                                    {[...Array(testimonial.stars)].map((_, i) => (
+                                        <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                                    ))}
+                                    {[...Array(5 - testimonial.stars)].map((_, i) => (
+                                        <Star key={i} className="h-5 w-5 text-yellow-400/50" />
+                                    ))}
+                                </div>
                                 <p className="text-muted-foreground">"{testimonial.comment}"</p>
                             </CardContent>
                         </Card>
@@ -156,17 +161,7 @@ export default function Home() {
               {serviceCategories.map((category) => {
                 const CategoryIcon = category.icon;
                 let href = `/services/${category.slug}`;
-                if (category.slug === 'tv-repair') {
-                  href = '/services/tv-repair';
-                } else if (category.slug === 'ac-repair') {
-                  href = '/services/ac-repair';
-                } else if (category.slug === 'washing-machine-repair') {
-                  href = '/services/washing-machine-repair';
-                } else if (category.slug === 'refrigerator-repair') {
-                    href = '/services/refrigerator-repair';
-                } else if (category.slug === 'geyser-repair') {
-                    href = '/services/geyser-repair';
-                }
+                
                 return (
                   <Link href={href} key={category.id} className="group">
                     <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-background p-6">
@@ -192,9 +187,9 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="text-center bg-card">
+              <Card className="text-center bg-card p-4">
                 <CardHeader>
-                  <CardTitle className="font-headline pt-2">Expert Technicians</CardTitle>
+                  <CardTitle className="font-headline text-xl pt-2">Expert Technicians</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -202,9 +197,9 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-card">
+              <Card className="text-center bg-card p-4">
                 <CardHeader>
-                  <CardTitle className="font-headline pt-2">Home Service</CardTitle>
+                  <CardTitle className="font-headline text-xl pt-2">Home Service</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -212,9 +207,9 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-card">
+              <Card className="text-center bg-card p-4">
                 <CardHeader>
-                  <CardTitle className="font-headline pt-2">Quick Turnaround</CardTitle>
+                  <CardTitle className="font-headline text-xl pt-2">Quick Turnaround</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -222,9 +217,9 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card">
+               <Card className="text-center bg-card p-4">
                 <CardHeader>
-                  <CardTitle className="font-headline pt-2">Quality Warranty</CardTitle>
+                  <CardTitle className="font-headline text-xl pt-2">Quality Warranty</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -232,9 +227,9 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card">
+               <Card className="text-center bg-card p-4">
                 <CardHeader>
-                  <CardTitle className="font-headline pt-2">Free Pickup & Delivery</CardTitle>
+                  <CardTitle className="font-headline text-xl pt-2">Free Pickup & Delivery</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -242,9 +237,9 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card">
+               <Card className="text-center bg-card p-4">
                 <CardHeader>
-                  <CardTitle className="font-headline pt-2">Transparent Pricing</CardTitle>
+                  <CardTitle className="font-headline text-xl pt-2">Transparent Pricing</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">

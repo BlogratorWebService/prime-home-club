@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 const footerLinks = {
   services: [
     { name: "TV Repair Service", href: "/services/tv-repair" },
     { name: "AC Repair Service", href: "/services/ac-repair" },
     { name: "Washing Machine Repair", href: "/services/washing-machine-repair" },
-    { name: "Refrigerator Repair Service", href: "/services/refrigerator-repair" },
+    { name: "Refrigerator Repair", href: "/services/refrigerator-repair" },
     { name: "Geyser Repair Service", href: "/services/geyser-repair" },
   ],
   quickLinks: [
@@ -19,14 +20,12 @@ const footerLinks = {
   legal: [
     { name: "Privacy Policy", href: "#" },
     { name: "Terms & Conditions", href: "#" },
-    { name: "Cookie Policy", href: "#" },
-    { name: "Data Deletion", href: "#" },
   ],
 };
 
-const SocialIcon = ({ href, children }: { href: string; children: React.ReactNode }) => (
-  <a href={href} className="text-muted-foreground hover:text-primary">
-    <span className="sr-only">{children}</span>
+const SocialIcon = ({ href, children, name }: { href: string; children: React.ReactNode; name: string }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+    <span className="sr-only">{name}</span>
     {children}
   </a>
 );
@@ -35,8 +34,8 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-1 pr-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          <div className="col-span-2 lg:col-span-1 pr-8">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Image src="/logo.png" alt="Prime Home Club Logo" width={160} height={40} />
             </Link>
@@ -83,13 +82,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear() + 1} Prime Home Club. All rights reserved.
+        <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground text-center sm:text-left">
+            &copy; {new Date().getFullYear()} Prime Home Club. All rights reserved.
           </p>
-          <div className="text-sm text-muted-foreground flex gap-4">
-             <Link href="#" className="hover:text-primary">Privacy Policy</Link>
-             <Link href="#" className="hover:text-primary">Terms</Link>
+          <div className="flex gap-4">
+            <SocialIcon href="#" name="Facebook"><Facebook className="h-5 w-5" /></SocialIcon>
+            <SocialIcon href="#" name="Instagram"><Instagram className="h-5 w-5" /></SocialIcon>
+            <SocialIcon href="#" name="Twitter"><Twitter className="h-5 w-5" /></SocialIcon>
+            <SocialIcon href="#" name="YouTube"><Youtube className="h-5 w-5" /></SocialIcon>
           </div>
         </div>
       </div>

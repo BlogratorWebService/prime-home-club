@@ -28,6 +28,14 @@ type ServiceCategoryPageProps = {
 
 export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps) {
   const { categorySlug } = params;
+  
+  if (["tv-repair", "ac-repair", "washing-machine-repair", "refrigerator-repair", "geyser-repair"].includes(categorySlug)) {
+    // These have dedicated pages, so we shouldn't render this generic one.
+    // In a real app, you might redirect or have a different logic.
+    // For now, this prevents rendering a page that should be handled by a more specific route.
+    notFound();
+  }
+
   const category = serviceCategories.find((c) => c.slug === categorySlug);
 
   if (!category) {
