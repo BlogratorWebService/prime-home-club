@@ -9,6 +9,8 @@ import CallToAction from "@/components/call-to-action";
 
 export default function TVRepairPage() {
   const heroImage = PlaceHolderImages.find((img) => img.id === "tv-repair-hero");
+  const serviceName = "TV Repair";
+  const whatsappMessage = `https://wa.me/918858585559?text=Hello, I'm interested in the ${encodeURIComponent(serviceName)} service.`;
 
   const features = [
     { text: "Expert technicians for all TV brands" },
@@ -59,8 +61,10 @@ export default function TVRepairPage() {
                     Call Now
                   </a>
                 </Button>
-                <Button size="lg" variant="secondary" className="bg-green-500 hover:bg-green-600 text-white">
-                  WhatsApp Now
+                <Button size="lg" variant="secondary" asChild className="bg-green-500 hover:bg-green-600 text-white">
+                  <a href={whatsappMessage} target="_blank" rel="noopener noreferrer">
+                    WhatsApp Now
+                  </a>
                 </Button>
               </div>
             </div>

@@ -4,9 +4,13 @@ import { ArrowLeft, CheckCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "@/components/ui/badge";
+import CallToAction from "@/components/call-to-action";
+import { Card } from "@/components/ui/card";
 
 export default function RefrigeratorRepairPage() {
   const heroImage = PlaceHolderImages.find((img) => img.id === "refrigerator-repair-hero");
+  const serviceName = "Refrigerator Repair";
+  const whatsappMessage = `https://wa.me/918858585559?text=Hello, I'm interested in the ${encodeURIComponent(serviceName)} service.`;
 
   const features = [
     { text: "Same-day repair service" },
@@ -14,6 +18,13 @@ export default function RefrigeratorRepairPage() {
     { text: "Temperature control expertise" },
     { text: "Ice maker repair specialists" },
     { text: "Energy efficiency optimization" },
+  ];
+
+  const repairProcess = [
+    { number: 1, title: "Diagnosis", description: "Checking compressor, thermostat, and coolant levels." },
+    { number: 2, title: "Repair Plan", description: "Upfront quote with a clear explanation of the required fix." },
+    { number: 3, title: "Expert Repair", description: "Fixes performed with genuine parts for long-lasting performance." },
+    { number: 4, title: "Quality Check", description: "Ensuring optimal cooling and temperature stability." },
   ];
 
   return (
@@ -47,11 +58,13 @@ export default function RefrigeratorRepairPage() {
                 <Button size="lg" variant="outline" asChild>
                   <a href="tel:+918858585559">
                     <Phone className="mr-2 h-5 w-5" />
-                    Call Now: +91 88585 85559
+                    Call Now
                   </a>
                 </Button>
-                <Button size="lg" variant="secondary" className="bg-green-500 hover:bg-green-600 text-white">
-                  WhatsApp Now
+                <Button size="lg" variant="secondary" asChild className="bg-green-500 hover:bg-green-600 text-white">
+                  <a href={whatsappMessage} target="_blank" rel="noopener noreferrer">
+                    WhatsApp Now
+                  </a>
                 </Button>
               </div>
             </div>
@@ -70,6 +83,32 @@ export default function RefrigeratorRepairPage() {
           </div>
         </div>
       </section>
+
+      {/* Repair Process Section */}
+      <section className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Repair Process</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              We follow a systematic approach to ensure quality repairs and customer satisfaction.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {repairProcess.map((step) => (
+              <Card key={step.number} className="bg-background text-center p-6">
+                <div className="relative flex justify-center items-center mb-4">
+                  <div className="absolute h-12 w-12 rounded-full bg-primary/10"></div>
+                  <div className="relative h-16 w-16 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold font-headline">{step.number}</div>
+                </div>
+                <h3 className="text-xl font-bold font-headline mt-4">{step.title}</h3>
+                <p className="text-muted-foreground mt-2">{step.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CallToAction />
     </div>
   );
 }
