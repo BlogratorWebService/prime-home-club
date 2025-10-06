@@ -21,7 +21,7 @@ import { mockUser } from "@/lib/data";
 
 const Logo = () => (
   <Link href="/" aria-label="Prime Home Club">
-    <Image src="/logo.png" alt="Prime Home Club Logo" width={160} height={40} />
+    <Image src="/logo.png" alt="Prime Home Club Logo" width={160} height={40} className="w-32 md:w-40" />
   </Link>
 );
 
@@ -37,7 +37,7 @@ export default function Header() {
   const user = mockUser; // Using mock user for demonstration
 
   const NavLinks = ({ className }: { className?: string }) => (
-    <nav className={cn("flex items-center gap-6 text-sm font-medium", className)}>
+    <nav className={cn("hidden md:flex items-center gap-6 text-sm font-medium", className)}>
       {navLinks.map((link) => (
         <Link
           key={link.label}
@@ -112,10 +112,11 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="hidden md:flex">
+          <div className="hidden md:flex items-center gap-4">
              <Button asChild className="bg-destructive hover:bg-destructive/90">
-                <a href="tel:8858585559">Call Now: 88585 85559</a>
+                <a href="tel:8858585559">Call Now</a>
             </Button>
+             <UserMenu />
           </div>
           <Sheet>
             <SheetTrigger asChild>
@@ -140,6 +141,9 @@ export default function Header() {
                     </Link>
                   ))}
                 </nav>
+                 <div className="p-4 border-t">
+                  <UserMenu />
+                </div>
                 <div className="mt-auto p-4 border-t">
                   <Button asChild className="w-full bg-destructive hover:bg-destructive/90">
                     <a href="tel:8858585559">Call Now: 88585 85559</a>

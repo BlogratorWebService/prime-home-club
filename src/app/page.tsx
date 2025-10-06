@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle, ShieldCheck, Wrench, Tv, AirVent, WashingMachine, Refrigerator, Heater } from "lucide-react";
+import { ArrowRight, CheckCircle, ShieldCheck, Wrench, Search, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,9 +8,10 @@ import { serviceCategories } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-1");
+  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-2");
 
   const testimonials = [
     {
@@ -47,38 +48,80 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative h-[70vh] min-h-[600px] w-full flex items-center justify-center text-center text-white">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover"
-              priority
-              data-ai-hint={heroImage.imageHint}
-            />
-          )}
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="relative z-10 max-w-4xl mx-auto px-4">
-            <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight">
-              Mumbai's Premier Appliance Repair Service
-            </h1>
-            <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
-             Try Prime Home Club, India's Most Trusted Repairs With Warranty. Expert Appliance Repairs.
-            </p>
-            <div className="mt-8 flex justify-center gap-4">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link href="/#services">
-                  Explore Services
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary" className="bg-destructive hover:bg-destructive/90 text-destructive-foreground">
-                <a href="tel:8858585559">Call Us: 88585 85559</a>
-              </Button>
+        <section className="bg-gradient-to-b from-primary/5 to-transparent py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="relative">
+                <h1 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
+                  We Bring Your Home Appliances <span className="text-primary">Back to Life</span>
+                </h1>
+                <p className="mt-4 text-lg text-muted-foreground">
+                  We are Committed to Provide you a Safe Service Experience
+                </p>
+                
+                <div className="mt-8 p-6 bg-card rounded-lg shadow-lg">
+                    <div className="grid sm:grid-cols-3 gap-4">
+                        <Select>
+                            <SelectTrigger className="sm:col-span-1">
+                                <SelectValue placeholder="Select City" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="mumbai">Mumbai</SelectItem>
+                                <SelectItem value="delhi">Delhi</SelectItem>
+                                <SelectItem value="bangalore">Bangalore</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <div className="relative sm:col-span-2">
+                             <Input placeholder="What are you looking for?" className="pr-12 h-full py-3" />
+                             <Button size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-10">
+                                 <Search className="h-5 w-5" />
+                             </Button>
+                        </div>
+                    </div>
+                </div>
+                 <div className="mt-6 flex items-center gap-2 flex-wrap">
+                    <span className="font-semibold text-sm">Popular:</span>
+                    <Button variant="outline" size="sm">TV Repair Services</Button>
+                    <Button variant="outline" size="sm">AC Repair</Button>
+                    <Button variant="outline" size="sm">Refrigerator Repair</Button>
+                </div>
+              </div>
+               <div className="relative hidden md:block">
+                  {heroImage && (
+                    <Image 
+                      src={heroImage.imageUrl} 
+                      alt={heroImage.description} 
+                      width={500} 
+                      height={600} 
+                      className="mx-auto" 
+                      data-ai-hint={heroImage.imageHint}
+                    />
+                  )}
+                  <Card className="absolute bottom-8 left-0 shadow-xl animate-fade-in-up">
+                    <CardHeader className="p-4">
+                        <div className="flex items-center gap-3">
+                             <div className="p-3 bg-primary/10 rounded-full">
+                                <Wrench className="h-6 w-6 text-primary" />
+                             </div>
+                             <div>
+                                <p className="font-bold">Doorstep Service</p>
+                                <div className="flex items-center gap-0.5">
+                                    {[...Array(5)].map((_,i) => <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />)}
+                                </div>
+                             </div>
+                        </div>
+                    </CardHeader>
+                  </Card>
+                   <Card className="absolute top-16 right-0 shadow-xl animate-fade-in-down">
+                    <CardContent className="p-4 text-center">
+                        <p className="text-4xl font-bold font-headline text-primary">537</p>
+                        <p className="text-sm text-muted-foreground">Happy Clients</p>
+                    </CardContent>
+                  </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -97,32 +140,8 @@ export default function Home() {
             </div>
         </section>
 
-        {/* Booking and Image section */}
-        <section className="py-16 md:py-24 bg-background">
-            <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 className="text-3xl font-bold font-headline text-primary">Book TV / AC / Refrigerator / Geyser Repair</h2>
-                        <p className="text-muted-foreground mt-2">Quick response guaranteed</p>
-                        <form className="mt-6 space-y-4">
-                            <Input placeholder="Your Name" />
-                            <Input placeholder="Phone Number" type="tel" />
-                            <Button type="submit" className="w-full" size="lg">Request Service</Button>
-                        </form>
-                    </div>
-                     <div>
-                        <Image src="https://picsum.photos/seed/tech/600/400" alt="Technician" width={600} height={400} className="rounded-lg shadow-lg" data-ai-hint="tv repair technician"/>
-                        <div className="mt-4 text-center">
-                            <h3 className="text-xl font-bold font-headline">Expert Technicians</h3>
-                            <p className="text-muted-foreground">Trained & certified professionals</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         {/* Testimonials Section */}
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
                  <div className="text-center max-w-3xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 10,000+ Customers</h2>
@@ -154,7 +173,7 @@ export default function Home() {
 
 
         {/* Service Categories Section */}
-        <section id="services" className="py-16 md:py-24 bg-background">
+        <section id="services" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Services</h2>
@@ -199,7 +218,7 @@ export default function Home() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Choose Prime Home Club?</h2>

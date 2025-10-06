@@ -7,6 +7,12 @@
       "imageHint": "appliance repair"
     },
     {
+      "id": "hero-2",
+      "description": "A friendly male technician in a uniform, smiling.",
+      "imageUrl": "https://images.unsplash.com/photo-1630959303033-91fc1f6b9827?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFsZSUyMHRlY2huaWNpYW58ZW58MHx8fHwxNzU5NzQzNDc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male technician"
+    },
+    {
       "id": "category-tv",
       "description": "A modern flat screen TV mounted on a wall.",
       "imageUrl": "https://images.unsplash.com/photo-1593784944554-24c9d99de473?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydCUyMHR2fGVufDB8fHx8MTc1OTY3ODM3OXww&ixlib=rb-4.1.0&q=80&w=1080",
