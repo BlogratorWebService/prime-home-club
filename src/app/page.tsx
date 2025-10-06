@@ -70,7 +70,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card relative overflow-hidden animate-fade-in">
+        <section className="bg-card relative animate-fade-in">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10 animate-gradient-xy -z-0"></div>
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -120,7 +120,7 @@ export default function Home() {
                       height={600} 
                       className="mx-auto" 
                     />
-                  <Card className="absolute -bottom-8 left-0 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-300">
+                  <Card className="absolute -bottom-8 left-8 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-300">
                       <CardContent className="p-4 flex items-center gap-4">
                           <div className="bg-destructive text-destructive-foreground p-3 rounded-lg">
                             <span className="text-2xl font-bold font-headline">537</span>
@@ -128,7 +128,7 @@ export default function Home() {
                           </div>
                       </CardContent>
                   </Card>
-                   <Card className="absolute -top-8 right-0 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-500">
+                   <Card className="absolute -top-8 right-8 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-500">
                       <CardContent className="p-4">
                           <p className="font-semibold">Doorstep Service</p>
                            <div className="flex items-center gap-0.5 mt-1">
