@@ -111,26 +111,25 @@ export default function TVRepairPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary opacity-90 -z-10" style={{ backgroundImage: 'linear-gradient(to right, hsl(var(--primary)), hsl(var(--destructive)))' }}></div>
-        <div className="container mx-auto px-4 relative z-10 text-center text-primary-foreground">
-          <h2 className="text-3xl md:text-4xl font-bold font-headline">Ready to Fix Your TV Services?</h2>
-          <p className="mt-4 text-lg max-w-2xl mx-auto text-primary-foreground/80">
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground">Ready to Fix Your TV Services?</h2>
+          <p className="mt-4 text-lg max-w-2xl mx-auto text-muted-foreground">
             Contact us now for a quick response and expert service at your doorstep in Mumbai.
           </p>
           <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {ctaFeatures.map((feature, index) => (
-              <Card key={index} className="bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20">
+              <Card key={index} className="bg-card">
                 <CardContent className="p-6 text-center">
                   <div className="mb-3 text-destructive">{feature.icon}</div>
-                  <h3 className="font-semibold">{feature.title}</h3>
-                  <p className="text-xs text-primary-foreground/80">{feature.description}</p>
+                  <h3 className="font-semibold text-foreground">{feature.title}</h3>
+                  <p className="text-xs text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Button size="lg" variant="secondary" asChild>
+            <Button size="lg" variant="outline" asChild>
               <a href="tel:+918858585559">
                 <Phone className="mr-2 h-5 w-5" />
                 Call Now
