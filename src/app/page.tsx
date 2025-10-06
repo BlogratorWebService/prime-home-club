@@ -145,6 +145,8 @@ export default function Home() {
                   href = '/services/washing-machine-repair';
                 } else if (category.slug === 'refrigerator-repair') {
                     href = '/services/refrigerator-repair';
+                } else if (category.slug === 'geyser-repair') {
+                    href = '/services/geyser-repair';
                 }
                 return (
                   <Link href={href} key={category.id} className="group">

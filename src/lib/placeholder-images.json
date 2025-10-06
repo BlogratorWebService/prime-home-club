@@ -51,7 +51,7 @@
     {
       "id": "service-detail-1",
       "description": "A technician repairing a television.",
-      "imageUrl": "https://images.unsplash.com/photo-1617396900799-f47252998c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcHBsaWFuY2UlMjByZXBhaXJ8ZW58MHx8fHwxNzU5NjY0ODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1617396900799-f47252998c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcHBsaWFuY2UlMjByZXBhaXJ8ZW58MHx8fHwxNzU5NjY0ODU4fDA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "tv repair"
     },
     {
@@ -83,6 +83,12 @@
       "description": "A technician inspecting the inside of a refrigerator.",
       "imageUrl": "https://images.unsplash.com/photo-1629114112221-9133455135a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxyZWZyaWdlcmF0b3IlMjByZXBhaXJ8ZW58MHx8fHwxNzU5NzQ2NTEzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "refrigerator repair"
+    },
+    {
+      "id": "geyser-repair-hero",
+      "description": "A technician repairing a geyser.",
+      "imageUrl": "https://images.unsplash.com/photo-1593944776386-fef29e1c07e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Z2V5c2VyJTIwcmVwYWlyfGVufDB8fHx8MTc1OTc0NjY5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "geyser repair"
     }
   ]
 }
