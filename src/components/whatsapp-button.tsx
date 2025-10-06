@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "./ui/button";
@@ -26,7 +27,7 @@ export default function WhatsAppButton() {
     >
       <Button
         size="icon"
-        className="rounded-full w-16 h-16 bg-green-500 hover:bg-green-600 flex items-center justify-center"
+        className="rounded-full w-16 h-16 bg-[#25D366] hover:bg-[#1DA851] flex items-center justify-center"
       >
         <WhatsAppIcon />
       </Button>
