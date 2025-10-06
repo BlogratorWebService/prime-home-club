@@ -11,7 +11,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-3");
+  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-2");
 
   const testimonials = [
     {
@@ -37,42 +37,46 @@ export default function Home() {
     }
   ];
 
-  const heroFeatures = [
-    { title: "Expert Technicians", icon: <Wrench className="h-5 w-5" /> },
-    { title: "Home Service", icon: <ShieldCheck className="h-5 w-5" /> },
-    { title: "Warranty on Repairs", icon: <CheckCircle className="h-5 w-5" /> },
-  ];
+  const popularServices = [
+      { name: "TV Repair", href: "/services/tv-repair"},
+      { name: "AC Repair", href: "/services/ac-repair"},
+      { name: "Washing Machine", href: "/services/washing-machine-repair"},
+      { name: "Appliance Repair", href: "/#services"},
+  ]
 
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-destructive via-primary to-primary text-primary-foreground pt-20 pb-20 md:pt-32 md:pb-32">
+        <section className="bg-card pt-20 pb-20 md:pt-24 md:pb-24">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="relative">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight">
+              <div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
                   We Bring Your Home Appliances Back to Life
                 </h1>
-                <p className="mt-4 text-lg md:text-xl text-primary-foreground/80">
-                  Facing 🛠️ appliance issues? Try Prime Home Club, India's Most Trusted Repairs With Warranty.
+                <p className="mt-4 text-lg md:text-xl text-muted-foreground">
+                  We are Committed to Provide you a Safe Service Experience
                 </p>
                 
-                <div className="mt-8 flex flex-wrap gap-4">
-                    <Button asChild size="lg" className="bg-background text-primary hover:bg-background/90">
-                       <Link href="/#services">Book a Service <ArrowRight className="ml-2 h-5 w-5" /></Link>
-                    </Button>
-                     <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10 hover:text-white">
-                       <Link href="/#services">View Services</Link>
-                    </Button>
+                <div className="mt-8 p-4 rounded-lg bg-background border">
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Input placeholder="What are you looking for?" className="pl-10 h-12 text-base"/>
+                         <Button size="lg" className="absolute right-1 top-1/2 -translate-y-1/2 h-10 bg-destructive hover:bg-destructive/90">
+                            <Search className="h-5 w-5 md:hidden" />
+                            <span className="hidden md:block">Search</span>
+                        </Button>
+                    </div>
                 </div>
-                <div className="mt-8 flex items-center gap-6 text-sm">
-                    {heroFeatures.map(feature => (
-                        <div key={feature.title} className="flex items-center gap-2">
-                            {feature.icon}
-                            <span>{feature.title}</span>
-                        </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                    <span className="font-semibold">Popular:</span>
+                    {popularServices.map(service => (
+                        <Button key={service.name} variant="outline" size="sm" asChild>
+                            <Link href={service.href}>{service.name}</Link>
+                        </Button>
                     ))}
                 </div>
               </div>
@@ -83,17 +87,37 @@ export default function Home() {
                       alt={heroImage.description} 
                       width={500} 
                       height={600} 
-                      className="mx-auto rounded-xl shadow-2xl" 
+                      className="mx-auto" 
                       data-ai-hint={heroImage.imageHint}
                     />
                   )}
+                  <Card className="absolute -bottom-8 left-0 backdrop-blur-sm bg-white/70 shadow-lg">
+                      <CardContent className="p-4 flex items-center gap-4">
+                          <div className="bg-destructive text-destructive-foreground p-3 rounded-lg">
+                            <span className="text-2xl font-bold font-headline">537</span>
+                            <p className="text-sm">Happy Clients</p>
+                          </div>
+                      </CardContent>
+                  </Card>
+                   <Card className="absolute -top-8 right-0 backdrop-blur-sm bg-white/70 shadow-lg">
+                      <CardContent className="p-4">
+                          <p className="font-semibold">Doorstep Service</p>
+                           <div className="flex items-center gap-0.5 mt-1">
+                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                          </div>
+                      </CardContent>
+                  </Card>
               </div>
             </div>
           </div>
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
                  <div className="text-center max-w-3xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 10,000+ Customers</h2>
@@ -101,7 +125,7 @@ export default function Home() {
                 </div>
                 <div className="mt-12 grid gap-8 md:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
-                         <Card key={index} className="bg-background">
+                         <Card key={index} className="bg-card">
                             <CardHeader>
                                 <div className="flex items-center gap-3">
                                     <Avatar>
@@ -125,7 +149,7 @@ export default function Home() {
 
 
         {/* Service Categories Section */}
-        <section id="services" className="py-16 md:py-24 bg-background">
+        <section id="services" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Services</h2>
@@ -150,7 +174,7 @@ export default function Home() {
                 }
                 return (
                   <Link href={href} key={category.id} className="group">
-                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-card p-6">
+                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-background p-6">
                       <CategoryIcon className="h-10 w-10 text-primary mb-4" />
                       <h3 className="font-headline text-lg font-semibold">
                           {category.name}
@@ -164,7 +188,7 @@ export default function Home() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Choose Prime Home Club?</h2>
@@ -173,7 +197,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="text-center bg-background">
+              <Card className="text-center bg-card">
                 <CardHeader>
                   <CardTitle className="font-headline pt-2">Expert Technicians</CardTitle>
                 </CardHeader>
@@ -183,7 +207,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-background">
+              <Card className="text-center bg-card">
                 <CardHeader>
                   <CardTitle className="font-headline pt-2">Home Service</CardTitle>
                 </CardHeader>
@@ -193,7 +217,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-background">
+              <Card className="text-center bg-card">
                 <CardHeader>
                   <CardTitle className="font-headline pt-2">Quick Turnaround</CardTitle>
                 </CardHeader>
@@ -203,7 +227,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-background">
+               <Card className="text-center bg-card">
                 <CardHeader>
                   <CardTitle className="font-headline pt-2">Quality Warranty</CardTitle>
                 </CardHeader>
@@ -213,7 +237,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-background">
+               <Card className="text-center bg-card">
                 <CardHeader>
                   <CardTitle className="font-headline pt-2">Free Pickup & Delivery</CardTitle>
                 </CardHeader>
@@ -223,7 +247,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-background">
+               <Card className="text-center bg-card">
                 <CardHeader>
                   <CardTitle className="font-headline pt-2">Transparent Pricing</CardTitle>
                 </CardHeader>
