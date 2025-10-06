@@ -4,6 +4,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Search, Star } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +14,21 @@ import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export default function Home() {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const testimonials = [
     {
       name: "Rahul Sharma",
@@ -48,8 +65,8 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card">
-          <div className="container mx-auto px-4 pt-12 md:pt-16">
+        <section className="bg-card pt-12 md:pt-16">
+          <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-end">
               <div className="pb-20 md:pb-24">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
@@ -62,8 +79,18 @@ export default function Home() {
                 <div className="mt-8 p-4 rounded-lg bg-background border">
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input placeholder="What are you looking for?" className="pl-10 h-12 text-base"/>
-                         <Button size="lg" className="absolute right-1 top-1/2 -translate-y-1/2 h-10 bg-destructive hover:bg-destructive/90">
+                        <Input 
+                          placeholder="What are you looking for?" 
+                          className="pl-10 h-12 text-base"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          onKeyDown={handleKeyDown}
+                        />
+                         <Button 
+                            size="lg" 
+                            className="absolute right-1 top-1/2 -translate-y-1/2 h-10 bg-destructive hover:bg-destructive/90"
+                            onClick={handleSearch}
+                          >
                             <Search className="h-5 w-5 md:hidden" />
                             <span className="hidden md:block">Search</span>
                         </Button>
