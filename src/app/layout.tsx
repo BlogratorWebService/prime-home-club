@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import WhatsAppButton from '@/components/whatsapp-button';
+import ClientProvider from '@/components/client-provider';
 
 export const metadata: Metadata = {
   title: 'Prime Home Club',
@@ -29,7 +30,9 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
         </div>
-        <WhatsAppButton />
+        <ClientProvider>
+          <WhatsAppButton />
+        </ClientProvider>
         <Toaster />
       </body>
     </html>
