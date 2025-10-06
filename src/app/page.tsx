@@ -46,10 +46,10 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card pt-20 pb-20 md:pt-24 md:pb-24">
+        <section className="bg-card pt-20 pb-0 md:pt-24">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
+            <div className="grid md:grid-cols-2 gap-12 items-end">
+              <div className="pb-20 md:pb-24">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
                   We Bring Your Home Appliances Back to Life
                 </h1>
@@ -77,7 +77,7 @@ export default function Home() {
                     ))}
                 </div>
               </div>
-               <div className="relative hidden md:block">
+               <div className="relative hidden md:block self-end">
                     <Image 
                       src="/person.png" 
                       alt="Prime Home Club Technician" 
