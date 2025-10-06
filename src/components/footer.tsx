@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
@@ -34,8 +35,8 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-          <div className="col-span-2 lg:col-span-1 pr-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          <div className="col-span-1 md:col-span-4 lg:col-span-1 pr-8">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Image src="/logo.png" alt="Prime Home Club Logo" width={160} height={40} />
             </Link>
@@ -46,7 +47,7 @@ export default function Footer() {
             <p className="text-xs text-muted-foreground">Website Operated By Prime Home Club Pvt. Ltd.</p>
           </div>
 
-          <div>
+          <div className="col-span-1">
             <h3 className="font-headline font-semibold text-foreground">Services</h3>
             <ul className="mt-4 space-y-2">
               {footerLinks.services.map((link) => (
@@ -58,7 +59,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="col-span-1">
             <h3 className="font-headline font-semibold text-foreground">Quick Links</h3>
             <ul className="mt-4 space-y-2">
               {footerLinks.quickLinks.map((link) => (
@@ -70,7 +71,7 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-           <div>
+           <div className="col-span-full sm:col-span-2">
             <h3 className="font-headline font-semibold text-foreground">Contact Us</h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <li>1st Floor, P 101 Godrej Central Rehab, Mumbai, Maharashtra 400071, India</li>
@@ -97,3 +98,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+    

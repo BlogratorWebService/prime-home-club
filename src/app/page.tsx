@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Search, Star } from "lucide-react";
+import { ArrowRight, Search, Star, Wrench, Settings, Hammer } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -13,11 +13,13 @@ import { serviceCategories } from "@/lib/data";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
+
 export default function Home() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = React.useState("");
 
-  const handleSearch = () => {
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
     }
@@ -25,7 +27,10 @@ export default function Home() {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      handleSearch();
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+        }
     }
   };
 
@@ -67,8 +72,8 @@ export default function Home() {
         {/* Hero Section */}
         <section className="bg-card pt-12 md:pt-16">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-end">
-              <div className="pb-20 md:pb-24">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="pb-12 md:pb-24">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
                   We Bring Your Home Appliances Back to Life
                 </h1>
@@ -76,7 +81,7 @@ export default function Home() {
                   We are Committed to Provide you a Safe Service Experience
                 </p>
                 
-                <div className="mt-8 p-4 rounded-lg bg-background border">
+                <form onSubmit={handleSearch} className="mt-8 p-4 rounded-lg bg-background border">
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                         <Input 
@@ -87,15 +92,15 @@ export default function Home() {
                           onKeyDown={handleKeyDown}
                         />
                          <Button 
+                            type="submit"
                             size="lg" 
                             className="absolute right-1 top-1/2 -translate-y-1/2 h-10 bg-destructive hover:bg-destructive/90"
-                            onClick={handleSearch}
                           >
                             <Search className="h-5 w-5 md:hidden" />
                             <span className="hidden md:block">Search</span>
                         </Button>
                     </div>
-                </div>
+                </form>
 
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                     <span className="font-semibold">Popular:</span>
@@ -186,7 +191,7 @@ export default function Home() {
                 Professional repair services for all your home appliances with expert technicians and warranty.
               </p>
             </div>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-5">
               {serviceCategories.map((category) => {
                 const CategoryIcon = category.icon;
                 let href = `/services/${category.slug}`;
@@ -283,3 +288,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

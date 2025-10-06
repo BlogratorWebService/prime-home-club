@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -111,7 +112,7 @@ export default function BookingForm({ service }: BookingFormProps) {
             {step === 2 && (
               <div className="space-y-4">
                 <FormField control={form.control} name="date" render={({ field }) => (
-                  <FormItem className="flex flex-col">
+                  <FormItem className="flex flex-col items-center">
                     <FormLabel>Select a Date</FormLabel>
                     <FormControl>
                         <Calendar
@@ -157,8 +158,8 @@ export default function BookingForm({ service }: BookingFormProps) {
                      <div className="mt-6">
                         <h4 className="font-semibold mb-2">Payment Information</h4>
                         <p className="text-sm text-muted-foreground">Mock payment section. In a real app, a Stripe/Braintree element would be here.</p>
-                        <div className="mt-2 p-4 border border-dashed rounded-md">
-                            [Payment Gateway]
+                        <div className="mt-2 p-4 border border-dashed rounded-md h-24 flex items-center justify-center text-muted-foreground">
+                            [Payment Gateway Placeholder]
                         </div>
                     </div>
                 </div>
@@ -168,16 +169,16 @@ export default function BookingForm({ service }: BookingFormProps) {
         )}
       </CardContent>
       {!isCompleted && (
-        <CardFooter className="flex justify-between">
-          <Button variant="outline" onClick={prevStep} disabled={step === 1}>
+        <CardFooter className="flex flex-col-reverse sm:flex-row sm:justify-between gap-2">
+          <Button variant="outline" onClick={prevStep} disabled={step === 1} className="w-full sm:w-auto">
             <ArrowLeft className="mr-2 h-4 w-4" /> Go Back
           </Button>
           {step < 3 ? (
-            <Button onClick={nextStep} >
+            <Button onClick={nextStep} className="w-full sm:w-auto">
               Next <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           ) : (
-            <Button onClick={form.handleSubmit(processBooking)} className="bg-destructive hover:bg-destructive/90" disabled={form.formState.isSubmitting}>
+            <Button onClick={form.handleSubmit(processBooking)} className="bg-destructive hover:bg-destructive/90 w-full sm:w-auto" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting ? "Processing..." : `Confirm & Pay $${price}`}
             </Button>
           )}
@@ -186,3 +187,5 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Card>
   );
 }
+
+    
