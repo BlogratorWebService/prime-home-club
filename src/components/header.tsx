@@ -15,7 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { mockUser } from "@/lib/data";
@@ -129,10 +129,12 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0">
-              <div className="flex flex-col h-full">
-                <div className="p-4 border-b">
+                <SheetHeader className="p-4 border-b">
+                  <SheetTitle className="sr-only">Menu</SheetTitle>
+                  <SheetDescription className="sr-only">Main navigation menu</SheetDescription>
                   <Logo />
-                </div>
+                </SheetHeader>
+              <div className="flex flex-col h-full">
                 <nav className="grid gap-4 p-4 text-lg font-medium">
                   {navLinks.map((link) => (
                      <SheetClose key={link.label} asChild>
