@@ -70,7 +70,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card pt-12 md:pt-16 pb-0 relative">
+        <section className="bg-card pt-12 md:pt-16 relative">
           <FloatingTools />
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-end">
