@@ -76,37 +76,25 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
                   <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                   <Star className="h-5 w-5 fill-yellow-400/50 text-yellow-400/50" />
               </div>
-              <span className="text-sm text-muted-foreground">(125 reviews)</span>
+              <span className="text-sm text-muted-foreground">(based on reviews)</span>
             </div>
 
             <p className="mt-4 text-lg text-muted-foreground">{service.description}</p>
 
             <Card className="my-8 bg-card">
               <CardContent className="p-6">
-                <div className="grid grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-sm font-medium text-muted-foreground">Standard Price</p>
-                    <p className="text-4xl font-bold font-headline tracking-tighter line-through text-muted-foreground/80">
-                      ${service.standardPrice}
-                    </p>
-                  </div>
-                  <div className="relative">
-                     <Badge className="absolute -top-3 -right-3">Biggest Savings!</Badge>
-                    <p className="text-sm font-medium text-primary">Club Member Price</p>
-                    <p className="text-4xl font-bold font-headline tracking-tighter text-primary">
-                      ${service.memberPrice}
-                    </p>
-                  </div>
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Starting From</p>
+                  <p className="text-4xl font-bold font-headline tracking-tighter text-primary">
+                    ${service.standardPrice}
+                  </p>
                 </div>
                  <Button asChild size="lg" className="w-full mt-6 bg-destructive hover:bg-destructive/90">
                     <Link href={`/book/${service.slug}`}>
-                      Book Now & Save ${service.standardPrice - service.memberPrice}
+                      Book Service
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                 </Button>
-                <p className="text-center text-sm text-muted-foreground mt-3">
-                    or <Link href="/join-club" className="underline hover:text-primary">Join the Club</Link> to unlock member pricing.
-                </p>
               </CardContent>
             </Card>
 

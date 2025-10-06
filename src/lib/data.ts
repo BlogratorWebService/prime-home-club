@@ -1,4 +1,4 @@
-import { Wrench, Zap, Wind, Sparkles, type LucideIcon } from "lucide-react";
+import { Tv, AirVent, WashingMachine, Refrigerator, Heater, type LucideIcon } from "lucide-react";
 
 export type ServiceCategory = {
   id: string;
@@ -44,161 +44,155 @@ export const mockMember: User = {
 export const serviceCategories: ServiceCategory[] = [
   {
     id: "cat-1",
-    name: "Plumbing",
-    slug: "plumbing",
-    description: "Expert solutions for all your pipe and water flow needs.",
-    icon: Wrench,
-    imageId: "category-plumbing"
+    name: "TV Repair",
+    slug: "tv-repair",
+    description: "Expert repairs for all TV types including LED, OLED, and Smart TVs.",
+    icon: Tv,
+    imageId: "category-tv"
   },
   {
     id: "cat-2",
-    name: "Electrical",
-    slug: "electrical",
-    description: "Safe and reliable wiring, installations, and repairs.",
-    icon: Zap,
-    imageId: "category-electrical"
+    name: "AC Repair",
+    slug: "ac-repair",
+    description: "Professional air conditioning repair and maintenance for all brands.",
+    icon: AirVent,
+    imageId: "category-ac"
   },
   {
     id: "cat-3",
-    name: "HVAC",
-    slug: "hvac",
-    description: "Keep your home comfortable year-round with our HVAC services.",
-    icon: Wind,
-    imageId: "category-hvac"
+    name: "Washing Machine Repair",
+    slug: "washing-machine-repair",
+    description: "Reliable repairs for all washing machine types and brands.",
+    icon: WashingMachine,
+    imageId: "category-washing-machine"
   },
   {
     id: "cat-4",
-    name: "Cleaning",
-    slug: "cleaning",
-    description: "Professional cleaning services for a sparkling home.",
-    icon: Sparkles,
-    imageId: "category-cleaning"
+    name: "Refrigerator Repair",
+    slug: "refrigerator-repair",
+    description: "Expert repairs for all refrigerator types with quick response.",
+    icon: Refrigerator,
+    imageId: "category-refrigerator"
+  },
+  {
+    id: "cat-5",
+    name: "Geyser Repair",
+    slug: "geyser-repair",
+    description: "Professional water heater repair and maintenance services.",
+    icon: Heater,
+    imageId: "category-geyser"
   },
 ];
 
 export const services: Service[] = [
-  // Plumbing
+  // TV Repair
   {
     id: "serv-1",
-    name: "Leak Repair",
-    slug: "leak-repair",
+    name: "Screen Replacement",
+    slug: "screen-replacement",
     categoryId: "cat-1",
-    description: "Fixing dripping faucets, leaking pipes, and other water wastage issues promptly.",
+    description: "Professional screen replacement for cracked or damaged TV screens.",
     details: [
-      "Identify source of leak",
-      "Repair or replace faulty components (pipes, gaskets, etc.)",
-      "Test for successful resolution of the leak",
-      "Cleanup of the work area",
+      "Sourcing of compatible screen",
+      "Safe removal of damaged screen",
+      "Installation of new screen",
+      "Testing for full functionality",
+    ],
+    standardPrice: 300,
+    memberPrice: 250,
+  },
+  {
+    id: "serv-2",
+    name: "Motherboard Repair",
+    slug: "motherboard-repair",
+    categoryId: "cat-1",
+    description: "Expert repair of TV motherboards for power and display issues.",
+    details: [
+      "Diagnostics of motherboard",
+      "Component-level repair or full replacement",
+      "Firmware updates if required",
+      "Comprehensive testing",
+    ],
+    standardPrice: 200,
+    memberPrice: 160,
+  },
+  // AC Repair
+  {
+    id: "serv-3",
+    name: "AC Gas Refill",
+    slug: "ac-gas-refill",
+    categoryId: "cat-2",
+    description: "Recharging AC refrigerant to restore cooling performance.",
+    details: [
+      "Leak detection test",
+      "Evacuation of old refrigerant",
+      "Recharging with correct type and amount of gas",
+      "Cooling efficiency test",
     ],
     standardPrice: 150,
     memberPrice: 120,
   },
   {
-    id: "serv-2",
-    name: "Clogged Drain Cleaning",
-    slug: "clogged-drain-cleaning",
-    categoryId: "cat-1",
-    description: "Professional clearing of clogged sinks, showers, and main sewer lines.",
-    details: [
-      "Assessment of clog severity",
-      "Use of professional-grade auger (snake) or hydro-jetting",
-      "Camera inspection for main line clogs (optional add-on)",
-      "Guaranteed drain flow post-service",
-    ],
-    standardPrice: 200,
-    memberPrice: 160,
-  },
-  // Electrical
-  {
-    id: "serv-3",
-    name: "Outlet Installation & Repair",
-    slug: "outlet-installation-repair",
-    categoryId: "cat-2",
-    description: "Install new electrical outlets or repair existing ones that are faulty.",
-    details: [
-      "Safe disconnection of power",
-      "Installation of new GFCI or standard outlet box",
-      "Wiring and grounding check",
-      "Testing for proper voltage and safety",
-    ],
-    standardPrice: 125,
-    memberPrice: 100,
-  },
-  {
     id: "serv-4",
-    name: "Light Fixture Installation",
-    slug: "light-fixture-installation",
+    name: "AC General Service",
+    slug: "ac-general-service",
     categoryId: "cat-2",
-    description: "Replace old light fixtures or install new ones, including ceiling fans.",
+    description: "Comprehensive cleaning and maintenance for your air conditioner.",
     details: [
-      "Assembly of new fixture",
-      "Secure mounting to ceiling or wall",
-      "Wiring connection and safety check",
-      "Installation of bulbs and final test",
+      "Indoor and outdoor unit cleaning",
+      "Filter cleaning and replacement check",
+      "Drain pipe cleaning",
+      "Performance and safety check",
+    ],
+    standardPrice: 80,
+    memberPrice: 60,
+  },
+  // Washing Machine
+  {
+    id: "serv-5",
+    name: "Drum or Bearing Repair",
+    slug: "drum-bearing-repair",
+    categoryId: "cat-3",
+    description: "Fixing noisy or non-rotating drums in washing machines.",
+    details: [
+      "Diagnosis of drum or bearing issue",
+      "Replacement of faulty bearings or drum assembly",
+      "Seal replacement to prevent leaks",
+      "Testing for smooth and quiet operation",
     ],
     standardPrice: 180,
     memberPrice: 145,
   },
-  // HVAC
-  {
-    id: "serv-5",
-    name: "AC Tune-Up",
-    slug: "ac-tune-up",
-    categoryId: "cat-3",
-    description: "Annual maintenance to ensure your AC runs efficiently through the summer.",
-    details: [
-      "21-point inspection checklist",
-      "Cleaning of coils and fins",
-      "Refrigerant level check",
-      "Thermostat calibration and testing",
-    ],
-    standardPrice: 130,
-    memberPrice: 99,
-  },
+    // Refrigerator
   {
     id: "serv-6",
-    name: "Furnace Tune-Up",
-    slug: "furnace-tune-up",
-    categoryId: "cat-3",
-    description: "Ensure your furnace is safe and ready for the winter with our comprehensive check.",
+    name: "Compressor Repair",
+    slug: "compressor-repair",
+    categoryId: "cat-4",
+    description: "Repair or replacement of faulty refrigerator compressors.",
     details: [
-      "Inspection of heat exchanger",
-      "Cleaning of burners",
-      "Carbon monoxide leak test",
-      "Blower motor and ignition system check",
+      "Compressor diagnostics",
+      "Relay and overload protector check",
+      "Compressor replacement if needed",
+      "Gas refill and cooling test",
     ],
-    standardPrice: 130,
-    memberPrice: 99,
+    standardPrice: 250,
+    memberPrice: 200,
   },
-    // Cleaning
+  // Geyser
   {
     id: "serv-7",
-    name: "Deep House Cleaning",
-    slug: "deep-house-cleaning",
-    categoryId: "cat-4",
-    description: "A thorough, top-to-bottom cleaning of your entire home.",
+    name: "Heating Element Replacement",
+    slug: "heating-element-replacement",
+    categoryId: "cat-5",
+    description: "Replacement of burnt-out or inefficient geyser heating elements.",
     details: [
-      "Kitchen cleaning (appliances, counters, floors)",
-      "Bathroom sanitation (showers, toilets, sinks)",
-      "Dusting all surfaces, including baseboards and fixtures",
-      "Vacuuming and mopping of all floors",
+      "Testing of existing heating element",
+      "Draining the geyser tank",
+      "Installation of a new heating element",
+      "Testing for proper heating and safety",
     ],
-    standardPrice: 350,
-    memberPrice: 280,
-  },
-  {
-    id: "serv-8",
-    name: "Window Washing",
-    slug: "window-washing",
-    categoryId: "cat-4",
-    description: "Interior and exterior window washing for a streak-free shine.",
-    details: [
-      "Cleaning of all glass surfaces",
-      "Wiping down of window sills and frames",
-      "Screen cleaning (optional add-on)",
-      "Use of professional, eco-friendly cleaning solutions",
-    ],
-    standardPrice: 175,
-    memberPrice: 140,
+    standardPrice: 120,
+    memberPrice: 95,
   },
 ];

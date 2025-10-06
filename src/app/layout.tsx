@@ -5,8 +5,8 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'PrimeHome Hub',
-  description: 'Your one-stop solution for reliable home services.',
+  title: 'Prime Home Club',
+  description: 'Mumbai\'s Premier Appliance Repair Service.',
 };
 
 export default function RootLayout({

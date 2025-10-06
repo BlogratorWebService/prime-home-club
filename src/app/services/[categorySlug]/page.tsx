@@ -70,17 +70,13 @@ export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-4 pt-6">
-                <div className="text-left">
-                  <p className="text-sm text-muted-foreground">Starting at</p>
+                 <div className="text-left">
+                  <p className="text-sm text-muted-foreground">Starts at</p>
                   <p>
                     <span className="text-3xl font-bold font-headline text-primary">
-                      ${service.memberPrice}
+                      ${service.standardPrice}
                     </span>
-                    <Badge variant="secondary" className="ml-2">Member Price</Badge>
                   </p>
-                   <p className="text-sm text-muted-foreground line-through">
-                      Standard: ${service.standardPrice}
-                    </p>
                 </div>
                 <Button asChild className="w-full sm:w-auto">
                   <Link href={`/services/${category.slug}/${service.slug}`}>

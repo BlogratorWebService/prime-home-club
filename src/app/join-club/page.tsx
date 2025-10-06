@@ -38,7 +38,7 @@ export default function JoinClubPage() {
         <div className="absolute inset-0 bg-primary/70" />
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight">
-            Join the PrimeHome Club
+            Join the Prime Home Club
           </h1>
           <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
             Unlock exclusive savings, priority service, and peace of mind for just $149/year.
@@ -52,7 +52,7 @@ export default function JoinClubPage() {
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold font-headline">The Best Way to Care For Your Home</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              See how a PrimeHome Club membership gives you more value, more savings, and more peace of mind compared to standard service.
+              See how a Prime Home Club membership gives you more value, more savings, and more peace of mind compared to standard service.
             </p>
           </div>
 
@@ -103,7 +103,7 @@ export default function JoinClubPage() {
                 <div>
                     <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">Calculate Your Annual Savings</h2>
                     <p className="mt-4 text-lg text-muted-foreground">
-                        Use our simple tool to estimate how much you could save on home services by joining the PrimeHome Club. The more you use, the more you save!
+                        Use our simple tool to estimate how much you could save on home services by joining the Prime Home Club. The more you use, the more you save!
                     </p>
                     <ul className="mt-6 space-y-3">
                         <li className="flex items-start">

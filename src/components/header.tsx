@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { User, LogOut, LayoutDashboard, Menu, Building2 } from "lucide-react";
+import Image from "next/image";
+import { User, LogOut, LayoutDashboard, Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -19,18 +20,19 @@ import { cn } from "@/lib/utils";
 import { mockUser } from "@/lib/data";
 
 const Logo = () => (
-  <Link href="/" className="flex items-center gap-2" aria-label="PrimeHome Hub">
-    <Building2 className="h-7 w-7 text-primary" />
+  <Link href="/" className="flex items-center gap-2" aria-label="Prime Home Club">
+    <Image src="/logo.png" alt="Prime Home Club Logo" width={40} height={40} />
     <span className="text-xl font-bold font-headline tracking-tighter text-primary">
-      PrimeHome Hub
+      Prime Home Club
     </span>
   </Link>
 );
 
 const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/#services", label: "Services" },
-  { href: "/join-club", label: "Join the Club" },
-  { href: "/dashboard", label: "Dashboard" },
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
@@ -45,7 +47,7 @@ export default function Header() {
           href={link.href}
           className={cn(
             "text-muted-foreground transition-colors hover:text-foreground",
-            (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))) && "text-foreground"
+            (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href) && link.href !== "/#services")) && "text-foreground"
           )}
         >
           {link.label}
@@ -114,7 +116,9 @@ export default function Header() {
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex">
-            <UserMenu />
+             <Button asChild className="bg-destructive hover:bg-destructive/90">
+                <a href="tel:8858585559">Call Now: 88585 85559</a>
+            </Button>
           </div>
           <Sheet>
             <SheetTrigger asChild>
@@ -140,7 +144,9 @@ export default function Header() {
                   ))}
                 </nav>
                 <div className="mt-auto p-4 border-t">
-                  <UserMenu />
+                  <Button asChild className="w-full bg-destructive hover:bg-destructive/90">
+                    <a href="tel:8858585559">Call Now: 88585 85559</a>
+                  </Button>
                 </div>
               </div>
             </SheetContent>

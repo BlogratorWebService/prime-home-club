@@ -1,22 +1,26 @@
 import Link from "next/link";
-import { Building2 } from "lucide-react";
+import Image from "next/image";
 
 const footerLinks = {
   services: [
-    { name: "Plumbing", href: "/services/plumbing" },
-    { name: "Electrical", href: "/services/electrical" },
-    { name: "HVAC", href: "/services/hvac" },
-    { name: "Cleaning", href: "/services/cleaning" },
+    { name: "TV Repair Service", href: "/services/tv-repair" },
+    { name: "AC Repair Service", href: "/services/ac-repair" },
+    { name: "Washing Machine Repair", href: "/services/washing-machine-repair" },
+    { name: "Refrigerator Repair Service", href: "/services/refrigerator-repair" },
+    { name: "Geyser Repair Service", href: "/services/geyser-repair" },
   ],
-  company: [
-    { name: "About Us", href: "#" },
-    { name: "Careers", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Contact", href: "#" },
+  quickLinks: [
+    { name: "Home", href: "/" },
+    { name: "Services", href: "/#services" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Reviews", href: "/#testimonials" },
   ],
   legal: [
     { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
+    { name: "Terms & Conditions", href: "#" },
+    { name: "Cookie Policy", href: "#" },
+    { name: "Data Deletion", href: "#" },
   ],
 };
 
@@ -31,17 +35,19 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-2 pr-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="lg:col-span-1 pr-8">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Building2 className="h-7 w-7 text-primary" />
+              <Image src="/logo.png" alt="Prime Home Club Logo" width={40} height={40} />
               <span className="text-xl font-bold font-headline text-primary">
-                PrimeHome Hub
+                Prime Home Club
               </span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-sm">
-              Your one-stop solution for reliable and professional home services. We make home maintenance easy.
+              Mumbai's trusted appliance repair service center, offering expert repairs for TV, AC, Refrigerator, and Geyser with at-home service and warranty.
             </p>
+             <p className="text-xs text-muted-foreground mt-4">CIN: U95221MH2024PTC433126</p>
+            <p className="text-xs text-muted-foreground">Website Operated By Prime Home Club Pvt. Ltd.</p>
           </div>
 
           <div>
@@ -57,9 +63,9 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="font-headline font-semibold text-foreground">Company</h3>
+            <h3 className="font-headline font-semibold text-foreground">Quick Links</h3>
             <ul className="mt-4 space-y-2">
-              {footerLinks.company.map((link) => (
+              {footerLinks.quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary">
                     {link.name}
@@ -68,34 +74,25 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div>
-            <h3 className="font-headline font-semibold text-foreground">Legal</h3>
-            <ul className="mt-4 space-y-2">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+           <div>
+            <h3 className="font-headline font-semibold text-foreground">Contact Us</h3>
+            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <li>1st Floor, P 101 Godrej Central Rehab, Mumbai, Maharashtra 400071, India</li>
+                <li><a href="tel:+918858585559" className="hover:text-primary">+91 88585 85559</a></li>
+                <li><a href="mailto:info@primehomeclub.com" className="hover:text-primary">info@primehomeclub.com</a></li>
+                <li>Mon-Sat: 9am - 8pm</li>
+                <li>Sunday: 10am - 5pm</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} PrimeHome Hub. All rights reserved.
+            &copy; {new Date().getFullYear() + 1} Prime Home Club. All rights reserved.
           </p>
-          <div className="flex items-center space-x-4 mt-4 sm:mt-0">
-            <SocialIcon href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-            </SocialIcon>
-            <SocialIcon href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
-            </SocialIcon>
-             <SocialIcon href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-             </SocialIcon>
+          <div className="text-sm text-muted-foreground flex gap-4">
+             <Link href="#" className="hover:text-primary">Privacy Policy</Link>
+             <Link href="#" className="hover:text-primary">Terms</Link>
           </div>
         </div>
       </div>

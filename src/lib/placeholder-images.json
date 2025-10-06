@@ -2,51 +2,57 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "A bright, modern living room, representing a well-maintained home.",
-      "imageUrl": "https://images.unsplash.com/photo-1708113388262-17fdf0e21205?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsaXZpbmdyb29tfGVufDB8fHx8MTc1OTY0OTQwOHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "modern livingroom"
+      "description": "A technician repairing an appliance in a modern home.",
+      "imageUrl": "https://images.unsplash.com/photo-1617396900799-f47252998c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcHBsaWFuY2UlMjByZXBhaXJ8ZW58MHx8fHwxNzU5NjQ5NDA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "appliance repair"
     },
     {
-      "id": "category-plumbing",
-      "description": "A close-up of a shiny new kitchen faucet.",
-      "imageUrl": "https://images.unsplash.com/photo-1661045327753-3f2a047d00a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2l0Y2hlbiUyMGZhdWNldHxlbnwwfHx8fDE3NTk2Nzg0ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "kitchen faucet"
+      "id": "category-tv",
+      "description": "A modern flat screen TV mounted on a wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1593784944554-24c9d99de473?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFydCUyMHR2fGVufDB8fHx8MTc1OTY3ODM3OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smart tv"
     },
     {
-      "id": "category-electrical",
-      "description": "A modern light fixture hanging from a ceiling.",
-      "imageUrl": "https://images.unsplash.com/photo-1531493202312-b3eb43e09c20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bGlnaHQlMjBmaXh0dXJlfGVufDB8fHx8MTc1OTY3ODM3OXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "light fixture"
+      "id": "category-ac",
+      "description": "An air conditioner unit mounted on a wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1567156900014-a3c5349084d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYyUyMHVuaXR8ZW58MHx8fHwxNzU5NzI0NjI1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ac unit"
     },
     {
-      "id": "category-hvac",
-      "description": "An exterior shot of a modern air conditioning unit next to a house.",
-      "imageUrl": "https://images.unsplash.com/photo-1436473849883-bb3464c23e93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhaXIlMjBjb25kaXRpb25lcnxlbnwwfHx8fDE3NTk3MjQ2NzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "air conditioner"
+      "id": "category-washing-machine",
+      "description": "A modern front-load washing machine.",
+      "imageUrl": "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3YXNoaW5nJTIwbWFjaGluZXxlbnwwfHx8fDE3NTk3Mzk3MTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "washing machine"
     },
     {
-      "id": "category-cleaning",
-      "description": "A sparkling clean countertop with a blurry background.",
-      "imageUrl": "https://images.unsplash.com/photo-1759238136854-913e5e383308?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjbGVhbiUyMGNvdW50ZXJ0b3B8ZW58MHx8fHwxNzU5NzM5NzEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "clean countertop"
+      "id": "category-refrigerator",
+      "description": "A stainless steel refrigerator in a kitchen.",
+      "imageUrl": "https://images.unsplash.com/photo-1571175443880-49e1d25b2d65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZWZyaWdlcmF0b3J8ZW58MHx8fHwxNzU5NzM5NzExfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "refrigerator"
+    },
+    {
+      "id": "category-geyser",
+      "description": "A geyser water heater installed on a bathroom wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1645886176557-78fa13f0f7c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxnZXlzZXIlMjBoZWF0ZXJ8ZW58MHx8fHwxNzU5NzQwMzY0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "geyser heater"
+    },
+    {
+      "id": "service-detail-1",
+      "description": "A technician repairing a television.",
+      "imageUrl": "https://images.unsplash.com/photo-1617396900799-f47252998c78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcHBsaWFuY2UlMjByZXBhaXJ8ZW58MHx8fHwxNzU5NjY0ODU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tv repair"
+    },
+    {
+      "id": "service-detail-2",
+      "description": "A technician working on an AC unit.",
+      "imageUrl": "https://images.unsplash.com/photo-1533037213829-57701447b56d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYyUyMHJlcGFpcnxlbnwwfHx8fDE3NTk3Mzc1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ac repair"
     },
     {
       "id": "join-club-hero",
       "description": "A happy family relaxing in their pristine home.",
       "imageUrl": "https://images.unsplash.com/photo-1592711491694-e85f60a7773a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoYXBweSUyMGZhbWlseXxlbnwwfHx8fDE3NTk3Mzk3MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "happy family"
-    },
-    {
-      "id": "service-detail-1",
-      "description": "A professional plumber working under a sink.",
-      "imageUrl": "https://images.unsplash.com/photo-1723847165390-f45ef02f6b86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwbHVtYmVyJTIwd29ya2luZ3xlbnwwfHx8fDE3NTk2NjQ4Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "plumber working"
-    },
-    {
-      "id": "service-detail-2",
-      "description": "An electrician installing a new ceiling fan.",
-      "imageUrl": "https://images.unsplash.com/photo-1665242043190-0ef29390d289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbGVjdHJpY2lhbiUyMHdvcmtpbmd8ZW58MHx8fHwxNzU5NzM3NTU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "electrician working"
     }
   ]
 }

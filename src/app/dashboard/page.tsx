@@ -17,7 +17,7 @@ const MemberDashboard = () => {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold font-headline">Welcome back, {user.name?.split(" ")[0]}!</h1>
-          <p className="text-muted-foreground mt-1">Here's your PrimeHome Club dashboard.</p>
+          <p className="text-muted-foreground mt-1">Here's your Prime Home Club dashboard.</p>
         </div>
         <div className="flex items-center gap-2">
           <Award className="h-5 w-5 text-yellow-500" />
@@ -67,7 +67,7 @@ const MemberDashboard = () => {
             {/* Mocked upcoming appointment */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                 <div className="mb-4 sm:mb-0">
-                    <p className="font-semibold">AC Tune-Up</p>
+                    <p className="font-semibold">AC Gas Refill</p>
                     <p className="text-sm text-muted-foreground">Tomorrow, June 25, 2024 at 10:00 AM</p>
                     <p className="text-sm text-muted-foreground">Technician: Mike R.</p>
                 </div>
@@ -89,7 +89,7 @@ const NonMemberDashboard = () => {
                 <div className="mx-auto bg-primary/10 rounded-full p-4 w-fit mb-4">
                     <Award className="h-10 w-10 text-primary" />
                 </div>
-                <CardTitle className="font-headline text-3xl">Upgrade to a PrimeHome Club Membership</CardTitle>
+                <CardTitle className="font-headline text-3xl">Upgrade to a Prime Home Club Membership</CardTitle>
                 <CardDescription className="text-lg pt-2">
                     You're missing out on exclusive savings and priority service.
                 </CardDescription>

@@ -12,35 +12,41 @@ const avgSavingsPerService = services.map(s => ({
 }));
 
 export default function SavingsCalculator() {
-    const [plumbingCount, setPlumbingCount] = useState(1);
-    const [electricalCount, setElectricalCount] = useState(1);
-    const [hvacCount, setHvacCount] = useState(1);
-    const [cleaningCount, setCleaningCount] = useState(1);
+    const [tvCount, setTvCount] = useState(1);
+    const [acCount, setAcCount] = useState(1);
+    const [washingMachineCount, setWashingMachineCount] = useState(1);
+    const [refrigeratorCount, setRefrigeratorCount] = useState(1);
+    const [geyserCount, setGeyserCount] = useState(1);
 
-    const avgPlumbingSaving = useMemo(() => {
-        const plumbingServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-1');
-        return plumbingServices.reduce((acc, s) => acc + s.savings, 0) / plumbingServices.length;
+    const avgTvSaving = useMemo(() => {
+        const categoryServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-1');
+        return categoryServices.length > 0 ? categoryServices.reduce((acc, s) => acc + s.savings, 0) / categoryServices.length : 0;
     }, []);
-    const avgElectricalSaving = useMemo(() => {
-        const electricalServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-2');
-        return electricalServices.reduce((acc, s) => acc + s.savings, 0) / electricalServices.length;
+    const avgAcSaving = useMemo(() => {
+        const categoryServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-2');
+        return categoryServices.length > 0 ? categoryServices.reduce((acc, s) => acc + s.savings, 0) / categoryServices.length : 0;
     }, []);
-    const avgHvacSaving = useMemo(() => {
-        const hvacServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-3');
-        return hvacServices.reduce((acc, s) => acc + s.savings, 0) / hvacServices.length;
+    const avgWashingMachineSaving = useMemo(() => {
+        const categoryServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-3');
+        return categoryServices.length > 0 ? categoryServices.reduce((acc, s) => acc + s.savings, 0) / categoryServices.length : 0;
     }, []);
-    const avgCleaningSaving = useMemo(() => {
-        const cleaningServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-4');
-        return cleaningServices.reduce((acc, s) => acc + s.savings, 0) / cleaningServices.length;
+    const avgRefrigeratorSaving = useMemo(() => {
+        const categoryServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-4');
+        return categoryServices.length > 0 ? categoryServices.reduce((acc, s) => acc + s.savings, 0) / categoryServices.length : 0;
+    }, []);
+    const avgGeyserSaving = useMemo(() => {
+        const categoryServices = avgSavingsPerService.filter(s => s.categoryId === 'cat-5');
+        return categoryServices.length > 0 ? categoryServices.reduce((acc, s) => acc + s.savings, 0) / categoryServices.length : 0;
     }, []);
 
     const totalSavings = useMemo(() => {
-        const savings = (plumbingCount * avgPlumbingSaving) +
-                        (electricalCount * avgElectricalSaving) +
-                        (hvacCount * avgHvacSaving) +
-                        (cleaningCount * avgCleaningSaving);
+        const savings = (tvCount * avgTvSaving) +
+                        (acCount * avgAcSaving) +
+                        (washingMachineCount * avgWashingMachineSaving) +
+                        (refrigeratorCount * avgRefrigeratorSaving) +
+                        (geyserCount * avgGeyserSaving);
         return Math.max(0, savings - 149); // Subtracting membership fee
-    }, [plumbingCount, electricalCount, hvacCount, cleaningCount, avgPlumbingSaving, avgElectricalSaving, avgHvacSaving, avgCleaningSaving]);
+    }, [tvCount, acCount, washingMachineCount, refrigeratorCount, geyserCount, avgTvSaving, avgAcSaving, avgWashingMachineSaving, avgRefrigeratorSaving, avgGeyserSaving]);
 
     return (
         <Card className="w-full">
@@ -51,59 +57,73 @@ export default function SavingsCalculator() {
             <CardContent>
                 <div className="space-y-6">
                     <div>
-                        <Label htmlFor="plumbing" className="flex justify-between items-center mb-2">
-                            <span>Plumbing Services</span>
-                            <span className="font-bold text-primary">{plumbingCount}</span>
+                        <Label htmlFor="tv" className="flex justify-between items-center mb-2">
+                            <span>TV Repairs</span>
+                            <span className="font-bold text-primary">{tvCount}</span>
                         </Label>
                         <Slider
-                            id="plumbing"
+                            id="tv"
                             min={0}
                             max={5}
                             step={1}
-                            value={[plumbingCount]}
-                            onValueChange={(value) => setPlumbingCount(value[0])}
+                            value={[tvCount]}
+                            onValueChange={(value) => setTvCount(value[0])}
                         />
                     </div>
                     <div>
-                        <Label htmlFor="electrical" className="flex justify-between items-center mb-2">
-                            <span>Electrical Services</span>
-                            <span className="font-bold text-primary">{electricalCount}</span>
+                        <Label htmlFor="ac" className="flex justify-between items-center mb-2">
+                            <span>AC Repairs</span>
+                            <span className="font-bold text-primary">{acCount}</span>
                         </Label>
                         <Slider
-                            id="electrical"
+                            id="ac"
                             min={0}
                             max={5}
                             step={1}
-                            value={[electricalCount]}
-                            onValueChange={(value) => setElectricalCount(value[0])}
+                            value={[acCount]}
+                            onValueChange={(value) => setAcCount(value[0])}
                         />
                     </div>
                     <div>
-                        <Label htmlFor="hvac" className="flex justify-between items-center mb-2">
-                            <span>HVAC Services</span>
-                            <span className="font-bold text-primary">{hvacCount}</span>
+                        <Label htmlFor="washing-machine" className="flex justify-between items-center mb-2">
+                            <span>Washing Machine Repairs</span>
+                            <span className="font-bold text-primary">{washingMachineCount}</span>
                         </Label>
                         <Slider
-                            id="hvac"
+                            id="washing-machine"
                             min={0}
                             max={5}
                             step={1}
-                            value={[hvacCount]}
-                            onValueChange={(value) => setHvacCount(value[0])}
+                            value={[washingMachineCount]}
+                            onValueChange={(value) => setWashingMachineCount(value[0])}
                         />
                     </div>
                      <div>
-                        <Label htmlFor="cleaning" className="flex justify-between items-center mb-2">
-                            <span>Cleaning Services</span>
-                            <span className="font-bold text-primary">{cleaningCount}</span>
+                        <Label htmlFor="refrigerator" className="flex justify-between items-center mb-2">
+                            <span>Refrigerator Repairs</span>
+                            <span className="font-bold text-primary">{refrigeratorCount}</span>
                         </Label>
                         <Slider
-                            id="cleaning"
+                            id="refrigerator"
                             min={0}
                             max={5}
                             step={1}
-                            value={[cleaningCount]}
-                            onValueChange={(value) => setCleaningCount(value[0])}
+                            value={[refrigeratorCount]}
+                            onValueChange={(value) => setRefrigeratorCount(value[0])}
+                        />
+                    </div>
+                    <div>
+                        <Label htmlFor="geyser" className="flex justify-between items-center mb-2">
+                            <span>Geyser Repairs</span>
+                            <span className="font-bold text-primary">{geyserCount}</span>
+                        </Label>
+                        <Slider
+                            id="geyser"
+                            min={0}
+                            max={5}
+                            step={1}
+                            value={[geyserCount]}
+                            onValueChange={(value) => setGeyserCount(value[0])}
                         />
                     </div>
                 </div>
