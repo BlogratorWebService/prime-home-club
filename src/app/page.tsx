@@ -48,32 +48,26 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-primary/5 to-transparent pt-12 md:pt-20 pb-12">
+        <section className="bg-gradient-to-br from-destructive via-primary to-primary text-primary-foreground pt-20 pb-20 md:pt-32 md:pb-32">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative">
-                <h1 className="text-4xl md:text-5xl font-bold font-headline tracking-tight text-foreground">
-                  We Bring Your Home Appliances <span className="text-primary">Back to Life</span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight">
+                  We Bring Your Home Appliances Back to Life
                 </h1>
-                <p className="mt-4 text-lg text-muted-foreground">
+                <p className="mt-4 text-lg md:text-xl text-primary-foreground/80">
                   Facing 🛠️ appliance issues? Try Prime Home Club, India's Most Trusted Repairs With Warranty.
                 </p>
                 
-                <div className="mt-8 p-6 bg-card rounded-lg shadow-lg">
+                <div className="mt-8 p-6 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                   <h3 className="font-bold font-headline text-lg mb-4">Book TV / AC / Refrigerator / Geyser Repair</h3>
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <Input placeholder="Your Name" />
-                      <Input placeholder="Phone Number" />
-                       <Button size="lg" className="sm:col-span-2 w-full bg-destructive hover:bg-destructive/90">
+                      <Input placeholder="Your Name" className="bg-white/20 placeholder:text-primary-foreground/70 border-white/30"/>
+                      <Input placeholder="Phone Number" className="bg-white/20 placeholder:text-primary-foreground/70 border-white/30" />
+                       <Button size="lg" className="sm:col-span-2 w-full bg-background text-primary hover:bg-background/90">
                            Request Service
                        </Button>
                     </div>
-                </div>
-                 <div className="mt-6 flex items-center gap-2 flex-wrap">
-                    <span className="font-semibold text-sm">Popular:</span>
-                    <Button variant="outline" size="sm">TV Repair</Button>
-                    <Button variant="outline" size="sm">AC Service</Button>
-                    <Button variant="outline" size="sm">Refrigerator Repair</Button>
                 </div>
               </div>
                <div className="relative hidden md:block">
