@@ -67,12 +67,12 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col min-h-screen bg-background animate-fade-in">
+    <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card relative overflow-hidden">
+        <section className="bg-card relative overflow-hidden animate-fade-in">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10 animate-gradient-xy -z-0"></div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="pt-12 md:pt-24 pb-12 md:pb-24 animate-fade-in-up">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
@@ -112,7 +112,7 @@ export default function Home() {
                     ))}
                 </div>
               </div>
-               <div className="relative hidden md:block self-end">
+               <div className="relative hidden md:block self-end z-10">
                     <Image 
                       src="/person.png" 
                       alt="Prime Home Club Technician" 
@@ -289,5 +289,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
