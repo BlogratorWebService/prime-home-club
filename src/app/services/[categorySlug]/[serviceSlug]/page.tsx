@@ -7,7 +7,7 @@ import { serviceCategories, services as allServices } from "@/lib/data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import CallToAction from "@/components/call-to-action";
 
 export async function generateStaticParams() {
   return allServices.map((service) => {
@@ -112,6 +112,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           </div>
         </div>
       </div>
+      <CallToAction />
     </div>
   );
 }

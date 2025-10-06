@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import CallToAction from "@/components/call-to-action";
 
 export default function TVRepairPage() {
   const heroImage = PlaceHolderImages.find((img) => img.id === "tv-repair-hero");
@@ -22,13 +23,6 @@ export default function TVRepairPage() {
     { number: 2, title: "Repair Plan", description: "Detailed assessment with transparent pricing and repair timeline." },
     { number: 3, title: "Expert Repair", description: "Skilled technicians perform repairs using genuine parts and advanced tools." },
     { number: 4, title: "Quality Check", description: "Thorough testing of all functions including smart features and display quality." },
-  ];
-
-  const ctaFeatures = [
-    { title: "Expert Service", description: "Certified technicians", icon: <Star className="h-6 w-6" /> },
-    { title: "Same Day", description: "Fast response time", icon: <Calendar className="h-6 w-6" /> },
-    { title: "Warranty", description: "On all repairs", icon: <Wrench className="h-6 w-6" /> },
-    { title: "Genuine Parts", description: "Quality components", icon: <CheckCircle className="h-6 w-6" /> },
   ];
 
   return (
@@ -109,38 +103,7 @@ export default function TVRepairPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-headline text-foreground">Ready to Fix Your TV Services?</h2>
-          <p className="mt-4 text-lg max-w-2xl mx-auto text-muted-foreground">
-            Contact us now for a quick response and expert service at your doorstep in Mumbai.
-          </p>
-          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {ctaFeatures.map((feature, index) => (
-              <Card key={index} className="bg-card">
-                <CardContent className="p-6 text-center">
-                  <div className="mb-3 text-destructive">{feature.icon}</div>
-                  <h3 className="font-semibold text-foreground">{feature.title}</h3>
-                  <p className="text-xs text-muted-foreground">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Button size="lg" variant="outline" asChild>
-              <a href="tel:+918858585559">
-                <Phone className="mr-2 h-5 w-5" />
-                Call Now
-              </a>
-            </Button>
-            <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white">
-              WhatsApp Now
-            </Button>
-          </div>
-        </div>
-      </section>
+      <CallToAction />
     </div>
   );
 }
