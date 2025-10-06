@@ -143,6 +143,8 @@ export default function Home() {
                   href = '/services/ac-repair';
                 } else if (category.slug === 'washing-machine-repair') {
                   href = '/services/washing-machine-repair';
+                } else if (category.slug === 'refrigerator-repair') {
+                    href = '/services/refrigerator-repair';
                 }
                 return (
                   <Link href={href} key={category.id} className="group">
