@@ -28,24 +28,24 @@ export default function RefrigeratorRepairPage() {
   ];
 
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-background text-foreground animate-fade-in">
       {/* Hero Section */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="mb-8">
+          <div className="mb-8 animate-fade-in-up">
             <Link href="/#services" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Services
             </Link>
           </div>
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div>
+            <div className="animate-fade-in-up">
               <Badge variant="secondary" className="mb-2">Professional Service</Badge>
               <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">Refrigerator Repair Services</h1>
               <p className="mt-4 text-lg text-muted-foreground">
                 Our refrigerator repair service ensures your food stays fresh with professional repairs for all major brands. We handle everything from temperature control issues to ice maker problems, providing reliable solutions for your cooling needs.
               </p>
-              <div className="grid grid-cols-2 gap-x-6 gap-y-4 mt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mt-6">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-start">
                     <CheckCircle className="h-5 w-5 mr-3 mt-1 shrink-0 text-destructive" />
@@ -68,7 +68,7 @@ export default function RefrigeratorRepairPage() {
                 </Button>
               </div>
             </div>
-            <div className="mt-8 md:mt-0">
+            <div className="mt-8 md:mt-0 animate-fade-in-up animation-delay-300">
               {heroImage && (
                 <Image
                   src={heroImage.imageUrl}
@@ -87,15 +87,15 @@ export default function RefrigeratorRepairPage() {
       {/* Repair Process Section */}
       <section className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
             <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Repair Process</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               We follow a systematic approach to ensure quality repairs and customer satisfaction.
             </p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {repairProcess.map((step) => (
-              <Card key={step.number} className="bg-background text-center p-6">
+            {repairProcess.map((step, index) => (
+              <Card key={step.number} className="bg-background text-center p-6 animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
                 <div className="relative flex justify-center items-center mb-4">
                   <div className="absolute h-12 w-12 rounded-full bg-primary/10"></div>
                   <div className="relative h-16 w-16 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold font-headline">{step.number}</div>

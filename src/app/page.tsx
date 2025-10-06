@@ -67,13 +67,14 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background animate-fade-in">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card pt-12 md:pt-16">
-          <div className="container mx-auto px-4">
+        <section className="bg-card relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10 animate-gradient-xy -z-0"></div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="pb-12 md:pb-24">
+              <div className="pt-12 md:pt-24 pb-12 md:pb-24 animate-fade-in-up">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
                   We Bring Your Home Appliances Back to Life
                 </h1>
@@ -119,7 +120,7 @@ export default function Home() {
                       height={600} 
                       className="mx-auto" 
                     />
-                  <Card className="absolute -bottom-8 left-0 backdrop-blur-sm bg-white/70 shadow-lg">
+                  <Card className="absolute -bottom-8 left-0 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-300">
                       <CardContent className="p-4 flex items-center gap-4">
                           <div className="bg-destructive text-destructive-foreground p-3 rounded-lg">
                             <span className="text-2xl font-bold font-headline">537</span>
@@ -127,7 +128,7 @@ export default function Home() {
                           </div>
                       </CardContent>
                   </Card>
-                   <Card className="absolute -top-8 right-0 backdrop-blur-sm bg-white/70 shadow-lg">
+                   <Card className="absolute -top-8 right-0 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-500">
                       <CardContent className="p-4">
                           <p className="font-semibold">Doorstep Service</p>
                            <div className="flex items-center gap-0.5 mt-1">
@@ -147,13 +148,13 @@ export default function Home() {
         {/* Testimonials Section */}
         <section id="testimonials" className="py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
-                 <div className="text-center max-w-3xl mx-auto">
+                 <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 10,000+ Customers</h2>
                      <p className="mt-2 text-muted-foreground">Verified ✓</p>
                 </div>
                 <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
-                         <Card key={index} className="bg-card">
+                         <Card key={index} className="bg-card animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
                             <CardContent className="p-6">
                                 <div className="flex items-center gap-4 mb-4">
                                     <Avatar>
@@ -185,21 +186,21 @@ export default function Home() {
         {/* Service Categories Section */}
         <section id="services" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Services</h2>
               <p className="mt-4 text-lg text-muted-foreground">
                 Professional repair services for all your home appliances with expert technicians and warranty.
               </p>
             </div>
             <div className="mt-12 grid gap-4 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-5">
-              {serviceCategories.map((category) => {
+              {serviceCategories.map((category, index) => {
                 const CategoryIcon = category.icon;
                 let href = `/services/${category.slug}`;
                 
                 return (
                   <Link href={href} key={category.id} className="group">
-                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-background p-6">
-                      <CategoryIcon className="h-10 w-10 text-primary mb-4" />
+                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-background p-6 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                      <CategoryIcon className="h-10 w-10 text-primary mb-4 transition-transform duration-300 group-hover:scale-110" />
                       <h3 className="font-headline text-lg font-semibold">
                           {category.name}
                       </h3>
@@ -214,14 +215,14 @@ export default function Home() {
         {/* Why Choose Us Section */}
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Choose Prime Home Club?</h2>
               <p className="mt-4 text-lg text-muted-foreground">
                 Mumbai's most trusted appliance repair service, providing quality solutions for all your home appliances.
               </p>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="text-center bg-card p-4">
+              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl pt-2">Expert Technicians</CardTitle>
                 </CardHeader>
@@ -231,7 +232,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-card p-4">
+              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl pt-2">Home Service</CardTitle>
                 </CardHeader>
@@ -241,7 +242,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-card p-4">
+              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl pt-2">Quick Turnaround</CardTitle>
                 </CardHeader>
@@ -251,7 +252,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card p-4">
+               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl pt-2">Quality Warranty</CardTitle>
                 </CardHeader>
@@ -261,7 +262,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card p-4">
+               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl pt-2">Free Pickup & Delivery</CardTitle>
                 </CardHeader>
@@ -271,7 +272,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card p-4">
+               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '750ms' }}>
                 <CardHeader>
                   <CardTitle className="font-headline text-xl pt-2">Transparent Pricing</CardTitle>
                 </CardHeader>
