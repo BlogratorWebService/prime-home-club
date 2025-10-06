@@ -11,8 +11,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-2");
-
   const testimonials = [
     {
       name: "Rahul Sharma",
@@ -81,16 +79,13 @@ export default function Home() {
                 </div>
               </div>
                <div className="relative hidden md:block">
-                  {heroImage && (
                     <Image 
-                      src={heroImage.imageUrl} 
-                      alt={heroImage.description} 
+                      src="/person.png" 
+                      alt="Prime Home Club Technician" 
                       width={500} 
                       height={600} 
                       className="mx-auto" 
-                      data-ai-hint={heroImage.imageHint}
                     />
-                  )}
                   <Card className="absolute -bottom-8 left-0 backdrop-blur-sm bg-white/70 shadow-lg">
                       <CardContent className="p-4 flex items-center gap-4">
                           <div className="bg-destructive text-destructive-foreground p-3 rounded-lg">
