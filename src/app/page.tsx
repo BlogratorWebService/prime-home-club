@@ -123,7 +123,7 @@ export default function Home() {
                         objectFit="contain"
                         className="z-10"
                         />
-                         <Card className="absolute bottom-8 left-0 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-300 z-20">
+                         <Card className="absolute bottom-8 left-8 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-300 z-20">
                             <CardContent className="p-4 flex items-center gap-4">
                                 <Avatar className="h-12 w-12 border-2 border-destructive">
                                     <AvatarImage src={`https://i.pravatar.cc/150?u=client1`} />
@@ -135,7 +135,7 @@ export default function Home() {
                                 </div>
                             </CardContent>
                         </Card>
-                        <Card className="absolute top-8 right-0 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-500 z-20">
+                        <Card className="absolute top-8 right-8 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-500 z-20">
                             <CardContent className="p-4 flex items-center gap-3">
                                <div className="flex -space-x-2">
                                 <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
