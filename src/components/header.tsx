@@ -1,24 +1,15 @@
+
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { User, LogOut, LayoutDashboard, Menu, Phone } from "lucide-react";
+import { Menu, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import { mockUser } from "@/lib/data";
 
 const Logo = () => (
   <Link href="/" aria-label="Prime Home Club">
@@ -35,7 +26,6 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
-  const user = mockUser; // Using mock user for demonstration
   const [isSheetOpen, setSheetOpen] = React.useState(false);
 
 
@@ -56,56 +46,6 @@ export default function Header() {
     </nav>
   );
 
-  const UserMenu = () => {
-    if (!user.isLoggedIn) {
-      return (
-        <div className="flex items-center gap-2">
-          <Button variant="ghost">Log in</Button>
-          <Button>Sign up</Button>
-        </div>
-      );
-    }
-
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-            <Avatar className="h-9 w-9">
-              <AvatarImage src={`https://avatar.vercel.sh/${user.email}.png`} alt={user.name || ""} />
-              <AvatarFallback>{user.name?.charAt(0)}</AvatarFallback>
-            </Avatar>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56" align="end" forceMount>
-          <DropdownMenuLabel className="font-normal">
-            <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">{user.name}</p>
-              <p className="text-xs leading-none text-muted-foreground">
-                {user.email}
-              </p>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard">
-              <LayoutDashboard className="mr-2 h-4 w-4" />
-              <span>Dashboard</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
-  };
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-20 items-center justify-between">
@@ -119,7 +59,6 @@ export default function Header() {
              <Button asChild variant="outline" className="text-destructive border-destructive hover:bg-destructive/10 hover:text-destructive">
                 <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Now</a>
             </Button>
-             <UserMenu />
           </div>
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
@@ -147,8 +86,7 @@ export default function Header() {
                      </SheetClose>
                   ))}
                 </nav>
-                 <div className="p-4 mt-auto border-t flex justify-between items-center">
-                  <UserMenu />
+                 <div className="p-4 mt-auto border-t flex justify-end items-center">
                    <Button asChild className="bg-destructive hover:bg-destructive/90">
                     <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Now</a>
                   </Button>

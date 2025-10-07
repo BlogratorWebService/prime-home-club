@@ -7,8 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 
-import type { Service, User } from "@/lib/data";
-import { mockUser } from "@/lib/data"; // Using mock user
+import type { Service } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -34,15 +33,13 @@ export default function BookingForm({ service }: BookingFormProps) {
   const [step, setStep] = useState(1);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  // In a real app, this would come from an auth hook
-  const user: User = mockUser;
-  const price = user.isMember ? service.memberPrice : service.standardPrice;
+  const price = service.standardPrice;
 
   const form = useForm<z.infer<typeof bookingSchema>>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
-      name: user.name || "",
-      email: user.email || "",
+      name: "",
+      email: "",
       address: "",
     },
   });
@@ -64,11 +61,10 @@ export default function BookingForm({ service }: BookingFormProps) {
         <CardTitle className="font-headline text-2xl">{service.name}</CardTitle>
         <div className="flex justify-between items-baseline pt-1">
             <CardDescription>
-                {user.isMember ? "Your Exclusive Club Member Price" : "Standard Price"}
+                Standard Price
             </CardDescription>
             <p>
                 <span className="text-2xl font-bold font-headline text-primary">${price}</span>
-                {user.isMember && <Badge variant="secondary" className="ml-2">Member</Badge>}
             </p>
         </div>
       </CardHeader>
@@ -187,5 +183,3 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Card>
   );
 }
-
-    

@@ -20,27 +20,6 @@ export type Service = {
   memberPrice: number;
 };
 
-export type User = {
-    isLoggedIn: boolean;
-    isMember: boolean;
-    name?: string;
-    email?: string;
-}
-
-export const mockUser: User = {
-    isLoggedIn: true,
-    isMember: false,
-    name: "Alex Doe",
-    email: "alex.doe@example.com"
-}
-
-export const mockMember: User = {
-    isLoggedIn: true,
-    isMember: true,
-    name: "Jordan Smith",
-    email: "jordan.smith@example.com"
-}
-
 export const serviceCategories: ServiceCategory[] = [
   {
     id: "cat-1",
