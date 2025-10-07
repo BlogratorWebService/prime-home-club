@@ -76,7 +76,7 @@ export default function Home() {
 
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="py-12 md:py-24 animate-fade-in-up">
+                    <div className="py-16 md:py-32 animate-fade-in-up">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
                             We Bring Your Home Appliances Back to Life
                         </h1>
@@ -112,7 +112,7 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
-                    <div className="relative hidden md:block h-full min-h-[400px] z-10">
+                    <div className="relative hidden md:block h-full min-h-[500px] z-10">
                         <div className="absolute -left-1/4 top-1/2 -translate-y-1/2 w-48 h-48 bg-destructive/10 rounded-full -z-10 animate-pulse"></div>
                         <div className="absolute right-0 bottom-0 w-32 h-32 dots-pattern -z-10"></div>
 
