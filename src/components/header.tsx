@@ -116,7 +116,7 @@ export default function Header() {
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
-             <Button asChild className="bg-destructive hover:bg-destructive/90">
+             <Button asChild variant="outline" className="text-destructive border-destructive hover:bg-destructive/10 hover:text-destructive">
                 <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Now</a>
             </Button>
              <UserMenu />

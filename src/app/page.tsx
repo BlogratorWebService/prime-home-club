@@ -70,79 +70,86 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-card relative animate-fade-in">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/10 animate-gradient-xy -z-0"></div>
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="pt-12 md:pt-24 pb-12 md:pb-24 animate-fade-in-up">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
-                  We Bring Your Home Appliances Back to Life
-                </h1>
-                <p className="mt-4 text-lg md:text-xl text-muted-foreground">
-                  We are Committed to Provide you a Safe Service Experience
-                </p>
-                
-                <form onSubmit={handleSearch} className="mt-8 p-4 rounded-lg bg-background border">
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input 
-                          placeholder="What are you looking for?" 
-                          className="pl-10 h-12 text-base"
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          onKeyDown={handleKeyDown}
-                        />
-                         <Button 
-                            type="submit"
-                            size="lg" 
-                            className="absolute right-1 top-1/2 -translate-y-1/2 h-10 bg-destructive hover:bg-destructive/90"
-                          >
-                            <Search className="h-5 w-5 md:hidden" />
-                            <span className="hidden md:block">Search</span>
-                        </Button>
-                    </div>
-                </form>
+        <section className="relative bg-primary/5 animate-fade-in">
+           <div className="absolute inset-0 dots-pattern -z-10"></div>
+            <div className="absolute inset-y-0 right-0 w-1/2 bg-primary -z-20"></div>
 
-                <div className="mt-6 flex flex-wrap items-center gap-3">
-                    <span className="font-semibold">Popular:</span>
-                    {popularServices.map(service => (
-                        <Button key={service.name} variant="outline" size="sm" asChild>
-                            <Link href={service.href}>{service.name}</Link>
-                        </Button>
-                    ))}
+            <div className="container mx-auto px-4">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="py-12 md:py-24 animate-fade-in-up">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
+                            We Bring Your Home Appliances Back to Life
+                        </h1>
+                        <p className="mt-4 text-lg md:text-xl text-muted-foreground">
+                            We are Committed to Provide you a Safe Service Experience
+                        </p>
+                        
+                        <form onSubmit={handleSearch} className="mt-8">
+                            <div className="relative">
+                                <Input 
+                                placeholder="What are you looking for?" 
+                                className="h-14 text-base shadow-sm"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                />
+                                <Button 
+                                    type="submit"
+                                    size="lg" 
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 h-10 bg-destructive hover:bg-destructive/90 rounded-full"
+                                >
+                                    <Search className="h-5 w-5" />
+                                </Button>
+                            </div>
+                        </form>
+
+                        <div className="mt-6 flex flex-wrap items-center gap-3">
+                            <span className="font-semibold">Popular:</span>
+                            {popularServices.map(service => (
+                                <Button key={service.name} variant="outline" size="sm" asChild>
+                                    <Link href={service.href}>{service.name}</Link>
+                                </Button>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="relative hidden md:block h-full min-h-[400px]">
+                        <div className="absolute -left-1/4 top-1/2 -translate-y-1/2 w-48 h-48 bg-destructive/10 rounded-full -z-10 animate-pulse"></div>
+                        <div className="absolute right-0 bottom-0 w-32 h-32 dots-pattern -z-10"></div>
+
+                        <Image 
+                        src="/person.png" 
+                        alt="Prime Home Club Technician" 
+                        layout="fill"
+                        objectFit="contain"
+                        className="z-10"
+                        />
+                         <Card className="absolute bottom-8 left-0 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-300 z-20">
+                            <CardContent className="p-4 flex items-center gap-4">
+                                <Avatar className="h-12 w-12 border-2 border-destructive">
+                                    <AvatarImage src={`https://i.pravatar.cc/150?u=client1`} />
+                                    <AvatarFallback>C</AvatarFallback>
+                                </Avatar>
+                                <div>
+                                    <p className="font-semibold text-sm">537+ Happy Clients</p>
+                                    <p className="text-xs text-muted-foreground">See our reviews</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className="absolute top-8 right-0 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-500 z-20">
+                            <CardContent className="p-4 flex items-center gap-3">
+                               <div className="flex -space-x-2">
+                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                               </div>
+                                <p className="font-semibold text-sm">5-Star Service</p>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
-              </div>
-               <div className="relative hidden md:block self-end z-10">
-                    <Image 
-                      src="/person.png" 
-                      alt="Prime Home Club Technician" 
-                      width={500} 
-                      height={600} 
-                      className="mx-auto" 
-                    />
-                  <Card className="absolute -bottom-8 left-8 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-300">
-                      <CardContent className="p-4 flex items-center gap-4">
-                          <div className="bg-destructive text-destructive-foreground p-3 rounded-lg">
-                            <span className="text-2xl font-bold font-headline">537</span>
-                            <p className="text-sm">Happy Clients</p>
-                          </div>
-                      </CardContent>
-                  </Card>
-                   <Card className="absolute top-8 right-8 backdrop-blur-sm bg-white/70 shadow-lg animate-fade-in-up animation-delay-500">
-                      <CardContent className="p-4">
-                          <p className="font-semibold">Doorstep Service</p>
-                           <div className="flex items-center gap-0.5 mt-1">
-                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                              <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                          </div>
-                      </CardContent>
-                  </Card>
-              </div>
             </div>
-          </div>
         </section>
 
         {/* Testimonials Section */}
