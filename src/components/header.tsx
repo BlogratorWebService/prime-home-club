@@ -19,7 +19,7 @@ const Logo = () => (
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Services" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
 ];
@@ -37,7 +37,7 @@ export default function Header() {
           href={link.href}
           className={cn(
             "text-muted-foreground transition-colors hover:text-foreground",
-            (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href) && link.href !== "/#services")) && "text-foreground"
+            (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))) && "text-foreground"
           )}
         >
           {link.label}

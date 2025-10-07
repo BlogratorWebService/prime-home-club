@@ -62,7 +62,7 @@ export default function Home() {
       { name: "TV Repair", href: "/services/tv-repair"},
       { name: "AC Repair", href: "/services/ac-repair"},
       { name: "Washing Machine", href: "/services/washing-machine-repair"},
-      { name: "Appliance Repair", href: "/#services"},
+      { name: "Appliance Repair", href: "/services"},
   ]
 
 
@@ -137,7 +137,7 @@ export default function Home() {
                         </Card>
                         <Card className="absolute top-8 right-8 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-500 z-20">
                             <CardContent className="p-4 flex items-center gap-3">
-                               <div className="flex -space-x-2">
+                               <div className="flex gap-1">
                                 <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                                 <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                                 <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
