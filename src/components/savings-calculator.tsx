@@ -11,6 +11,8 @@ const avgSavingsPerService = services.map(s => ({
     savings: s.standardPrice - s.memberPrice
 }));
 
+const MEMBERSHIP_FEE = 1499; // Annual membership fee in INR
+
 export default function SavingsCalculator() {
     const [tvCount, setTvCount] = useState(1);
     const [acCount, setAcCount] = useState(1);
@@ -45,7 +47,7 @@ export default function SavingsCalculator() {
                         (washingMachineCount * avgWashingMachineSaving) +
                         (refrigeratorCount * avgRefrigeratorSaving) +
                         (geyserCount * avgGeyserSaving);
-        return Math.max(0, savings - 149); // Subtracting membership fee
+        return Math.max(0, savings - MEMBERSHIP_FEE);
     }, [tvCount, acCount, washingMachineCount, refrigeratorCount, geyserCount, avgTvSaving, avgAcSaving, avgWashingMachineSaving, avgRefrigeratorSaving, avgGeyserSaving]);
 
     return (
@@ -130,13 +132,15 @@ export default function SavingsCalculator() {
                 <div className="mt-8 p-6 bg-primary/10 rounded-lg text-center">
                     <p className="text-lg font-medium text-primary">Your Estimated Net Annual Savings:</p>
                     <p className="text-5xl font-bold font-headline text-primary mt-2">
-                        ${totalSavings.toFixed(2)}
+                        ₹{totalSavings.toFixed(0)}
                     </p>
                     <p className="text-sm text-muted-foreground mt-2">
-                        after the $149 annual membership fee.
+                        after the ₹{MEMBERSHIP_FEE} annual membership fee.
                     </p>
                 </div>
             </CardContent>
         </Card>
     );
 }
+
+    

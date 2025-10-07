@@ -82,7 +82,7 @@ export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps
                   <p className="text-sm text-muted-foreground">Starts at</p>
                   <p>
                     <span className="text-3xl font-bold font-headline text-primary">
-                      ${service.standardPrice}
+                      ₹{service.standardPrice}
                     </span>
                   </p>
                 </div>
@@ -100,3 +100,5 @@ export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps
     </div>
   );
 }
+
+    

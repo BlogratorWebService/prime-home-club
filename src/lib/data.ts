@@ -77,8 +77,8 @@ export const services: Service[] = [
       "Installation of new screen",
       "Testing for full functionality",
     ],
-    standardPrice: 300,
-    memberPrice: 250,
+    standardPrice: 2000,
+    memberPrice: 1600,
   },
   {
     id: "serv-2",
@@ -92,8 +92,8 @@ export const services: Service[] = [
       "Firmware updates if required",
       "Comprehensive testing",
     ],
-    standardPrice: 200,
-    memberPrice: 160,
+    standardPrice: 1500,
+    memberPrice: 1200,
   },
   // AC Repair
   {
@@ -108,8 +108,8 @@ export const services: Service[] = [
       "Recharging with correct type and amount of gas",
       "Cooling efficiency test",
     ],
-    standardPrice: 150,
-    memberPrice: 120,
+    standardPrice: 2500,
+    memberPrice: 2000,
   },
   {
     id: "serv-4",
@@ -123,8 +123,8 @@ export const services: Service[] = [
       "Drain pipe cleaning",
       "Performance and safety check",
     ],
-    standardPrice: 80,
-    memberPrice: 60,
+    standardPrice: 500,
+    memberPrice: 400,
   },
   // Washing Machine
   {
@@ -139,8 +139,8 @@ export const services: Service[] = [
       "Seal replacement to prevent leaks",
       "Testing for smooth and quiet operation",
     ],
-    standardPrice: 180,
-    memberPrice: 145,
+    standardPrice: 1800,
+    memberPrice: 1450,
   },
     // Refrigerator
   {
@@ -155,8 +155,8 @@ export const services: Service[] = [
       "Compressor replacement if needed",
       "Gas refill and cooling test",
     ],
-    standardPrice: 250,
-    memberPrice: 200,
+    standardPrice: 2500,
+    memberPrice: 2000,
   },
   // Geyser
   {
@@ -171,7 +171,9 @@ export const services: Service[] = [
       "Installation of a new heating element",
       "Testing for proper heating and safety",
     ],
-    standardPrice: 120,
-    memberPrice: 95,
+    standardPrice: 800,
+    memberPrice: 650,
   },
 ];
+
+    

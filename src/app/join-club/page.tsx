@@ -41,7 +41,7 @@ export default function JoinClubPage() {
             Join the Prime Home Club
           </h1>
           <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
-            Unlock exclusive savings, priority service, and peace of mind for just $149/year.
+            Unlock exclusive savings, priority service, and peace of mind for just ₹1499/year.
           </p>
         </div>
       </section>
@@ -108,7 +108,7 @@ export default function JoinClubPage() {
                     <ul className="mt-6 space-y-3">
                         <li className="flex items-start">
                             <Check className="h-5 w-5 mr-3 mt-1 shrink-0 text-primary" />
-                            <span>Average member saves over $300 per year.</span>
+                            <span>Average member saves over ₹2500 per year.</span>
                         </li>
                         <li className="flex items-start">
                             <Check className="h-5 w-5 mr-3 mt-1 shrink-0 text-primary" />
@@ -130,11 +130,11 @@ export default function JoinClubPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-headline">Ready for a Smarter Way to Manage Your Home?</h2>
           <p className="mt-4 text-lg max-w-3xl mx-auto text-primary-foreground/80">
-            For only $149 a year, get the best service at the best price.
+            For only ₹1499 a year, get the best service at the best price.
           </p>
           <Button asChild size="lg" variant="secondary" className="mt-8">
             <Link href="#">
-              Join the Club Now for $149/year
+              Join the Club Now for ₹1499/year
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
@@ -143,3 +143,5 @@ export default function JoinClubPage() {
     </div>
   );
 }
+
+    

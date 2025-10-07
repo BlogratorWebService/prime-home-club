@@ -74,7 +74,7 @@ export default function Footer() {
            <div className="col-span-full sm:col-span-2">
             <h3 className="font-headline font-semibold text-foreground">Contact Us</h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                <li>1st Floor, P 101 Godrej Central Rehab, Mumbai, Maharashtra 400071, India</li>
+                <li>1st Floor, P 101 Godrej Central Rehab, Chembur, Mumbai, Maharashtra 400071, India</li>
                 <li><a href="tel:+918858585559" className="hover:text-primary">+91 88585 85559</a></li>
                 <li><a href="mailto:info@primehomeclub.com" className="hover:text-primary">info@primehomeclub.com</a></li>
                 <li>Mon-Sat: 9am - 8pm</li>
@@ -98,5 +98,7 @@ export default function Footer() {
     </footer>
   );
 }
+
+    
 
     

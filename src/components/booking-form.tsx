@@ -64,7 +64,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 Standard Price
             </CardDescription>
             <p>
-                <span className="text-2xl font-bold font-headline text-primary">${price}</span>
+                <span className="text-2xl font-bold font-headline text-primary">₹{price}</span>
             </p>
         </div>
       </CardHeader>
@@ -85,7 +85,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 <FormField control={form.control} name="name" render={({ field }) => (
                   <FormItem>
                     <FormLabel>Full Name</FormLabel>
-                    <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
+                    <FormControl><Input placeholder="Rahul Sharma" {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )}/>
@@ -99,7 +99,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 <FormField control={form.control} name="address" render={({ field }) => (
                   <FormItem>
                     <FormLabel>Service Address</FormLabel>
-                    <FormControl><Input placeholder="123 Main St, Anytown, USA" {...field} /></FormControl>
+                    <FormControl><Input placeholder="123, B-Wing, Andheri West, Mumbai" {...field} /></FormControl>
                     <FormMessage />
                   </FormItem>
                 )}/>
@@ -149,11 +149,11 @@ export default function BookingForm({ service }: BookingFormProps) {
                         <p><strong>Name:</strong> {form.getValues("name")}</p>
                         <p><strong>Date:</strong> {form.getValues("date")?.toLocaleDateString()}</p>
                         <p><strong>Time:</strong> {form.getValues("time")}</p>
-                        <p className="font-bold text-primary text-lg pt-2">Total: ${price}</p>
+                        <p className="font-bold text-primary text-lg pt-2">Total: ₹{price}</p>
                     </div>
                      <div className="mt-6">
                         <h4 className="font-semibold mb-2">Payment Information</h4>
-                        <p className="text-sm text-muted-foreground">Mock payment section. In a real app, a Stripe/Braintree element would be here.</p>
+                        <p className="text-sm text-muted-foreground">Mock payment section. In a real app, a payment gateway element would be here.</p>
                         <div className="mt-2 p-4 border border-dashed rounded-md h-24 flex items-center justify-center text-muted-foreground">
                             [Payment Gateway Placeholder]
                         </div>
@@ -175,7 +175,7 @@ export default function BookingForm({ service }: BookingFormProps) {
             </Button>
           ) : (
             <Button onClick={form.handleSubmit(processBooking)} className="bg-destructive hover:bg-destructive/90 w-full sm:w-auto" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? "Processing..." : `Confirm & Pay $${price}`}
+              {form.formState.isSubmitting ? "Processing..." : `Confirm & Pay ₹${price}`}
             </Button>
           )}
         </CardFooter>
@@ -183,3 +183,5 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Card>
   );
 }
+
+    

@@ -81,7 +81,7 @@ export default function Home() {
                             We Bring Your Home Appliances Back to Life
                         </h1>
                         <p className="mt-4 text-lg md:text-xl text-muted-foreground">
-                            We are Committed to Provide you a Safe Service Experience
+                            We are Committed to Provide you a Safe Service Experience in Mumbai.
                         </p>
                         
                         <form onSubmit={handleSearch} className="mt-8">
@@ -126,7 +126,7 @@ export default function Home() {
                          <Card className="absolute bottom-8 left-8 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-300 z-20">
                             <CardContent className="p-4 flex items-center gap-4">
                                 <Avatar className="h-12 w-12 border-2 border-destructive">
-                                    <AvatarImage src={`https://i.pravatar.cc/150?u=client1`} />
+                                    <AvatarImage src={`https://i.pravatar.cc/150?u=a`} />
                                     <AvatarFallback>C</AvatarFallback>
                                 </Avatar>
                                 <div>
@@ -305,3 +305,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

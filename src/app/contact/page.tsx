@@ -13,7 +13,7 @@ export default function ContactPage() {
           Contact Us
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          We're here to help! Reach out to us for any questions or to schedule a service.
+          We're here to help! Reach out to us for any questions or to schedule a service in Mumbai.
         </p>
       </div>
 
@@ -46,7 +46,7 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                1st Floor, P 101 Godrej Central Rehab, Mumbai, Maharashtra 400071, India
+                1st Floor, P 101 Godrej Central Rehab, Chembur, Mumbai, Maharashtra 400071, India
               </p>
             </CardContent>
           </Card>
@@ -86,3 +86,5 @@ export default function ContactPage() {
     </div>
   );
 }
+
+    

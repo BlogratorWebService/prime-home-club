@@ -80,7 +80,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
                 <div>
                   <p className="text-sm font-medium text-muted-foreground">Starting From</p>
                   <p className="text-4xl font-bold font-headline tracking-tighter text-primary">
-                    ${service.standardPrice}
+                    ₹{service.standardPrice}
                   </p>
                 </div>
                  <Button asChild size="lg" className="w-full mt-6 bg-destructive hover:bg-destructive/90">
@@ -110,3 +110,5 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
     </div>
   );
 }
+
+    
