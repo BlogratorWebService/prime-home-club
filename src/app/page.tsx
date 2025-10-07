@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Search, Star, Wrench, Settings, Hammer } from "lucide-react";
+import { ArrowRight, Search, Star, ShieldCheck, Truck, Clock, Award, Users, ThumbsUp } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -112,7 +112,7 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
-                    <div className="relative hidden md:block h-full min-h-[400px]">
+                    <div className="relative hidden md:block h-full min-h-[400px] z-10">
                         <div className="absolute -left-1/4 top-1/2 -translate-y-1/2 w-48 h-48 bg-destructive/10 rounded-full -z-10 animate-pulse"></div>
                         <div className="absolute right-0 bottom-0 w-32 h-32 dots-pattern -z-10"></div>
 
@@ -156,8 +156,11 @@ export default function Home() {
         <section id="testimonials" className="py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
                  <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
-                    <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 10,000+ Customers</h2>
-                     <p className="mt-2 text-muted-foreground">Verified ✓</p>
+                    <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 1,000+ Customers</h2>
+                     <p className="mt-2 text-muted-foreground flex items-center justify-center gap-2">
+                        <ShieldCheck className="h-5 w-5 text-green-500" />
+                        Verified Reviews
+                     </p>
                 </div>
                 <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
@@ -231,6 +234,7 @@ export default function Home() {
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
                 <CardHeader>
+                  <Users className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Expert Technicians</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -241,6 +245,7 @@ export default function Home() {
               </Card>
               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
                 <CardHeader>
+                    <Truck className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Home Service</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -251,6 +256,7 @@ export default function Home() {
               </Card>
               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
                 <CardHeader>
+                    <Clock className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Quick Turnaround</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -261,6 +267,7 @@ export default function Home() {
               </Card>
                <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
                 <CardHeader>
+                    <Award className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Quality Warranty</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -271,6 +278,7 @@ export default function Home() {
               </Card>
                <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
                 <CardHeader>
+                    <ThumbsUp className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Free Pickup & Delivery</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -281,6 +289,7 @@ export default function Home() {
               </Card>
                <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '750ms' }}>
                 <CardHeader>
+                    <ShieldCheck className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Transparent Pricing</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -296,3 +305,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
