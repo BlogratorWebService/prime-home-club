@@ -72,7 +72,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative bg-primary/5 animate-fade-in">
            <div className="absolute inset-0 dots-pattern -z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-1/2 bg-primary -z-20"></div>
+            <div className="absolute inset-y-0 right-0 w-1/2 bg-primary -z-20 hidden md:block"></div>
 
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -305,5 +305,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
