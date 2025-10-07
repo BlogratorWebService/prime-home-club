@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Check, ArrowRight, Star } from "lucide-react";
+import { Check, ArrowRight, Star, Phone, CheckCircle } from "lucide-react";
 
 import { serviceCategories, services as allServices } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import CallToAction from "@/components/call-to-action";
+import { Badge } from "@/components/ui/badge";
 
 export async function generateStaticParams() {
   return allServices.map((service) => {
@@ -35,6 +36,8 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   if (!category || !service) {
     notFound();
   }
+  
+  const whatsappMessage = `https://wa.me/918858585559?text=Hello, I'm interested in the ${encodeURIComponent(service.name)} service.`;
 
   return (
     <div className="bg-background">
@@ -44,7 +47,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           <div>
             <div className="aspect-video w-full overflow-hidden rounded-lg border">
               <Image
-                src={`/${service.slug}.jpg`}
+                src={service.imageId ? `/${service.imageId}` : `/${service.slug}.jpg`}
                 alt={service.name}
                 width={800}
                 height={600}
@@ -57,7 +60,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
           {/* Right Column: Service Details & Booking */}
           <div>
             <div className="mb-4">
-              <Link href={`/services/${category.slug}`} className="text-sm font-medium text-primary hover:underline">
+               <Link href={`/services/${category.slug}`} className="text-sm font-medium text-primary hover:underline">
                 {category.name}
               </Link>
             </div>
@@ -110,5 +113,3 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
     </div>
   );
 }
-
-    

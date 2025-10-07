@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 export async function generateStaticParams() {
   return serviceCategories.map((category) => ({
@@ -28,13 +27,6 @@ type ServiceCategoryPageProps = {
 
 export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps) {
   const { categorySlug } = params;
-  
-  if (["tv-repair", "ac-repair", "washing-machine-repair", "refrigerator-repair", "geyser-repair"].includes(categorySlug)) {
-    // These have dedicated pages, so we shouldn't render this generic one.
-    // In a real app, you might redirect or have a different logic.
-    // For now, this prevents rendering a page that should be handled by a more specific route.
-    notFound();
-  }
 
   const category = serviceCategories.find((c) => c.slug === categorySlug);
 
@@ -100,5 +92,3 @@ export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps
     </div>
   );
 }
-
-    

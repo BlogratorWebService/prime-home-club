@@ -18,6 +18,7 @@ export type Service = {
   details: string[];
   standardPrice: number;
   memberPrice: number;
+  imageId?: string;
 };
 
 export const serviceCategories: ServiceCategory[] = [
@@ -79,6 +80,7 @@ export const services: Service[] = [
     ],
     standardPrice: 2000,
     memberPrice: 1600,
+    imageId: "tv.jpeg"
   },
   {
     id: "serv-2",
@@ -94,6 +96,7 @@ export const services: Service[] = [
     ],
     standardPrice: 1500,
     memberPrice: 1200,
+    imageId: "tv.jpeg"
   },
   // AC Repair
   {
@@ -110,6 +113,7 @@ export const services: Service[] = [
     ],
     standardPrice: 2500,
     memberPrice: 2000,
+    imageId: "ac.jpg"
   },
   {
     id: "serv-4",
@@ -125,6 +129,7 @@ export const services: Service[] = [
     ],
     standardPrice: 500,
     memberPrice: 400,
+    imageId: "ac.jpg"
   },
   // Washing Machine
   {
@@ -141,6 +146,7 @@ export const services: Service[] = [
     ],
     standardPrice: 1800,
     memberPrice: 1450,
+    imageId: "washing-machine.png"
   },
     // Refrigerator
   {
@@ -157,6 +163,7 @@ export const services: Service[] = [
     ],
     standardPrice: 2500,
     memberPrice: 2000,
+    imageId: "refr.jpg"
   },
   // Geyser
   {
@@ -173,7 +180,6 @@ export const services: Service[] = [
     ],
     standardPrice: 800,
     memberPrice: 650,
+    imageId: "geyser.jpg"
   },
 ];
-
-    
