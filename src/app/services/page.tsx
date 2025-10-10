@@ -58,7 +58,7 @@ export default function ServicesPage() {
                     <Card key={service.id} className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                        <div className="relative aspect-video w-full">
                          <Image 
-                           src={getImageForService(service.categoryId)}
+                           src={service.imageId ? `/${service.imageId}` : `/${service.slug}.jpg`}
                            alt={service.name}
                            fill
                            className="object-cover"

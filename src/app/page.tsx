@@ -119,7 +119,7 @@ export default function Home() {
                         <Image 
                         src="/person.png" 
                         alt="Prime Home Club Technician" 
-                        layout="fill"
+                        fill
                         objectFit="contain"
                         className="z-10"
                         />
@@ -306,4 +306,3 @@ export default function Home() {
   );
 }
 
-    
