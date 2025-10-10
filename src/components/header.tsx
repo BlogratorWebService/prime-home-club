@@ -22,6 +22,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
+  { href: "/join-club", label: "Join the Club" },
 ];
 
 export default function Header() {
