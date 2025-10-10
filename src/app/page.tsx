@@ -70,13 +70,11 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative bg-primary/5 animate-fade-in">
-           <div className="absolute inset-0 dots-pattern -z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-1/2 bg-primary -z-20 hidden md:block"></div>
-
+        <section className="relative w-full overflow-hidden bg-background">
             <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="py-16 md:py-32 animate-fade-in-up">
+                <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[600px]">
+                    {/* Left Content */}
+                    <div className="py-16 md:py-32 animate-fade-in-up z-10">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
                             We Bring Your Home Appliances Back to Life
                         </h1>
@@ -112,48 +110,26 @@ export default function Home() {
                             ))}
                         </div>
                     </div>
-                    <div className="relative hidden md:block h-full min-h-[500px] z-10">
-                        <div className="absolute -left-1/4 top-1/2 -translate-y-1/2 w-48 h-48 bg-destructive/10 rounded-full -z-10 animate-pulse"></div>
-                        <div className="absolute right-0 bottom-0 w-32 h-32 dots-pattern -z-10"></div>
-
-                        <Image 
-                        src="/person.png" 
-                        alt="Prime Home Club Technician" 
-                        fill
-                        objectFit="contain"
-                        className="z-10"
-                        />
-                         <Card className="absolute bottom-8 left-8 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-300 z-20">
-                            <CardContent className="p-4 flex items-center gap-4">
-                                <Avatar className="h-12 w-12 border-2 border-destructive">
-                                    <AvatarImage src={`https://i.pravatar.cc/150?u=a`} />
-                                    <AvatarFallback>C</AvatarFallback>
-                                </Avatar>
-                                <div>
-                                    <p className="font-semibold text-sm">537+ Happy Clients</p>
-                                    <p className="text-xs text-muted-foreground">See our reviews</p>
-                                </div>
-                            </CardContent>
-                        </Card>
-                        <Card className="absolute top-8 right-8 backdrop-blur-sm bg-background/80 shadow-lg animate-fade-in-up animation-delay-500 z-20">
-                            <CardContent className="p-4 flex items-center gap-3">
-                               <div className="flex gap-1">
-                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                                <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                               </div>
-                                <p className="font-semibold text-sm">5-Star Service</p>
-                            </CardContent>
-                        </Card>
+                    
+                    {/* Right Image */}
+                    <div className="relative hidden lg:flex h-full w-full items-center justify-center">
+                        <div className="absolute inset-y-0 -right-1/2 w-[150%] bg-primary -skew-x-12"></div>
+                         <div className="relative h-[450px] w-[450px] animate-fade-in animation-delay-300">
+                             <Image 
+                                src="/person.png" 
+                                alt="Prime Home Club Technician" 
+                                fill
+                                objectFit="contain"
+                                className="z-10 drop-shadow-2xl"
+                            />
+                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 md:py-24 bg-background">
+        <section id="testimonials" className="py-16 md:py-24 bg-card">
             <div className="container mx-auto px-4">
                  <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 1,000+ Customers</h2>
@@ -164,7 +140,7 @@ export default function Home() {
                 </div>
                 <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
-                         <Card key={index} className="bg-card animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
+                         <Card key={index} className="bg-background animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
                             <CardContent className="p-6">
                                 <div className="flex items-center gap-4 mb-4">
                                     <Avatar>
@@ -194,7 +170,7 @@ export default function Home() {
 
 
         {/* Service Categories Section */}
-        <section id="services" className="py-16 md:py-24 bg-card">
+        <section id="services" className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Services</h2>
@@ -209,7 +185,7 @@ export default function Home() {
                 
                 return (
                   <Link href={href} key={category.id} className="group">
-                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-background p-6 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-card p-6 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
                       <CategoryIcon className="h-10 w-10 text-primary mb-4 transition-transform duration-300 group-hover:scale-110" />
                       <h3 className="font-headline text-lg font-semibold">
                           {category.name}
@@ -223,7 +199,7 @@ export default function Home() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-16 md:py-24 bg-background">
+        <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Choose Prime Home Club?</h2>
@@ -232,7 +208,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
+              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
                 <CardHeader>
                   <Users className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Expert Technicians</CardTitle>
@@ -243,7 +219,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
+              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
                 <CardHeader>
                     <Truck className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Home Service</CardTitle>
@@ -254,7 +230,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
                 <CardHeader>
                     <Clock className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Quick Turnaround</CardTitle>
@@ -265,7 +241,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
+               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
                 <CardHeader>
                     <Award className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Quality Warranty</CardTitle>
@@ -276,7 +252,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
+               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
                 <CardHeader>
                     <ThumbsUp className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Free Pickup & Delivery</CardTitle>
@@ -287,7 +263,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '750ms' }}>
+               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '750ms' }}>
                 <CardHeader>
                     <ShieldCheck className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Transparent Pricing</CardTitle>
@@ -305,4 +281,3 @@ export default function Home() {
     </div>
   );
 }
-
