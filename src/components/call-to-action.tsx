@@ -35,12 +35,12 @@ export default function CallToAction() {
                         <Button size="lg" variant="secondary" asChild>
                             <a href="tel:+918858585559">
                                 <Phone className="mr-2 h-5 w-5" />
-                                Call Now
+                                Call for Quote
                             </a>
                         </Button>
                          <Button size="lg" asChild className="bg-green-500 hover:bg-green-600 text-white">
                            <a href="https://wa.me/918858585559" target="_blank" rel="noopener noreferrer">
-                            WhatsApp Now
+                            Message on WhatsApp
                            </a>
                         </Button>
                     </div>

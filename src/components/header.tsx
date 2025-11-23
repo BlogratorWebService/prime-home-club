@@ -58,7 +58,7 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
              <Button asChild variant="outline" className="text-destructive border-destructive hover:bg-destructive/10 hover:text-destructive">
-                <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Now</a>
+                <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Us</a>
             </Button>
           </div>
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
@@ -89,7 +89,7 @@ export default function Header() {
                 </nav>
                  <div className="p-4 mt-auto border-t flex justify-end items-center">
                    <Button asChild className="bg-destructive hover:bg-destructive/90">
-                    <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Now</a>
+                    <a href="tel:8858585559"><Phone className="mr-2 h-4 w-4" />Call Us</a>
                   </Button>
                 </div>
               </div>

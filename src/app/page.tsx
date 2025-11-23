@@ -70,7 +70,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[500px] w-full flex items-center justify-center text-center text-white bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/hero-bg/1920/1080')"}}>
+        <section className="relative h-[60vh] min-h-[550px] w-full flex items-center justify-center text-center text-white bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/hero-bg/1920/1080')"}}>
           <div className="absolute inset-0 bg-primary/80" />
           <div className="relative z-10 max-w-4xl mx-auto px-4 animate-fade-in-up">
             <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight">
@@ -81,7 +81,7 @@ export default function Home() {
             </p>
             <Button asChild size="lg" className="mt-8 bg-destructive hover:bg-destructive/90">
                 <Link href="#services">
-                    Book Your Repair
+                    Book Your Repair Today
                     <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
             </Button>
