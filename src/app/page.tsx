@@ -81,7 +81,7 @@ export default function Home() {
             </p>
             <Button asChild size="lg" className="mt-8 bg-destructive hover:bg-destructive/90">
                 <Link href="#services">
-                    Explore Our Services
+                    Book Your Repair
                     <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
             </Button>
@@ -219,7 +219,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Convenient repairs at your doorstep throughout Mumbai, saving you time and hassle.
+                    Convenient repairs at your doorstep throughout Mumbai, saving you time and hassle. Available across Mumbai & suburbs.
                   </p>
                 </CardContent>
               </Card>
@@ -230,18 +230,19 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Same-day service for most repairs, getting your appliances back to working order faster.
+                    Same-day service for most repairs. Service appointment subject to technician availability. Standard service window within same day where possible.
                   </p>
                 </CardContent>
               </Card>
                <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
                 <CardHeader>
                     <Award className="h-10 w-10 mx-auto text-primary mb-2"/>
-                  <CardTitle className="font-headline text-xl pt-2">Quality Warranty</CardTitle>
+                  <CardTitle className="font-headline text-xl pt-2">Quality & Warranty</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">
-                    Up to 6 months warranty on repairs and replaced parts for your peace of mind.
+                  <p className="text-muted-foreground flex flex-col items-center gap-2">
+                    <span>Up to 6 months warranty on repairs and replaced parts for your peace of mind.</span>
+                    <span className="inline-flex items-center gap-1 font-semibold text-foreground"><ShieldCheck className="h-4 w-4 text-primary"/>Genuine / OEM spare parts used.</span>
                   </p>
                 </CardContent>
               </Card>
