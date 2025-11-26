@@ -83,22 +83,25 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground text-center sm:text-left">
-            &copy; {new Date().getFullYear()} Prime Home Club. All rights reserved.
-          </p>
-          <div className="flex gap-4">
-            <SocialIcon href="#" name="Facebook"><Facebook className="h-5 w-5" /></SocialIcon>
-            <SocialIcon href="#" name="Instagram"><Instagram className="h-5 w-5" /></SocialIcon>
-            <SocialIcon href="#" name="Twitter"><Twitter className="h-5 w-5" /></SocialIcon>
-            <SocialIcon href="#" name="YouTube"><Youtube className="h-5 w-5" /></SocialIcon>
+        <div className="mt-12 pt-8 border-t">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-muted-foreground text-center sm:text-left">
+              &copy; {new Date().getFullYear()} Prime Home Club. All rights reserved.
+            </p>
+            <div className="flex gap-4">
+              <SocialIcon href="#" name="Facebook"><Facebook className="h-5 w-5" /></SocialIcon>
+              <SocialIcon href="#" name="Instagram"><Instagram className="h-5 w-5" /></SocialIcon>
+              <SocialIcon href="#" name="Twitter"><Twitter className="h-5 w-5" /></SocialIcon>
+              <SocialIcon href="#" name="YouTube"><Youtube className="h-5 w-5" /></SocialIcon>
+            </div>
+          </div>
+          <div className="mt-6 pt-6 border-t text-center">
+            <p className="text-xs text-muted-foreground">
+              Disclaimer: We are an independent service provider offering only out-of-warranty television repair services. We are not affiliated with, endorsed by, or authorized by any TV manufacturer, and we do not provide warranty repairs or handle manufacturer warranty claims.
+            </p>
           </div>
         </div>
       </div>
     </footer>
   );
 }
-
-    
-
-    

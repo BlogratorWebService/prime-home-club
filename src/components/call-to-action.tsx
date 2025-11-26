@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { Phone, Star, Calendar, Wrench, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,9 @@ export default function CallToAction() {
                            </a>
                         </Button>
                     </div>
+                    <p className="text-xs text-primary-foreground/70 mt-6">
+                        Same-day service available in most areas. Subject to technician availability.
+                    </p>
                 </div>
             </div>
       </section>

@@ -158,6 +158,9 @@ export default function BookingForm({ service }: BookingFormProps) {
                             [Payment Gateway Placeholder]
                         </div>
                     </div>
+                    <p className="text-xs text-muted-foreground text-center mt-4">
+                        Same-day service available in most areas. Subject to technician availability.
+                    </p>
                 </div>
             )}
           </form>
@@ -183,5 +186,3 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Card>
   );
 }
-
-    
