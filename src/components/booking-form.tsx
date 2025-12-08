@@ -115,7 +115,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                             mode="single"
                             selected={field.value}
                             onSelect={field.onChange}
-                            disabled={(date) => date < new Date() || date < new Date("1900-01-01")}
+                            disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
                             initialFocus
                         />
                     </FormControl>
