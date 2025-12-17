@@ -1,9 +1,7 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import EmbeddedForm from "@/components/embedded-form";
+
 
 export default function ContactPage() {
   return (
@@ -57,28 +55,8 @@ export default function ContactPage() {
             <CardHeader>
               <CardTitle className="text-2xl font-headline">Send us a Message</CardTitle>
             </CardHeader>
-            <CardContent>
-              <form className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Your Name</Label>
-                    <Input id="name" placeholder="John Doe" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Your Email</Label>
-                    <Input id="email" type="email" placeholder="you@example.com" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                   <Label htmlFor="subject">Subject</Label>
-                   <Input id="subject" placeholder="e.g., Service Inquiry" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message">Your Message</Label>
-                  <Textarea id="message" placeholder="Type your message here..." rows={6} />
-                </div>
-                <Button type="submit" size="lg" className="w-full">Send Message</Button>
-              </form>
+            <CardContent className="h-[450px]">
+              <EmbeddedForm />
             </CardContent>
           </Card>
         </div>
@@ -86,5 +64,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
-    
