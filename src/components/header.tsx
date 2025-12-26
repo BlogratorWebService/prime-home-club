@@ -2,7 +2,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -12,8 +11,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle,
 import { cn } from "@/lib/utils";
 
 const Logo = () => (
-  <Link href="/" aria-label="Prime Home Club">
-    <Image src="/logo.png" alt="Prime Home Club Logo" width={160} height={40} className="w-32 md:w-40" />
+  <Link href="/" aria-label="Custom TV Repair" className="text-xl font-bold text-primary font-headline">
+    Custom TV Repair
   </Link>
 );
 
@@ -22,7 +21,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact" },
-  { href: "/join-club", label: "Join the Club" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Header() {
@@ -38,7 +37,7 @@ export default function Header() {
           href={link.href}
           className={cn(
             "text-muted-foreground transition-colors hover:text-foreground",
-            (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))) && "text-foreground"
+            (pathname === link.href || (link.href.startsWith("/#") && pathname === '/')) && "text-foreground"
           )}
         >
           {link.label}
