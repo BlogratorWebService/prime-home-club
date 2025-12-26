@@ -40,6 +40,7 @@ export default function Home() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showWhatsAppDialog, setShowWhatsAppDialog] = useState(false);
+  const [whatsAppMessage, setWhatsAppMessage] = useState("");
 
   const handleFormChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -73,6 +74,9 @@ export default function Home() {
       if (!response.ok) {
         throw new Error("Something went wrong. Please try again.");
       }
+      
+      const message = `Hello, I'm ${validationResult.data.name} and I need help with my ${validationResult.data.brand} appliance. The issue is: ${validationResult.data.issue}`;
+      setWhatsAppMessage(encodeURIComponent(message));
       
       setFormState({ name: "", phone: "", brand: "", issue: "" });
       setShowWhatsAppDialog(true);
@@ -418,7 +422,7 @@ export default function Home() {
               Close
             </Button>
             <AlertDialogAction asChild>
-              <a href="https://wa.me/918858585559" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600">
+              <a href={`https://wa.me/918858585559?text=${whatsAppMessage}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600">
                 Contact on WhatsApp
               </a>
             </AlertDialogAction>
@@ -430,4 +434,3 @@ export default function Home() {
   );
 }
 
-    
