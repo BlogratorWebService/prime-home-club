@@ -1,292 +1,432 @@
 
+
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star, ShieldCheck, Tv, Wrench, Clock, Users, ThumbsUp, Check, Settings, MessageSquare, Briefcase } from "lucide-react";
-import React from "react";
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { ArrowRight, Search, Star, ShieldCheck, Truck, Clock, Award, Users, ThumbsUp, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { serviceCategories } from "@/lib/data";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction } from "@/components/ui/alert-dialog";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 
 
-const leadSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters."),
-    phone: z.string().min(10, "Please enter a valid phone number."),
-    issue: z.string().min(10, "Please describe the issue in a bit more detail."),
-    tvBrand: z.string().optional(),
+const leadFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters."),
+  phone: z.string().min(10, "Please enter a valid phone number."),
+  brand: z.string().min(2, "Please enter the appliance brand."),
+  issue: z.string().min(5, "Please describe the issue."),
 });
 
-type LeadFormInputs = z.infer<typeof leadSchema>;
+export default function Home() {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const { toast } = useToast();
 
-function LeadForm() {
-    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<LeadFormInputs>({
-        resolver: zodResolver(leadSchema),
-    });
-    const { toast } = useToast();
-    const [showWhatsAppDialog, setShowWhatsAppDialog] = React.useState(false);
+  const [formState, setFormState] = useState({
+    name: "",
+    phone: "",
+    brand: "",
+    issue: "",
+  });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showWhatsAppDialog, setShowWhatsAppDialog] = useState(false);
 
-    const onSubmit: SubmitHandler<LeadFormInputs> = async (data) => {
-        try {
-            const response = await fetch('/api/leads', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({ ...prev, [name]: value }));
+  };
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Something went wrong.");
-            }
+  const handleLeadSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrors({});
 
-            toast({
-                title: "Quote Request Sent!",
-                description: "We've received your request and will contact you shortly.",
-            });
-            reset();
-            setShowWhatsAppDialog(true); // Show the dialog on success
+    const validationResult = leadFormSchema.safeParse(formState);
+    if (!validationResult.success) {
+      const newErrors: { [key: string]: string } = {};
+      validationResult.error.errors.forEach((error) => {
+        newErrors[error.path[0]] = error.message;
+      });
+      setErrors(newErrors);
+      return;
+    }
 
-        } catch (error: any) {
-            toast({
-                variant: "destructive",
-                title: "Submission Failed",
-                description: error.message || "Could not submit your request. Please try again.",
-            });
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(validationResult.data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Something went wrong. Please try again.");
+      }
+      
+      setFormState({ name: "", phone: "", brand: "", issue: "" });
+      setShowWhatsAppDialog(true);
+
+    } catch (error: any) {
+        toast({
+            variant: "destructive",
+            title: "Submission Failed",
+            description: error.message || "Could not submit your request. Please try again later.",
+        });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
         }
-    };
-    
-    const whatsappMessage = `https://wa.me/918858585559?text=${encodeURIComponent("Hello, I've just submitted a quote request on your website and would like to connect instantly.")}`;
+    }
+  };
 
-    return (
-        <>
-            <Card id="lead-form" className="w-full max-w-lg">
+  const testimonials = [
+    {
+      name: "Rahul Sharma",
+      role: "Local Guide",
+      date: "2 days ago",
+      comment: "Excellent service! The technician was professional and fixed my AC in no time. Highly recommended!",
+      stars: 5,
+    },
+    {
+      name: "Priya Patel",
+      role: "",
+      date: "1 week ago",
+      comment: "Best TV repair service in Mumbai. Very reasonable rates and quick response time.",
+      stars: 5,
+    },
+    {
+        name: "Amit Kumar",
+        role: "Local Guide",
+        date: "2 weeks ago",
+        comment: "Great experience with refrigerator repair. The technician was well-trained and used genuine parts.",
+        stars: 5,
+    }
+  ];
+
+  const popularServices = [
+      { name: "TV Repair", href: "/services/tv-repair"},
+      { name: "AC Repair", href: "/services/ac-repair"},
+      { name: "Washing Machine", href: "/services/washing-machine-repair"},
+      { name: "Appliance Repair", href: "/services"},
+  ]
+
+
+  return (
+    <div className="flex flex-col min-h-screen bg-background">
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="relative h-[60vh] min-h-[550px] w-full flex items-center justify-center text-center text-white bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/hero-bg/1920/1080')"}}>
+          <div className="absolute inset-0 bg-primary/80" />
+          <div className="relative z-10 max-w-4xl mx-auto px-4 animate-fade-in-up">
+            <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight">
+                We Bring Your Home Appliances Back to Life
+            </h1>
+            <p className="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-primary-foreground/80">
+                The most trusted appliance repair service in Mumbai. Fast, reliable, and at your doorstep.
+            </p>
+            <Button asChild size="lg" className="mt-8 bg-destructive hover:bg-destructive/90">
+                <Link href="#get-a-quote">
+                    Book Your Repair Today
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* Search & Popular Services Section */}
+        <section className="py-12 bg-card border-b">
+            <div className="container mx-auto px-4">
+                 <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
+                    <div className="relative">
+                        <Input 
+                        placeholder="What service are you looking for? (e.g., AC repair)" 
+                        className="h-14 text-base shadow-sm pr-28"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        />
+                        <Button 
+                            type="submit"
+                            size="lg" 
+                            className="absolute right-2 top-1/2 -translate-y-1/2 h-10"
+                        >
+                            <Search className="h-5 w-5 mr-2" /> Search
+                        </Button>
+                    </div>
+                </form>
+                 <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                    <span className="font-semibold text-muted-foreground">Popular:</span>
+                    {popularServices.map(service => (
+                        <Button key={service.name} variant="outline" size="sm" asChild>
+                            <Link href={service.href}>{service.name}</Link>
+                        </Button>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* Lead Form Section */}
+        <section id="get-a-quote" className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">Get a Free Quote</h2>
+                <p className="mt-4 text-lg text-muted-foreground">
+                  Fill out the form below to get a free, no-obligation quote for your appliance repair. We'll get back to you as soon as possible.
+                </p>
+                <div className="mt-8 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <ShieldCheck className="h-8 w-8 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">Transparent Pricing</h3>
+                      <p className="text-muted-foreground">No hidden fees. What we quote is what you pay.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <Clock className="h-8 w-8 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">Quick Response</h3>
+                      <p className="text-muted-foreground">We'll contact you within the hour during business hours.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <Card className="w-full">
                 <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Get a Free Quote</CardTitle>
-                    <CardDescription>Fill out the form and our expert will call you back in minutes.</CardDescription>
+                  <CardTitle>Repair Request Form</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
-                        <div className="grid gap-2">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" {...register("name")} placeholder="Your Name" />
-                            {errors.name && <p className="text-destructive text-sm">{errors.name.message}</p>}
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="phone">Number</Label>
-                            <Input id="phone" type="tel" {...register("phone")} placeholder="Your Phone Number" />
-                            {errors.phone && <p className="text-destructive text-sm">{errors.phone.message}</p>}
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="tvBrand">Brand</Label>
-                            <Input id="tvBrand" {...register("tvBrand")} placeholder="e.g., Samsung, LG, Sony" />
-                        </div>
-                        <div className="grid gap-2">
-                            <Label htmlFor="issue">Issue</Label>
-                            <Textarea id="issue" {...register("issue")} placeholder="e.g., TV not turning on, lines on screen..." />
-                            {errors.issue && <p className="text-destructive text-sm">{errors.issue.message}</p>}
-                        </div>
-                        <Button type="submit" disabled={isSubmitting}>
-                            {isSubmitting ? "Submitting..." : "Get My Free Quote"}
-                        </Button>
-                    </form>
+                  <form onSubmit={handleLeadSubmit} className="space-y-4">
+                    <div>
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" name="name" placeholder="Enter your name" value={formState.name} onChange={handleFormChange} />
+                      {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
+                    </div>
+                     <div>
+                      <Label htmlFor="phone">Phone Number</Label>
+                      <Input id="phone" name="phone" placeholder="Enter your phone number" value={formState.phone} onChange={handleFormChange} />
+                       {errors.phone && <p className="text-destructive text-sm mt-1">{errors.phone}</p>}
+                    </div>
+                    <div>
+                      <Label htmlFor="brand">Appliance Brand</Label>
+                      <Input id="brand" name="brand" placeholder="e.g., Samsung, LG, Whirlpool" value={formState.brand} onChange={handleFormChange} />
+                       {errors.brand && <p className="text-destructive text-sm mt-1">{errors.brand}</p>}
+                    </div>
+                     <div>
+                      <Label htmlFor="issue">Describe the Issue</Label>
+                      <Textarea id="issue" name="issue" placeholder="e.g., TV screen is blank, AC is not cooling" value={formState.issue} onChange={handleFormChange} />
+                       {errors.issue && <p className="text-destructive text-sm mt-1">{errors.issue}</p>}
+                    </div>
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? <Loader2 className="animate-spin" /> : "Get My Free Quote"}
+                    </Button>
+                  </form>
                 </CardContent>
-            </Card>
+              </Card>
+            </div>
+          </div>
+        </section>
 
-            <AlertDialog open={showWhatsAppDialog} onOpenChange={setShowWhatsAppDialog}>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Thank You For Your Request!</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            Our team will call you back shortly. For an even faster response, you can connect with us instantly on WhatsApp.
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter className="sm:justify-start">
-                         <AlertDialogAction asChild className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white">
-                            <Link href={whatsappMessage} target="_blank">
-                                <MessageSquare className="mr-2 h-4 w-4" /> Connect on WhatsApp
-                            </Link>
-                        </AlertDialogAction>
-                         <AlertDialogAction asChild variant="outline" className="w-full sm:w-auto mt-2 sm:mt-0" onClick={() => setShowWhatsAppDialog(false)}>
-                            <Button>Close</Button>
-                        </AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
-        </>
-    );
-}
-
-export default function Home() {
-    const services = [
-        { icon: <Tv className="h-8 w-8" />, title: "All TV Brands", description: "Samsung, LG, Sony, & more." },
-        { icon: <Settings className="h-8 w-8" />, title: "All TV Types", description: "LED, OLED, QLED, 4K, Smart TV." },
-        { icon: <Wrench className="h-8 w-8" />, title: "All Issues Fixed", description: "No power, screen issues, sound problems." },
-        { icon: <Briefcase className="h-8 w-8" />, title: "In-Home Service", description: "We come to you, same-day repairs." },
-    ];
-
-    const benefits = [
-        { icon: <Users className="h-10 w-10 text-primary" />, title: "Expert Technicians", description: "Certified professionals with years of experience in TV electronics." },
-        { icon: <Clock className="h-10 w-10 text-primary" />, title: "Fast, Same-Day Service", description: "We offer quick turnaround to get your entertainment back on track." },
-        { icon: <ShieldCheck className="h-10 w-10 text-primary" />, title: "3-Month Warranty", description: "We stand by our work with a warranty on all repairs and parts." },
-        { icon: <ThumbsUp className="h-10 w-10 text-primary" />, title: "Transparent Pricing", description: "Get a clear, upfront quote before any work begins. No hidden fees." },
-    ];
-
-    const faqs = [
-        {
-            question: "Which TV brands do you repair?",
-            answer: "We repair all major TV brands, including Samsung, LG, Sony, Panasonic, TCL, Hisense, and many more. Our technicians are trained to handle the specifics of each manufacturer."
-        },
-        {
-            question: "How long does a repair usually take?",
-            answer: "Most common repairs, like motherboard or power supply issues, can be completed at your home within 1-2 hours. For more complex issues like screen replacement, it may take longer, but we aim for same-day or next-day service."
-        },
-        {
-            question: "Do you offer a warranty on your repairs?",
-            answer: "Yes! We are confident in our work. All our repairs come with a 3-month warranty on the parts replaced and the labor performed."
-        },
-        {
-            question: "Is the inspection or visit charge adjustable?",
-            answer: "Absolutely. The initial inspection fee is fully adjusted into the final repair bill if you decide to proceed with the repair. If you choose not to repair, a nominal inspection charge applies."
-        }
-    ];
-
-    const testimonials = [
-        { name: "Anjali S.", comment: "My Samsung TV had vertical lines on the screen. The technician from Custom TV Repair fixed it the same day at my home. Very professional and affordable!", stars: 5 },
-        { name: "Vikram Mehta", comment: "The backlight on my LG LED TV went out. They gave me a quote over the phone and stuck to it. Excellent service and very knowledgeable team.", stars: 5 },
-        { name: "Priya Rao", comment: "Fastest TV repair I've ever experienced. My Sony TV wouldn't turn on, and they had it working within an hour. Highly recommend their services.", stars: 5 }
-    ];
-
-    return (
-        <div className="flex flex-col min-h-screen bg-background">
-            <main className="flex-grow">
-                {/* Hero Section */}
-                <section className="bg-card dots-pattern">
-                    <div className="container mx-auto px-4 py-16 md:py-24">
-                        <div className="grid lg:grid-cols-2 gap-12 items-center">
-                            <div className="animate-fade-in-up">
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tight text-primary">
-                                    Expert TV Repair At Your Doorstep.
-                                </h1>
-                                <p className="mt-6 text-lg md:text-xl max-w-xl text-muted-foreground">
-                                    Don't let a broken TV ruin your day. We fix all brands, all models, with a service warranty. Get a free quote now!
-                                </p>
-                                <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                                    <Button asChild size="lg">
-                                        <Link href="#lead-form">Get a Free Quote <ArrowRight className="ml-2" /></Link>
-                                    </Button>
-                                    <Button asChild size="lg" variant="outline">
-                                        <a href="tel:8858585559">Call Us Now</a>
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className="animate-fade-in-up animation-delay-300">
-                                <LeadForm />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Services Bar */}
-                <section className="py-12 bg-background border-y">
-                    <div className="container mx-auto px-4">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                            {services.map(service => (
-                                <div key={service.title} className="flex flex-col items-center gap-2">
-                                    <div className="text-primary">{service.icon}</div>
-                                    <h3 className="font-semibold text-foreground">{service.title}</h3>
-                                    <p className="text-sm text-muted-foreground">{service.description}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Why Choose Us Section */}
-                <section id="why-us" className="py-16 md:py-24 bg-card">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto">
-                            <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Choose Custom TV Repair?</h2>
-                            <p className="mt-4 text-lg text-muted-foreground">
-                                We are Mumbai's trusted choice for fast, reliable, and affordable TV repair services.
-                            </p>
-                        </div>
-                        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-                            {benefits.map((benefit, index) => (
-                                <div key={benefit.title} className="text-center flex flex-col items-center animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
-                                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 mb-4">
-                                        {benefit.icon}
+        {/* Testimonials Section */}
+        <section id="testimonials" className="py-16 md:py-24 bg-card">
+            <div className="container mx-auto px-4">
+                 <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
+                    <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 1,000+ Customers</h2>
+                     <p className="mt-2 text-muted-foreground flex items-center justify-center gap-2">
+                        <ShieldCheck className="h-5 w-5 text-green-500" />
+                        Verified Reviews
+                     </p>
+                </div>
+                <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {testimonials.map((testimonial, index) => (
+                         <Card key={index} className="bg-background animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
+                            <CardContent className="p-6">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <Avatar>
+                                        <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name}`} />
+                                        <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                                    </Avatar>
+                                    <div>
+                                        <p className="font-semibold">{testimonial.name}</p>
+                                        <p className="text-sm text-muted-foreground">{testimonial.role}{testimonial.role && ' • '}{testimonial.date}</p>
                                     </div>
-                                    <h3 className="font-headline text-xl font-semibold">{benefit.title}</h3>
-                                    <p className="mt-2 text-muted-foreground">{benefit.description}</p>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+                                <div className="flex items-center gap-0.5 mb-4">
+                                    {[...Array(testimonial.stars)].map((_, i) => (
+                                        <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                                    ))}
+                                    {[...Array(5 - testimonial.stars)].map((_, i) => (
+                                        <Star key={i} className="h-5 w-5 text-yellow-400/50" />
+                                    ))}
+                                </div>
+                                <p className="text-muted-foreground">"{testimonial.comment}"</p>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
+        </section>
 
-                {/* Testimonials Section */}
-                <section id="testimonials" className="py-16 md:py-24 bg-background">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center max-w-3xl mx-auto">
-                            <h2 className="text-3xl md:text-4xl font-bold font-headline">What Our Customers Say</h2>
-                            <p className="mt-4 text-lg text-muted-foreground">
-                                We've helped hundreds of customers in Mumbai get their TVs back in action.
-                            </p>
-                        </div>
-                        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                            {testimonials.map((testimonial, index) => (
-                                <Card key={index} className="bg-card animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
-                                    <CardContent className="p-6">
-                                        <div className="flex items-center gap-0.5 mb-4">
-                                            {[...Array(testimonial.stars)].map((_, i) => <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />)}
-                                        </div>
-                                        <p className="text-muted-foreground">"{testimonial.comment}"</p>
-                                        <p className="font-semibold text-right mt-4">- {testimonial.name}</p>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </div>
-                    </div>
-                </section>
 
-                {/* FAQ Section */}
-                <section id="faq" className="py-16 md:py-24 bg-card">
-                    <div className="container mx-auto px-4 max-w-4xl">
-                        <div className="text-center max-w-3xl mx-auto">
-                            <h2 className="text-3xl md:text-4xl font-bold font-headline">Frequently Asked Questions</h2>
-                        </div>
-                        <Accordion type="single" collapsible className="w-full mt-12">
-                            {faqs.map((faq, index) => (
-                                <AccordionItem key={index} value={`item-${index}`}>
-                                    <AccordionTrigger className="text-lg font-semibold">{faq.question}</AccordionTrigger>
-                                    <AccordionContent className="text-base text-muted-foreground">
-                                        {faq.answer}
-                                    </AccordionContent>
-                                </AccordionItem>
-                            ))}
-                        </Accordion>
-                    </div>
-                </section>
-            </main>
-        </div>
-    );
+        {/* Service Categories Section */}
+        <section id="services" className="py-16 md:py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Services</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Professional repair services for all your home appliances with expert technicians and warranty.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 xl:grid-cols-5">
+              {serviceCategories.map((category, index) => {
+                const CategoryIcon = category.icon;
+                let href = `/services/${category.slug}`;
+                
+                return (
+                  <Link href={href} key={category.id} className="group">
+                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-card p-6 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                      <CategoryIcon className="h-10 w-10 text-primary mb-4 transition-transform duration-300 group-hover:scale-110" />
+                      <h3 className="font-headline text-lg font-semibold">
+                          {category.name}
+                      </h3>
+                    </Card>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="py-16 md:py-24 bg-card">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
+              <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Choose Prime Home Club?</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Mumbai's most trusted appliance repair service, providing quality solutions for all your home appliances.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
+                <CardHeader>
+                  <Users className="h-10 w-10 mx-auto text-primary mb-2"/>
+                  <CardTitle className="font-headline text-xl pt-2">Expert Technicians</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Certified professionals with years of experience repairing all types of appliances and electronics.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
+                <CardHeader>
+                    <Truck className="h-10 w-10 mx-auto text-primary mb-2"/>
+                  <CardTitle className="font-headline text-xl pt-2">Home Service</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Convenient repairs at your doorstep throughout Mumbai, saving you time and hassle. Available across Mumbai & suburbs.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+                <CardHeader>
+                    <Clock className="h-10 w-10 mx-auto text-primary mb-2"/>
+                  <CardTitle className="font-headline text-xl pt-2">Quick Turnaround</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Same-day service for most repairs. Service appointment subject to technician availability. Standard service window within same day where possible.
+                  </p>
+                </CardContent>
+              </Card>
+               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
+                <CardHeader>
+                    <Award className="h-10 w-10 mx-auto text-primary mb-2"/>
+                  <CardTitle className="font-headline text-xl pt-2">Quality & Warranty</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground flex flex-col items-center gap-2">
+                    <span>Up to 6 months warranty on repairs and replaced parts for your peace of mind.</span>
+                    <span className="inline-flex items-center gap-1 font-semibold text-foreground"><ShieldCheck className="h-4 w-4 text-primary"/>Genuine / OEM spare parts used.</span>
+                  </p>
+                </CardContent>
+              </Card>
+               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
+                <CardHeader>
+                    <ThumbsUp className="h-10 w-10 mx-auto text-primary mb-2"/>
+                  <CardTitle className="font-headline text-xl pt-2">Free Pickup & Delivery</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    We collect and return your appliances for repairs that can't be completed at home.
+                  </p>
+                </CardContent>
+              </Card>
+               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '750ms' }}>
+                <CardHeader>
+                    <ShieldCheck className="h-10 w-10 mx-auto text-primary mb-2"/>
+                  <CardTitle className="font-headline text-xl pt-2">Transparent Pricing</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Clear, upfront quotes with no hidden charges or unexpected fees.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+      </main>
+
+       <AlertDialog open={showWhatsAppDialog} onOpenChange={setShowWhatsAppDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Thank you for your request!</AlertDialogTitle>
+            <AlertDialogDescription>
+              Your quote request has been submitted successfully. Our team will get in touch with you shortly. For an even faster response, you can contact us directly on WhatsApp.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+             <Button variant="outline" onClick={() => setShowWhatsAppDialog(false)}>
+              Close
+            </Button>
+            <AlertDialogAction asChild>
+              <a href="https://wa.me/918858585559" target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600">
+                Contact on WhatsApp
+              </a>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+    </div>
+  );
 }
