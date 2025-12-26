@@ -72,21 +72,21 @@ function LeadForm() {
             <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="name">Name</Label>
                         <Input id="name" {...register("name")} placeholder="Your Name" />
                         {errors.name && <p className="text-destructive text-sm">{errors.name.message}</p>}
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="phone">Phone Number</Label>
+                        <Label htmlFor="phone">Number</Label>
                         <Input id="phone" type="tel" {...register("phone")} placeholder="Your Phone Number" />
                         {errors.phone && <p className="text-destructive text-sm">{errors.phone.message}</p>}
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="tvBrand">TV Brand (Optional)</Label>
+                        <Label htmlFor="tvBrand">Tv</Label>
                         <Input id="tvBrand" {...register("tvBrand")} placeholder="e.g., Samsung, LG, Sony" />
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="issue">Describe the Issue</Label>
+                        <Label htmlFor="issue">Issue</Label>
                         <Textarea id="issue" {...register("issue")} placeholder="e.g., TV not turning on, lines on screen..." />
                         {errors.issue && <p className="text-destructive text-sm">{errors.issue.message}</p>}
                     </div>

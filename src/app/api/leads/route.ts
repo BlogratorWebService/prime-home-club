@@ -49,12 +49,12 @@ export async function POST(request: Request) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
+    // The row data should match the columns in your Google Sheet
     const newRow = [
-      new Date().toISOString(),
-      parsedData.name,
-      parsedData.phone,
-      parsedData.tvBrand || 'N/A',
-      parsedData.issue,
+      parsedData.name,         // Column A: Name
+      parsedData.phone,        // Column B: Number
+      parsedData.tvBrand || '', // Column C: Tv
+      parsedData.issue,        // Column D: Issue
     ];
 
     // Append the new row to the spreadsheet
