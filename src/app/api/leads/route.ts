@@ -12,9 +12,18 @@ const leadSchema = z.object({
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const parsedData = leadSchema.parse(body);
+    const { name, phone, issue, tvBrand } = leadSchema.parse(body);
 
     const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrAEAAgjotxzl9TrWq6QQtlOnFfQ0M1nlXaDia0ddZNzbA21OSG6G5hPODZT2s1S5gOw/exec';
+
+    // Data to be sent to Google Apps Script
+    // The keys here (e.g., "Brand") must match what the Apps Script expects in `data.Brand`
+    const payload = {
+        name,
+        phone,
+        Brand: tvBrand, // Use "Brand" to match the Apps Script `data.Brand`
+        issue
+    };
 
     // Forward the data to Google Apps Script
     const appsScriptResponse = await fetch(appsScriptUrl, {
@@ -22,7 +31,7 @@ export async function POST(request: Request) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(parsedData),
+        body: JSON.stringify(payload),
         // Google Apps Script web apps do redirects, we don't want to follow them
         redirect: 'follow', 
     });

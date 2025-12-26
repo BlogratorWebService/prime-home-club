@@ -82,7 +82,7 @@ function LeadForm() {
                         {errors.phone && <p className="text-destructive text-sm">{errors.phone.message}</p>}
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="tvBrand">Tv</Label>
+                        <Label htmlFor="tvBrand">Brand</Label>
                         <Input id="tvBrand" {...register("tvBrand")} placeholder="e.g., Samsung, LG, Sony" />
                     </div>
                     <div className="grid gap-2">

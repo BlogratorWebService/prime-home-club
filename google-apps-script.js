@@ -19,11 +19,11 @@ function doPost(e) {
 
     const data = JSON.parse(e.postData.contents);
 
-    // This order must match your form and sheet columns
+    // This order must match your sheet columns
     const newRow = [
       data.name,
       data.phone,
-      data.tvBrand,
+      data.Brand, // Changed from tvBrand to Brand
       data.issue
     ];
     
