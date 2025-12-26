@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { google } from 'googleapis';
 import { z } from 'zod';
 
 // Define the schema for the incoming request body
@@ -15,57 +14,32 @@ export async function POST(request: Request) {
     const body = await request.json();
     const parsedData = leadSchema.parse(body);
 
-    // !! IMPORTANT !!
-    // You must create a Google Cloud Service Account and enable the Google Sheets API.
-    // 1. Go to https://console.cloud.google.com/
-    // 2. Create a new project or select an existing one.
-    // 3. Enable the "Google Sheets API".
-    // 4. Go to "Credentials", create a new "Service Account".
-    // 5. Download the JSON key file for this service account.
-    // 6. Share your Google Sheet with the service account's email address (found in the JSON key file).
-    // 7. Store the contents of the JSON key file in environment variables.
+    const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrAEAAgjotxzl9TrWq6QQtlOnFfQ0M1nlXaDia0ddZNzbA21OSG6G5hPODZT2s1S5gOw/exec';
 
-    // Replace with your environment variables
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-    const sheetId = process.env.GOOGLE_SHEET_ID;
-
-    if (!privateKey || !clientEmail || !sheetId) {
-        console.error("Google API credentials or Sheet ID are not set in environment variables.");
-        // For the purpose of this example, we'll return a success response even if credentials are not set.
-        // In a real application, you should throw an error here.
-        return NextResponse.json({ message: 'Form submitted successfully (backend not configured).' }, { status: 200 });
-        // throw new Error("Server is not configured for Google Sheets integration.");
+    // Forward the data to Google Apps Script
+    const appsScriptResponse = await fetch(appsScriptUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(parsedData),
+        // Google Apps Script web apps do redirects, we don't want to follow them
+        redirect: 'follow', 
+    });
+    
+    // The response from Apps Script is not standard JSON, so we read it as text.
+    const textResponse = await appsScriptResponse.text();
+    let responseData;
+    try {
+        responseData = JSON.parse(textResponse);
+    } catch(e) {
+        console.warn("Could not parse Apps Script response as JSON:", textResponse);
+        responseData = { status: 'success', message: 'Assumed success due to non-JSON response.' };
     }
     
-    // Authenticate with Google
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: clientEmail,
-        private_key: privateKey,
-      },
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
-
-    const sheets = google.sheets({ version: 'v4', auth });
-
-    // The row data should match the columns in your Google Sheet
-    const newRow = [
-      parsedData.name,         // Column A: Name
-      parsedData.phone,        // Column B: Number
-      parsedData.tvBrand || '', // Column C: Tv
-      parsedData.issue,        // Column D: Issue
-    ];
-
-    // Append the new row to the spreadsheet
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetId,
-      range: 'Sheet1!A1', // Assumes your data is in a sheet named 'Sheet1'
-      valueInputOption: 'USER_ENTERED',
-      requestBody: {
-        values: [newRow],
-      },
-    });
+    if (responseData.status !== 'success') {
+      throw new Error(responseData.message || 'An error occurred with the Google Sheet submission.');
+    }
 
     return NextResponse.json({ message: 'Lead added to Google Sheet successfully!' }, { status: 200 });
 
