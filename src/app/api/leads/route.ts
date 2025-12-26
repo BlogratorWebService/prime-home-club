@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, phone, issue, tvBrand } = leadSchema.parse(body);
 
-    const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyrAEAAgjotxzl9TrWq6QQtlOnFfQ0M1nlXaDia0ddZNzbA21OSG6G5hPODZT2s1S5gOw/exec';
+    const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbzGLgp5J04f2oSVqv5qO6Z2osnHipLdBHWcbTtSzKCASMQUrue9jvzWv4K_6MNi71gaug/exec';
 
     // Data to be sent to Google Apps Script
     // The keys here (e.g., "Brand") must match what the Apps Script expects in `data.Brand`
