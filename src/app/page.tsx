@@ -16,6 +16,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 
 const leadSchema = z.object({
@@ -32,6 +41,7 @@ function LeadForm() {
         resolver: zodResolver(leadSchema),
     });
     const { toast } = useToast();
+    const [showWhatsAppDialog, setShowWhatsAppDialog] = React.useState(false);
 
     const onSubmit: SubmitHandler<LeadFormInputs> = async (data) => {
         try {
@@ -53,6 +63,7 @@ function LeadForm() {
                 description: "We've received your request and will contact you shortly.",
             });
             reset();
+            setShowWhatsAppDialog(true); // Show the dialog on success
 
         } catch (error: any) {
             toast({
@@ -62,40 +73,65 @@ function LeadForm() {
             });
         }
     };
+    
+    const whatsappMessage = `https://wa.me/918858585559?text=${encodeURIComponent("Hello, I've just submitted a quote request on your website and would like to connect instantly.")}`;
 
     return (
-        <Card id="lead-form" className="w-full max-w-lg">
-            <CardHeader>
-                <CardTitle className="font-headline text-2xl">Get a Free Quote</CardTitle>
-                <CardDescription>Fill out the form and our expert will call you back in minutes.</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
-                    <div className="grid gap-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" {...register("name")} placeholder="Your Name" />
-                        {errors.name && <p className="text-destructive text-sm">{errors.name.message}</p>}
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="phone">Number</Label>
-                        <Input id="phone" type="tel" {...register("phone")} placeholder="Your Phone Number" />
-                        {errors.phone && <p className="text-destructive text-sm">{errors.phone.message}</p>}
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="tvBrand">Brand</Label>
-                        <Input id="tvBrand" {...register("tvBrand")} placeholder="e.g., Samsung, LG, Sony" />
-                    </div>
-                    <div className="grid gap-2">
-                        <Label htmlFor="issue">Issue</Label>
-                        <Textarea id="issue" {...register("issue")} placeholder="e.g., TV not turning on, lines on screen..." />
-                        {errors.issue && <p className="text-destructive text-sm">{errors.issue.message}</p>}
-                    </div>
-                    <Button type="submit" disabled={isSubmitting}>
-                        {isSubmitting ? "Submitting..." : "Get My Free Quote"}
-                    </Button>
-                </form>
-            </CardContent>
-        </Card>
+        <>
+            <Card id="lead-form" className="w-full max-w-lg">
+                <CardHeader>
+                    <CardTitle className="font-headline text-2xl">Get a Free Quote</CardTitle>
+                    <CardDescription>Fill out the form and our expert will call you back in minutes.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="name">Name</Label>
+                            <Input id="name" {...register("name")} placeholder="Your Name" />
+                            {errors.name && <p className="text-destructive text-sm">{errors.name.message}</p>}
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="phone">Number</Label>
+                            <Input id="phone" type="tel" {...register("phone")} placeholder="Your Phone Number" />
+                            {errors.phone && <p className="text-destructive text-sm">{errors.phone.message}</p>}
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="tvBrand">Brand</Label>
+                            <Input id="tvBrand" {...register("tvBrand")} placeholder="e.g., Samsung, LG, Sony" />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="issue">Issue</Label>
+                            <Textarea id="issue" {...register("issue")} placeholder="e.g., TV not turning on, lines on screen..." />
+                            {errors.issue && <p className="text-destructive text-sm">{errors.issue.message}</p>}
+                        </div>
+                        <Button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? "Submitting..." : "Get My Free Quote"}
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
+
+            <AlertDialog open={showWhatsAppDialog} onOpenChange={setShowWhatsAppDialog}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Thank You For Your Request!</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            Our team will call you back shortly. For an even faster response, you can connect with us instantly on WhatsApp.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter className="sm:justify-start">
+                         <AlertDialogAction asChild className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white">
+                            <Link href={whatsappMessage} target="_blank">
+                                <MessageSquare className="mr-2 h-4 w-4" /> Connect on WhatsApp
+                            </Link>
+                        </AlertDialogAction>
+                         <AlertDialogAction asChild variant="outline" className="w-full sm:w-auto mt-2 sm:mt-0" onClick={() => setShowWhatsAppDialog(false)}>
+                            <Button>Close</Button>
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+        </>
     );
 }
 
