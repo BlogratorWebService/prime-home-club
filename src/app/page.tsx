@@ -1,15 +1,16 @@
 
+
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Search, Star, ShieldCheck, Truck, Clock, Award, Users, ThumbsUp, Loader2 } from "lucide-react";
+import { ArrowRight, Search, Star, ShieldCheck, Truck, Clock, Award, Users, ThumbsUp, Loader2, Phone } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { serviceCategories } from "@/lib/data";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -144,75 +145,26 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[550px] w-full flex items-center justify-center text-center text-white bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/hero-bg/1920/1080')"}}>
-          <div className="absolute inset-0 bg-primary/80" />
-          <div className="relative z-10 max-w-4xl mx-auto px-4 animate-fade-in-up">
-            <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight">
-                We Bring Your Home Appliances Back to Life
-            </h1>
-            <p className="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-primary-foreground/80">
-                The most trusted appliance repair service in Mumbai. Fast, reliable, and at your doorstep.
-            </p>
-            <Button asChild size="lg" className="mt-8 bg-destructive hover:bg-destructive/90">
-                <Link href="#get-a-quote">
-                    Book Your Repair Today
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-            </Button>
-          </div>
-        </section>
-
-        {/* Search & Popular Services Section */}
-        <section className="py-12 bg-card border-b">
-            <div className="container mx-auto px-4">
-                 <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-                    <div className="relative">
-                        <Input 
-                        placeholder="What service are you looking for? (e.g., AC repair)" 
-                        className="h-14 text-base shadow-sm pr-28"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        />
-                        <Button 
-                            type="submit"
-                            size="lg" 
-                            className="absolute right-2 top-1/2 -translate-y-1/2 h-10"
-                        >
-                            <Search className="h-5 w-5 mr-2" /> Search
-                        </Button>
-                    </div>
-                </form>
-                 <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                    <span className="font-semibold text-muted-foreground">Popular:</span>
-                    {popularServices.map(service => (
-                        <Button key={service.name} variant="outline" size="sm" asChild>
-                            <Link href={service.href}>{service.name}</Link>
-                        </Button>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        {/* Lead Form Section */}
-        <section id="get-a-quote" className="py-16 md:py-24 bg-background">
-          <div className="container mx-auto px-4">
+        {/* Hero Section with Form */}
+        <section className="relative w-full bg-cover bg-center dots-pattern">
+          <div className="container mx-auto px-4 py-16 md:py-24">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold font-headline text-primary">Get a Free Quote</h2>
-                <p className="mt-4 text-lg text-muted-foreground">
-                  Fill out the form below to get a free, no-obligation quote for your appliance repair. We'll get back to you as soon as possible.
+              <div className="text-center lg:text-left">
+                <h1 className="text-4xl md:text-6xl font-bold font-headline text-primary tracking-tight">
+                  We Bring Your Home Appliances Back to Life
+                </h1>
+                <p className="mt-6 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 text-muted-foreground">
+                  The most trusted appliance repair service in Mumbai. Fast, reliable, and at your doorstep. Get a free quote now!
                 </p>
                 <div className="mt-8 space-y-4">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-center gap-4 justify-center lg:justify-start">
                     <ShieldCheck className="h-8 w-8 text-primary" />
                     <div>
                       <h3 className="font-semibold">Transparent Pricing</h3>
                       <p className="text-muted-foreground">No hidden fees. What we quote is what you pay.</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-center gap-4 justify-center lg:justify-start">
                     <Clock className="h-8 w-8 text-primary" />
                     <div>
                       <h3 className="font-semibold">Quick Response</h3>
@@ -221,9 +173,10 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Card className="w-full">
+              <Card className="w-full shadow-2xl">
                 <CardHeader>
-                  <CardTitle>Repair Request Form</CardTitle>
+                  <CardTitle className="font-headline text-2xl">Get a Free Quote</CardTitle>
+                  <CardDescription>Fill out the form for a no-obligation quote.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleLeadSubmit} className="space-y-4">
@@ -256,9 +209,41 @@ export default function Home() {
             </div>
           </div>
         </section>
+        
+        {/* Search & Popular Services Section */}
+        <section className="py-12 bg-card border-b">
+            <div className="container mx-auto px-4">
+                 <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
+                    <div className="relative">
+                        <Input 
+                        placeholder="What service are you looking for? (e.g., AC repair)" 
+                        className="h-14 text-base shadow-sm pr-28"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        />
+                        <Button 
+                            type="submit"
+                            size="lg" 
+                            className="absolute right-2 top-1/2 -translate-y-1/2 h-10"
+                        >
+                            <Search className="h-5 w-5 mr-2" /> Search
+                        </Button>
+                    </div>
+                </form>
+                 <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                    <span className="font-semibold text-muted-foreground">Popular:</span>
+                    {popularServices.map(service => (
+                        <Button key={service.name} variant="outline" size="sm" asChild>
+                            <Link href={service.href}>{service.name}</Link>
+                        </Button>
+                    ))}
+                </div>
+            </div>
+        </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 md:py-24 bg-card">
+        <section id="testimonials" className="py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
                  <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
                     <h2 className="text-3xl md:text-4xl font-bold font-headline">Trusted by 1,000+ Customers</h2>
@@ -269,7 +254,7 @@ export default function Home() {
                 </div>
                 <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
-                         <Card key={index} className="bg-background animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
+                         <Card key={index} className="bg-card animate-fade-in-up" style={{ animationDelay: `${index * 150}ms` }}>
                             <CardContent className="p-6">
                                 <div className="flex items-center gap-4 mb-4">
                                     <Avatar>
@@ -299,7 +284,7 @@ export default function Home() {
 
 
         {/* Service Categories Section */}
-        <section id="services" className="py-16 md:py-24 bg-background">
+        <section id="services" className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Our Services</h2>
@@ -314,7 +299,7 @@ export default function Home() {
                 
                 return (
                   <Link href={href} key={category.id} className="group">
-                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-card p-6 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                    <Card className="overflow-hidden h-full flex flex-col text-center items-center justify-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-background p-6 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
                       <CategoryIcon className="h-10 w-10 text-primary mb-4 transition-transform duration-300 group-hover:scale-110" />
                       <h3 className="font-headline text-lg font-semibold">
                           {category.name}
@@ -328,7 +313,7 @@ export default function Home() {
         </section>
 
         {/* Why Choose Us Section */}
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl md:text-4xl font-bold font-headline">Why Choose Prime Home Club?</h2>
@@ -337,7 +322,7 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
+              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '0ms' }}>
                 <CardHeader>
                   <Users className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Expert Technicians</CardTitle>
@@ -348,7 +333,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
+              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
                 <CardHeader>
                     <Truck className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Home Service</CardTitle>
@@ -359,7 +344,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+              <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
                 <CardHeader>
                     <Clock className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Quick Turnaround</CardTitle>
@@ -370,7 +355,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
+               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '450ms' }}>
                 <CardHeader>
                     <Award className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Quality & Warranty</CardTitle>
@@ -382,7 +367,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
+               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
                 <CardHeader>
                     <ThumbsUp className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Free Pickup & Delivery</CardTitle>
@@ -393,7 +378,7 @@ export default function Home() {
                   </p>
                 </CardContent>
               </Card>
-               <Card className="text-center bg-background p-4 animate-fade-in-up" style={{ animationDelay: '750ms' }}>
+               <Card className="text-center bg-card p-4 animate-fade-in-up" style={{ animationDelay: '750ms' }}>
                 <CardHeader>
                     <ShieldCheck className="h-10 w-10 mx-auto text-primary mb-2"/>
                   <CardTitle className="font-headline text-xl pt-2">Transparent Pricing</CardTitle>
@@ -414,18 +399,23 @@ export default function Home() {
           <AlertDialogHeader>
             <AlertDialogTitle>Thank you for your request!</AlertDialogTitle>
             <AlertDialogDescription>
-              Your quote request has been submitted successfully. Our team will get in touch with you shortly. For an even faster response, you can contact us directly on WhatsApp.
+              Your quote request has been submitted successfully. Our team will get in touch with you shortly. For an even faster response, you can contact us directly.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-             <Button variant="outline" onClick={() => setShowWhatsAppDialog(false)}>
-              Close
-            </Button>
+          <AlertDialogFooter className="flex-col sm:flex-col sm:space-x-0 gap-2">
             <AlertDialogAction asChild>
-              <a href={`https://wa.me/918858585559?text=${whatsAppMessage}`} target="_blank" rel="noopener noreferrer" className="bg-green-500 hover:bg-green-600">
+              <a href={`https://wa.me/918858585559?text=${whatsAppMessage}`} target="_blank" rel="noopener noreferrer" className="w-full bg-green-500 hover:bg-green-600">
                 Contact on WhatsApp
               </a>
             </AlertDialogAction>
+            <AlertDialogAction asChild>
+                <a href="tel:+918858585559" className="w-full">
+                    <Phone className="mr-2 h-4 w-4"/> Call Now
+                </a>
+            </AlertDialogAction>
+             <Button variant="outline" onClick={() => setShowWhatsAppDialog(false)} className="w-full mt-2 sm:mt-0">
+              Close
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
@@ -433,4 +423,3 @@ export default function Home() {
     </div>
   );
 }
-

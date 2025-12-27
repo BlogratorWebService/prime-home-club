@@ -5,6 +5,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import WhatsAppButton from '@/components/whatsapp-button';
 import ClientProvider from '@/components/client-provider';
+import CallButton from '@/components/call-button';
 
 export const metadata: Metadata = {
   title: 'Prime Home Club',
@@ -32,6 +33,7 @@ export default function RootLayout({
         </div>
         <ClientProvider>
           <WhatsAppButton />
+          <CallButton />
         </ClientProvider>
         <Toaster />
       </body>
