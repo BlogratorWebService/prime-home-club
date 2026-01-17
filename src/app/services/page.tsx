@@ -50,6 +50,12 @@ export default function ServicesPage() {
                 <category.icon className="h-10 w-10 text-primary mb-4" />
                 <h2 className="text-3xl font-bold font-headline">{category.name}</h2>
                 <p className="mt-2 text-muted-foreground max-w-xl">{category.description}</p>
+                <Button asChild variant="outline" className="mt-4">
+                  <Link href={`/services/${category.slug}`}>
+                    View All {category.name} Services
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {services

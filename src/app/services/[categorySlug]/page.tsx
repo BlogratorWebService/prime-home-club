@@ -20,13 +20,13 @@ export async function generateStaticParams() {
 }
 
 type ServiceCategoryPageProps = {
-  params: {
+  params: Promise<{
     categorySlug: string;
-  };
+  }>;
 };
 
-export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps) {
-  const { categorySlug } = params;
+export default async function ServiceCategoryPage({ params }: ServiceCategoryPageProps) {
+  const { categorySlug } = await params;
 
   const category = serviceCategories.find((c) => c.slug === categorySlug);
 
@@ -36,17 +36,36 @@ export default function ServiceCategoryPage({ params }: ServiceCategoryPageProps
 
   const categoryServices = allServices.filter((s) => s.categoryId === category.id);
 
+  // Custom content for TV Repair page
+  const isTvRepair = categorySlug === "tv-repair";
+
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 py-12 md:py-20">
         <div className="mb-12 text-center">
           <category.icon className="h-12 w-12 mx-auto text-primary mb-4" />
-          <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">
-            {category.name} Services
-          </h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            {category.description} We offer a range of solutions to meet your needs.
-          </p>
+          {isTvRepair ? (
+            <>
+              <p className="text-sm md:text-base text-muted-foreground mb-2">
+                Prime Home Club - Trusted TV repair & application Service in Mumbai
+              </p>
+              <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">
+                Prime Home Club - Professional TV repair Services
+              </h1>
+              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                LED, OLED, QLED & Smart TV repair at your home in Mumbai
+              </p>
+            </>
+          ) : (
+            <>
+              <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">
+                {category.name} Services
+              </h1>
+              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                {category.description} We offer a range of solutions to meet your needs.
+              </p>
+            </>
+          )}
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

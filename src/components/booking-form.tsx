@@ -5,7 +5,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle, Phone, MessageCircle } from "lucide-react";
 
 import type { Service } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "./ui/badge";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
 
 const bookingSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -69,15 +70,6 @@ export default function BookingForm({ service }: BookingFormProps) {
         </div>
       </CardHeader>
       <CardContent>
-        {isCompleted ? (
-            <div className="text-center py-12">
-                <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                <h2 className="text-2xl font-bold font-headline">Booking Confirmed!</h2>
-                <p className="text-muted-foreground mt-2">
-                    Your appointment for {service.name} is scheduled. You'll receive an email confirmation shortly.
-                </p>
-            </div>
-        ) : (
         <Form {...form}>
           <form onSubmit={form.handleSubmit(processBooking)} className="space-y-8">
             {step === 1 && (
@@ -165,24 +157,56 @@ export default function BookingForm({ service }: BookingFormProps) {
             )}
           </form>
         </Form>
-        )}
       </CardContent>
-      {!isCompleted && (
-        <CardFooter className="flex flex-col-reverse sm:flex-row sm:justify-between gap-2">
-          <Button variant="outline" onClick={prevStep} disabled={step === 1} className="w-full sm:w-auto">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Go Back
+      <CardFooter className="flex flex-col-reverse sm:flex-row sm:justify-between gap-2">
+        <Button variant="outline" onClick={prevStep} disabled={step === 1} className="w-full sm:w-auto">
+          <ArrowLeft className="mr-2 h-4 w-4" /> Go Back
+        </Button>
+        {step < 3 ? (
+          <Button onClick={nextStep} className="w-full sm:w-auto">
+            Next <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
-          {step < 3 ? (
-            <Button onClick={nextStep} className="w-full sm:w-auto">
-              Next <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          ) : (
-            <Button onClick={form.handleSubmit(processBooking)} className="bg-destructive hover:bg-destructive/90 w-full sm:w-auto" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? "Processing..." : `Confirm & Pay ₹${price}`}
-            </Button>
-          )}
-        </CardFooter>
-      )}
+        ) : (
+          <Button onClick={form.handleSubmit(processBooking)} className="bg-destructive hover:bg-destructive/90 w-full sm:w-auto" disabled={form.formState.isSubmitting}>
+            {form.formState.isSubmitting ? "Processing..." : `Confirm & Pay ₹${price}`}
+          </Button>
+        )}
+      </CardFooter>
+
+      <Dialog open={isCompleted} onOpenChange={setIsCompleted}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <div className="flex justify-center mb-4">
+              <CheckCircle className="h-16 w-16 text-green-500" />
+            </div>
+            <DialogTitle className="text-center text-2xl font-bold font-headline">
+              Thank You!
+            </DialogTitle>
+            <DialogDescription className="text-center mt-2 text-base">
+              Your booking for {service.name} has been confirmed. We'll contact you shortly to finalize the details.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-3 mt-6">
+            <p className="text-sm text-center text-muted-foreground mb-2">
+              Need immediate assistance? Contact us now:
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild className="flex-1" variant="outline">
+                <a href="tel:+918858585559" className="flex items-center justify-center">
+                  <Phone className="mr-2 h-4 w-4" />
+                  Call Now
+                </a>
+              </Button>
+              <Button asChild className="flex-1 bg-green-600 hover:bg-green-700">
+                <a href={`https://wa.me/918858585559?text=Hello, I just booked ${encodeURIComponent(service.name)} service.`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  WhatsApp
+                </a>
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }
