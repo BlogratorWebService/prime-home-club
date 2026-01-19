@@ -19,8 +19,8 @@ const footerLinks = {
     { name: "Reviews", href: "/#testimonials" },
   ],
   legal: [
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms & Conditions", href: "#" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms & Conditions", href: "/terms-conditions" },
   ],
 };
 
@@ -85,9 +85,18 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground text-center sm:text-left">
-              &copy; {new Date().getFullYear()} Prime Home Club. All rights reserved.
-            </p>
+            <div className="text-center sm:text-left">
+              <p className="text-sm text-muted-foreground">
+                &copy; {new Date().getFullYear()} Prime Home Club Pvt. Ltd. All rights reserved.
+              </p>
+              <div className="flex gap-4 mt-2 justify-center sm:justify-start">
+                {footerLinks.legal.map((link) => (
+                  <Link key={link.name} href={link.href} className="text-xs text-muted-foreground hover:text-primary">
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <div className="flex gap-4">
               <SocialIcon href="#" name="Facebook"><Facebook className="h-5 w-5" /></SocialIcon>
               <SocialIcon href="#" name="Instagram"><Instagram className="h-5 w-5" /></SocialIcon>
@@ -97,7 +106,7 @@ export default function Footer() {
           </div>
           <div className="mt-6 pt-6 border-t text-center">
             <p className="text-xs text-muted-foreground">
-              Disclaimer: We are an independent service provider offering only out-of-warranty television repair services. We are not affiliated with, endorsed by, or authorized by any TV manufacturer, and we do not provide warranty repairs or handle manufacturer warranty claims.
+              Disclaimer: Prime Home Club is an independent service provider offering out-of-warranty appliance repair services. We are not affiliated with, endorsed by, or authorized by any appliance or TV manufacturer, and we do not provide warranty repairs or handle manufacturer warranty claims.
             </p>
           </div>
         </div>

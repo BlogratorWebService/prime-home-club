@@ -85,7 +85,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-auto flex-wrap">
               <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white shadow-md">
                 <Link href={`/book/${service.slug}`}>
-                  Learn About Our Process
+                  Book Prime Home Club Service
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -93,14 +93,14 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
               <Button asChild size="lg" variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50">
                 <a href="tel:+918858585559">
                   <Phone className="mr-2 h-4 w-4" />
-                  Call Now: +91 88585 85559
+                  Call Prime Home Club: +91 88585 85559
                 </a>
               </Button>
 
               <Button asChild size="lg" className="bg-green-500 hover:bg-green-600 text-white shadow-md">
                 <a href={whatsappMessage} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 h-4 w-4" />
-                  Whatsapp Now
+                  WhatsApp Prime Home Club
                 </a>
               </Button>
             </div>
@@ -138,6 +138,76 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             </Card>
           </div>
         )}
+
+        {/* Why Choose Prime Home Club Section */}
+        <div className="mt-12 md:mt-16">
+          <Card className="border-2 bg-gradient-to-br from-blue-50 to-white">
+            <CardContent className="p-6 md:p-8">
+              <h2 className="text-2xl md:text-3xl font-bold font-headline text-primary mb-6">Why Choose Prime Home Club</h2>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Trusted Local Brand</h3>
+                    <p className="text-sm text-muted-foreground">Prime Home Club is Mumbai's trusted appliance repair service provider</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Certified Technicians</h3>
+                    <p className="text-sm text-muted-foreground">All repairs performed by Prime Home Club certified and trained technicians</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Genuine Spare Parts</h3>
+                    <p className="text-sm text-muted-foreground">Prime Home Club uses only genuine spare parts with warranty coverage</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Transparent Service</h3>
+                    <p className="text-sm text-muted-foreground">Prime Home Club provides upfront pricing and transparent service support</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">At-Home Service</h3>
+                    <p className="text-sm text-muted-foreground">Prime Home Club delivers professional repair services at your home in Mumbai</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-6 w-6 text-blue-600 mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Service Warranty</h3>
+                    <p className="text-sm text-muted-foreground">Prime Home Club provides warranty on all repairs and replacement parts</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* About Prime Home Club Business */}
+        <div className="mt-8 md:mt-12">
+          <Card className="border-2">
+            <CardContent className="p-6 md:p-8">
+              <h2 className="text-xl md:text-2xl font-bold font-headline text-primary mb-4">About Prime Home Club</h2>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p><strong className="text-foreground">Business Name:</strong> Prime Home Club Pvt. Ltd.</p>
+                <p><strong className="text-foreground">CIN:</strong> U95221MH2024PTC433126</p>
+                <p><strong className="text-foreground">Registered Office:</strong> 1st Floor, P 101 Godrej Central Rehab, Chembur, Mumbai, Maharashtra 400071, India</p>
+                <p><strong className="text-foreground">Phone:</strong> <a href="tel:+918858585559" className="text-blue-600 hover:underline">+91 88585 85559</a></p>
+                <p><strong className="text-foreground">Email:</strong> <a href="mailto:info@primehomeclub.com" className="text-blue-600 hover:underline">info@primehomeclub.com</a></p>
+                <p><strong className="text-foreground">Service Area:</strong> Mumbai & Nearby Areas</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
       <CallToAction />
     </div>

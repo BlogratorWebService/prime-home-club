@@ -26,7 +26,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "cat-1",
     name: "TV Repair",
     slug: "tv-repair",
-    description: "Expert repairs for all TV types including LED, OLED, and Smart TVs.",
+    description: "Prime Home Club provides professional TV repair services for all TV types including LED, OLED, QLED, and Smart TVs in Mumbai.",
     icon: Tv,
     imageId: "category-tv"
   },
@@ -34,7 +34,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "cat-2",
     name: "AC Repair",
     slug: "ac-repair",
-    description: "Professional air conditioning repair and maintenance for all brands.",
+    description: "Prime Home Club delivers professional air conditioning repair and maintenance services for all brands in Mumbai.",
     icon: AirVent,
     imageId: "category-ac"
   },
@@ -42,7 +42,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "cat-3",
     name: "Washing Machine",
     slug: "washing-machine-repair",
-    description: "Reliable repairs for all washing machine types and brands.",
+    description: "Prime Home Club offers reliable washing machine repair services for all types and brands in Mumbai.",
     icon: WashingMachine,
     imageId: "category-washing-machine"
   },
@@ -50,7 +50,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "cat-4",
     name: "Refrigerator Repair",
     slug: "refrigerator-repair",
-    description: "Expert repairs for all refrigerator types with quick response.",
+    description: "Prime Home Club provides professional refrigerator repair services with certified technicians in Mumbai.",
     icon: Refrigerator,
     imageId: "category-refrigerator"
   },
@@ -58,7 +58,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "cat-5",
     name: "Geyser Repair",
     slug: "geyser-repair",
-    description: "Professional water heater repair and maintenance services.",
+    description: "Prime Home Club delivers professional geyser and water heater repair services in Mumbai.",
     icon: Heater,
     imageId: "category-geyser"
   },
@@ -68,15 +68,16 @@ export const services: Service[] = [
   // TV Repair
   {
     id: "serv-1",
-    name: "Screen Replacement",
+    name: "Prime Home Club LED TV Screen Replacement",
     slug: "screen-replacement",
     categoryId: "cat-1",
-    description: "Professional screen replacement for cracked or damaged TV screens.",
+    description: "Prime Home Club offers professional LED, OLED, and QLED TV screen replacement services with genuine spare parts at your home in Mumbai.",
     details: [
-      "Sourcing of compatible screen",
-      "Safe removal of damaged screen",
-      "Installation of new screen",
-      "Testing for full functionality",
+      "Prime Home Club sources compatible genuine screens",
+      "Safe removal of damaged screen by certified technicians",
+      "Professional installation of new screen",
+      "Prime Home Club performs comprehensive testing",
+      "Warranty coverage on replacement parts"
     ],
     standardPrice: 2000,
     memberPrice: 1600,
@@ -84,15 +85,17 @@ export const services: Service[] = [
   },
   {
     id: "serv-2",
-    name: "Motherboard Repair",
+    name: "Prime Home Club TV Motherboard Repair",
     slug: "motherboard-repair",
     categoryId: "cat-1",
-    description: "Expert repair of TV motherboards for power and display issues.",
+    description: "Prime Home Club provides expert TV motherboard repair services for power issues, display problems, and board-level repairs in Mumbai.",
     details: [
-      "Diagnostics of motherboard",
-      "Component-level repair or full replacement",
-      "Firmware updates if required",
-      "Comprehensive testing",
+      "Prime Home Club certified technician diagnostics",
+      "Component-level repair with genuine parts",
+      "Prime Home Club motherboard replacement when needed",
+      "Firmware and software updates",
+      "Comprehensive functionality testing",
+      "Service warranty included"
     ],
     standardPrice: 1500,
     memberPrice: 1200,
@@ -101,15 +104,16 @@ export const services: Service[] = [
   // AC Repair
   {
     id: "serv-3",
-    name: "AC Gas Refill",
+    name: "Prime Home Club AC Gas Refill",
     slug: "ac-gas-refill",
     categoryId: "cat-2",
-    description: "Recharging AC refrigerant to restore cooling performance.",
+    description: "Prime Home Club provides professional AC refrigerant recharging services to restore cooling performance in Mumbai.",
     details: [
-      "Leak detection test",
-      "Evacuation of old refrigerant",
-      "Recharging with correct type and amount of gas",
-      "Cooling efficiency test",
+      "Prime Home Club technician leak detection test",
+      "Safe evacuation of old refrigerant",
+      "Prime Home Club recharges with correct refrigerant type",
+      "Cooling efficiency verification",
+      "Service warranty included"
     ],
     standardPrice: 2500,
     memberPrice: 2000,
@@ -117,15 +121,16 @@ export const services: Service[] = [
   },
   {
     id: "serv-4",
-    name: "AC General Service",
+    name: "Prime Home Club AC Service",
     slug: "ac-general-service",
     categoryId: "cat-2",
-    description: "Comprehensive cleaning and maintenance for your air conditioner.",
+    description: "Prime Home Club offers comprehensive air conditioner cleaning and maintenance services at your home in Mumbai.",
     details: [
-      "Indoor and outdoor unit cleaning",
-      "Filter cleaning and replacement check",
-      "Drain pipe cleaning",
-      "Performance and safety check",
+      "Prime Home Club deep cleaning of indoor and outdoor units",
+      "Filter cleaning and inspection",
+      "Drain pipe cleaning and maintenance",
+      "Performance and safety assessment",
+      "Cooling efficiency check"
     ],
     standardPrice: 500,
     memberPrice: 400,
@@ -134,15 +139,16 @@ export const services: Service[] = [
   // Washing Machine
   {
     id: "serv-5",
-    name: "Drum or Bearing Repair",
+    name: "Prime Home Club Washing Machine Drum Repair",
     slug: "drum-bearing-repair",
     categoryId: "cat-3",
-    description: "Fixing noisy or non-rotating drums in washing machines.",
+    description: "Prime Home Club provides expert washing machine drum and bearing repair services for noisy or non-rotating drums in Mumbai.",
     details: [
-      "Diagnosis of drum or bearing issue",
-      "Replacement of faulty bearings or drum assembly",
-      "Seal replacement to prevent leaks",
-      "Testing for smooth and quiet operation",
+      "Prime Home Club diagnosis of drum or bearing issues",
+      "Genuine bearing or drum assembly replacement",
+      "Seal replacement by certified technicians",
+      "Comprehensive testing for smooth operation",
+      "Service warranty coverage"
     ],
     standardPrice: 1800,
     memberPrice: 1450,
@@ -151,15 +157,16 @@ export const services: Service[] = [
     // Refrigerator
   {
     id: "serv-6",
-    name: "Compressor Repair",
+    name: "Prime Home Club Refrigerator Compressor Repair",
     slug: "compressor-repair",
     categoryId: "cat-4",
-    description: "Repair or replacement of faulty refrigerator compressors.",
+    description: "Prime Home Club delivers professional refrigerator compressor repair and replacement services in Mumbai.",
     details: [
-      "Compressor diagnostics",
-      "Relay and overload protector check",
-      "Compressor replacement if needed",
-      "Gas refill and cooling test",
+      "Prime Home Club compressor diagnostics",
+      "Relay and overload protector inspection",
+      "Prime Home Club compressor replacement with genuine parts",
+      "Refrigerant refill and cooling verification",
+      "Service warranty included"
     ],
     standardPrice: 2500,
     memberPrice: 2000,
@@ -168,15 +175,16 @@ export const services: Service[] = [
   // Geyser
   {
     id: "serv-7",
-    name: "Heating Element Replacement",
+    name: "Prime Home Club Geyser Heating Element Replacement",
     slug: "heating-element-replacement",
     categoryId: "cat-5",
-    description: "Replacement of burnt-out or inefficient geyser heating elements.",
+    description: "Prime Home Club provides professional geyser heating element replacement services for efficient water heating in Mumbai.",
     details: [
-      "Testing of existing heating element",
-      "Draining the geyser tank",
-      "Installation of a new heating element",
-      "Testing for proper heating and safety",
+      "Prime Home Club testing of existing heating element",
+      "Safe draining of geyser tank",
+      "Installation of genuine heating element",
+      "Comprehensive heating and safety testing",
+      "Service warranty coverage"
     ],
     standardPrice: 800,
     memberPrice: 650,
