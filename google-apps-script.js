@@ -9,30 +9,57 @@
 // 8. Authorize the script when prompted.
 // 9. Copy the provided Web app URL and set it as the value for the `APPS_SCRIPT_URL` environment variable in your project.
 
-const SHEET_NAME = 'Sheet1'; // Change this if your sheet name is different
+const LEADS_SHEET_NAME = 'Leads'; // Sheet for contact form leads
+const BOOKINGS_SHEET_NAME = 'Bookings'; // Sheet for service bookings
 
 function doPost(e) {
   try {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
-    if (!sheet) {
-      throw new Error(`Sheet with name "${SHEET_NAME}" not found.`);
-    }
-
     const data = JSON.parse(e.postData.contents);
 
-    // This order must match your sheet columns
-    const newRow = [
-      data.name,
-      data.phone,
-      data.Brand, // Changed from tvBrand to Brand
-      data.issue
-    ];
-    
-    sheet.appendRow(newRow);
+    // Check if this is a booking or a lead
+    if (data.type === 'booking') {
+      const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(BOOKINGS_SHEET_NAME);
+      if (!sheet) {
+        throw new Error(`Sheet with name "${BOOKINGS_SHEET_NAME}" not found.`);
+      }
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'success', message: 'Lead added successfully' }))
-      .setMimeType(ContentService.MimeType.JSON);
+      // Bookings: name, phone, email, address, service, timestamp
+      const newRow = [
+        data.name,
+        data.phone,
+        data.email,
+        data.address,
+        data.service,
+        new Date()
+      ];
+
+      sheet.appendRow(newRow);
+
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'success', message: 'Booking added successfully' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } else {
+      // Handle leads (existing functionality)
+      const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(LEADS_SHEET_NAME);
+      if (!sheet) {
+        throw new Error(`Sheet with name "${LEADS_SHEET_NAME}" not found.`);
+      }
+
+      // Leads: name, phone, brand, issue, timestamp
+      const newRow = [
+        data.name,
+        data.phone,
+        data.Brand,
+        data.issue,
+        new Date()
+      ];
+
+      sheet.appendRow(newRow);
+
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'success', message: 'Lead added successfully' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
 
   } catch (error) {
     Logger.log(error.toString());
