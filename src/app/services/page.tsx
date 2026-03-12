@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone, MessageCircle } from "lucide-react";
 import { serviceCategories, services } from "@/lib/data";
 import {
   Card,
@@ -41,6 +41,20 @@ export default function ServicesPage() {
           <p className="mt-4 text-lg text-muted-foreground">
             We offer expert repair and maintenance for a wide range of home appliances. Quality service, guaranteed.
           </p>
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <Button asChild size="lg" variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50">
+              <a href="tel:+918858585559">
+                <Phone className="mr-2 h-4 w-4" />
+                Call: +91 88585 85559
+              </a>
+            </Button>
+            <Button asChild size="lg" className="bg-green-500 hover:bg-green-600 text-white shadow-md">
+              <a href="https://wa.me/918858585559" target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                WhatsApp Us
+              </a>
+            </Button>
+          </div>
         </div>
 
         <div className="mt-16 space-y-20">
